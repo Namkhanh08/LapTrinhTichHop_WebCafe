@@ -1,0 +1,465 @@
+import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
+import API from '../services/api';
+console.log("USESTORE FILE RUNNING");
+console.log("API imported:", API);
+console.log("getDashboard:", API.getDashboard);
+console.log("getVouchers:", API.getAvailableVouchers);
+
+const useStore = create(
+  persist(
+    (set, get) => ({
+      cart: [],
+      user: null,
+      orders: [],
+      products: [],
+      dashboard: null,
+      totalItems: 0,
+      currentPage: 1,
+
+
+      vouchers: [],
+      voucherStats: {
+        activeCount: 0,
+        usedTodayCount: 0,
+        freeshipCount: 0
+      },
+      availableVouchers: [],
+      publicVouchers: [],
+
+
+      //USERS
+      setUser: (user) => set({ user }),
+
+      logout: () => {
+        localStorage.removeItem("token");
+        set({
+          user: null,
+          cart: [],
+          orders: [],
+        });
+      },
+
+
+      //CARTS
+      loadCart: async () => {
+        try {
+          const res = await API.getCart();
+          const items = res.data?.items || [];
+          const mapped = items.map(item => {
+            const existed = get().cart.find(i =>
+              i.ProductId === item.ProductId &&
+              i.GrindingOptionId === item.GrindingOptionId &&
+              i.FlavorNotes === item.FlavorNotes &&
+              i.Weight === item.Weight
+            );
+            return {
+              ...item,
+              selected: existed ? existed.selected : true
+            };
+          });
+          set({ cart: mapped });
+        } catch (err) {
+          console.error("Load cart failed:", err.response?.data?.message || err.message);
+        }
+      },
+
+      addToCart: async (product, quantity, grindType, flavorNotes, weight, receiverName, receiverPhone, shippingProvince, shippingDistrict, shippingWard, shippingDetailAddress, shippingNote) => {
+        try {
+          await API.addToCart({
+            productId: product.id,
+            quantity: quantity,
+            grindingOptionId: grindType,
+            flavorNotes: flavorNotes,
+            weight: weight,
+            receiverName: receiverName,
+            receiverPhone: receiverPhone,
+            shippingProvince: shippingProvince,
+            shippingDistrict: shippingDistrict,
+            shippingWard: shippingWard,
+            shippingDetailAddress: shippingDetailAddress,
+            shippingNote: shippingNote
+          });
+
+          await get().loadCart();
+
+        } catch (err) {
+          console.error("Add to cart failed:", err.response?.data?.message || err.message);
+        }
+      },
+
+      removeFromCart: async (productId, grindType, flavorNotes, weight) => {
+        try {
+          await API.removeCartItem(productId, grindType, flavorNotes, weight);
+          await get().loadCart();
+        } catch (err) {
+          console.log("Remove item failed:", err);
+        }
+      },
+
+      updateQuantity: async (
+        productId,
+        grindType,
+        newQuantity,
+        flavorNotes,
+        weight
+      ) => {
+        try {
+          await API.updateCartItem({
+            productId: productId,
+            quantity: newQuantity,
+            grindingOptionId: grindType,
+            flavorNotes: flavorNotes,
+            weight: weight,
+          });
+          set((state) => ({
+            cart: state.cart.map(item =>
+              (
+                item.ProductId === productId &&
+                item.GrindingOptionId === grindType &&
+                item.FlavorNotes === flavorNotes &&
+                item.Weight === weight
+              )
+                ? {
+                  ...item,
+                  Quantity: Math.max(1, newQuantity)
+                }
+                : item
+            )
+          }));
+
+          await get().loadCart();
+
+        } catch (err) {
+          console.log("Update quantity failed:", err);
+        }
+      },
+
+      clearCart: () => set({ cart: [] }),
+
+      getTotalQuantity: () =>
+        get().cart.reduce((total, item) => total + item.Quantity, 0),
+
+      getTotalQuantityOrder: () =>
+        (get().orders || []).reduce((total, order) => {
+
+          const details = order?.OrderDetails || [];
+
+          const orderQty = details.reduce(
+            (sum, detail) => sum + (detail?.Quantity || 0),
+            0
+          );
+
+          return total + orderQty;
+
+        }, 0),
+
+      toggleSelected: (productId, grindType, flavorNotes, weight) =>
+        set((state) => ({
+          cart: state.cart.map((item) =>
+            item.ProductId == productId && item.FlavorNotes == flavorNotes && item.GrindingOptionId == grindType && item.Weight == weight
+              ? { ...item, selected: !item.selected }
+              : item)
+        })),
+
+
+      //ORDERS
+      createOrder: async (payload) => {
+        try {
+          const res = await API.createOrder(payload);
+
+          await get().fetchOrders();
+          await get().loadCart();
+          return res;
+        } catch (err) {
+          console.error("Create order failed:", err.response?.data?.message || err.message);
+          throw err;
+        }
+      },
+
+      fetchOrders: async () => {
+        try {
+          const res = await API.getMyOrders();
+          set({ orders: res.data || [] });
+        } catch (err) {
+          console.error("Fetch orders failed:", err.response?.data?.message || err.message);
+        }
+      },
+
+      cancelOrder: async (orderId) => {
+        await API.cancelOrder(orderId);
+        await get().fetchOrders();
+      },
+
+      fetchOrderById: async (id) => {
+        try {
+          const res = await API.getOrderById(id);
+          set((state) => ({
+            orders: state.orders.find(o => o.Id === res.data.Id)
+              ? state.orders.map(o => o.Id === res.data.Id ? res.data : o)
+              : [...state.orders, res.data]
+          }));
+          return res.data;
+        } catch (err) {
+          console.error("Fetch order detail failed:", err);
+        }
+      },
+
+      fetchAllOrdersAdmin: async (page = 1, searchTerm = '', status = 'all') => {
+        try {
+          const res = await API.fetchAllOrdersAdmin(page, searchTerm, status);
+          // Lưu ý: res.data bây giờ là object PageResponse { items, totalItems, page, pageSize }
+          set({
+            orders: res.data.items || [],
+            totalItems: res.data.totalItems,
+            currentPage: res.data.page
+          });
+        } catch (err) {
+          console.error("Lỗi lấy danh sách admin:", err);
+        }
+      },
+
+      updateOrder: async (id, payload) => {
+        try {
+
+          const res = await API.updateOrder(id, payload);
+
+          set((state) => ({
+            orders: state.orders.map(order =>
+              order.Id === id
+                ? {
+                  ...order,
+                  ...res.data
+                }
+                : order
+            )
+          }));
+
+          return res.data;
+
+        } catch (err) {
+
+          console.error(
+            "Update order failed:",
+            err.response?.data?.message || err.message
+          );
+
+          throw err;
+        }
+      },
+
+      confirmOrder: async (id) => {
+        try {
+          await API.confirmOrder(id);
+          // Sau khi confirm thành công, refresh lại danh sách để cập nhật Stock và Status
+          const { currentPage } = get();
+          await get().fetchAllOrdersAdmin(currentPage);
+        } catch (err) {
+          alert("Lỗi xác nhận: " + (err.response?.data || "Không đủ hàng trong kho"));
+          throw err;
+        }
+      },
+
+      updateOrderStatus: async (id, status) => {
+        try {
+
+          const res = await API.updateOrderStatus(id, status);
+
+          set((state) => ({
+            orders: state.orders.map(order =>
+              order.Id === id
+                ? res.data
+                : order
+            )
+          }));
+
+          return res.data;
+
+        } catch (err) {
+
+          console.error(
+            "Update status failed:",
+            err.response?.data?.message || err.message
+          );
+
+          throw err;
+        }
+      },
+
+
+      fetchProducts: async () => {
+        try {
+          const res = await API.getProducts();
+          console.log("PRODUCT API:", res.data);
+
+          set({
+            products: res.data
+          });
+        } catch (err) {
+          console.error("Fetch products failed:", err.response?.data?.message || err.message);
+        }
+      },
+
+
+      //ADMIN
+      fetchDashboard: async () => {
+        try {
+          const res = await API.getDashboard();
+
+          set({
+            dashboard: res.data
+          });
+
+          console.log("Dashboard data:", res.data);
+        } catch (err) {
+          console.error(
+            "Fetch dashboard failed:", err.response?.data?.message || err.message
+          );
+        }
+      },
+
+
+      //VOUCHERS ADMIN
+      fetchVouchersAdmin: async () => {
+        try {
+          const res = await API.getVouchersAdmin();
+          console.log("Voucher API Data:", res.data);
+
+          // Tách mảng danh sách và các con số thống kê từ DTO của Backend trả về
+          set({
+            vouchers: res.data.voucher || [],
+            voucherStats: {
+              activeCount: res.data.activeCount,
+              usedTodayCount: res.data.usedTodayCount,
+              freeshipCount: res.data.freeshipCount
+            }
+          });
+        } catch (err) {
+          console.error("Fetch vouchers failed:", err.response?.data?.message || err.message);
+        }
+      },
+
+      fetchAvailableVouchers: async (items, paymentMethod) => {
+
+        try {
+
+          const payload = {
+            items: items.map(item => ({
+              productId: item.ProductId,
+              quantity: item.Quantity
+            })),
+            paymentMethod: paymentMethod === 'cod'
+              ? 'COD'
+              : 'VNPAY'
+          };
+
+          const res = await API.getAvailableVouchers(payload);
+
+          set({
+            availableVouchers: res.data || []
+          });
+
+        } catch (err) {
+
+          console.error(
+            "Fetch vouchers failed:",
+            err.response?.data || err.message
+          );
+
+        }
+
+      },
+
+      fetchPublicVouchers: async () => {
+        const res = await API.getPublicVouchers();
+
+        set({
+          publicVouchers: res.data
+        });
+      },
+
+      createVoucher: async (data) => {
+
+        try {
+
+          await API.createVoucher(data);
+
+          await get().fetchVouchersAdmin();
+
+        } catch (err) {
+
+          console.error(
+            "Create voucher failed:",
+            err.response?.data || err.message
+          );
+
+          throw err;
+        }
+      },
+
+      updateVoucher: async (id, data) => {
+
+        try {
+
+          await API.updateVoucher(id, data);
+
+          await get().fetchVouchersAdmin();
+
+        } catch (err) {
+
+          console.error(
+            "Update voucher failed:",
+            err.response?.data || err.message
+          );
+
+          throw err;
+        }
+      },
+
+      deleteVoucher: async (id) => {
+
+        try {
+
+          await API.deleteVoucher(id);
+
+          await get().fetchVouchersAdmin();
+
+        } catch (err) {
+
+          console.error(
+            "Delete voucher failed:",
+            err.response?.data || err.message
+          );
+
+          throw err;
+        }
+      },
+
+      toggleVoucher: async (id, active) => {
+        try {
+          await API.toggleVoucher(id, active);
+          await get().fetchVouchersAdmin();
+        } catch (err) {
+          console.error(
+            "Toggle voucher failed:",
+            err.response?.data || err.message
+          );
+          throw err;
+        }
+      },
+
+    }),
+    {
+      name: 'revo-coffee-storage',
+      version: 2,
+      partialize: (state) => ({
+        cart: state.cart,
+        user: state.user,
+        orders: state.orders,
+        dashboard: state.dashboard
+      })
+    }
+  )
+);
+console.log(useStore.getState());
+export default useStore;
