@@ -18,15 +18,32 @@ api.interceptors.request.use((config) => {
 
     return config;
 });
+api.interceptors.response.use(
+    (response) => response,
+    (error) => {
+        if (error.response && error.response.status === 401) {
+           
+            localStorage.clear();
+        }
+        return Promise.reject(error);
+    }
+);
 
 const API = {
 
-    // AUTH
-    login: (data) => api.post("/auth/login", data),
+     // Auth
+     login: (data) => api.post("/auth/login", data),
+     register: (data) => api.post("/auth/register", data),
 
-    // PRODUCTS
-    getProducts: () => api.get("/products"),
-    getProductById: (id) => api.get(`/products/${id}`),
+     // Danh mục
+    getCategories: () => api.get("/api/admin/categories"),
+
+    // Sản phẩm
+    getAll: () => api.get("/api/admin/products"),
+    getProductById: (id) => api.get(`/api/admin/products/${id}`),
+    createProduct: (data) => api.post("/api/admin/products", data),
+    updateProduct: (id, data) => api.put(`/api/admin/products/${id}`, data),
+    deleteProduct: (id) => api.delete(`/api/admin/products/${id}`),
 
     // CARTS
     getCart: () => api.get("/carts"),
@@ -108,6 +125,46 @@ const API = {
     toggleVoucher: (id) =>
         api.patch(`/vouchers/${id}/toggle`),
 
+
+    // Inventory Management
+    getProducts: () => api.get('/api/inventory/products'),
+    updateStock: (productId, quantity, reason) => 
+      api.post(`/api/inventory/update-stock?productId=${productId}&quantity=${quantity}&reason=${reason}`),
+    getLogs: () => api.get('/api/inventory/logs'),
+    getTotalStock: () => api.get('/api/inventory/total-stock'),
+
+    // Quản lý mẻ rang 
+    getBatchesDetail: () => api.get('/api/inventory/batches'), 
+    createBatchDetail: (productId, batchCode, roastLevel, inputWeight, status) => 
+    api.post(`/api/inventory/create-batch-detail?productId=${productId}&batchCode=${batchCode}&roastLevel=${roastLevel}&inputWeight=${inputWeight}&status=${status}`),
+
+    // User Profile
+    getUserProfile: (id) => api.get(`/api/users/${id}`),
+    updateUserProfile: (id, data) => api.put(`/api/users/${id}`, data),
+
+    // Quản lý người dùng (Admin)
+    adminGetUsers: () => api.get("/api/users"),
+    adminDeleteUser: (id) => api.delete(`/api/users/${id}`),
+    adminUpdateUser: (id, data) => api.put(`/api/users/${id}`, data),
+    adminCreateUser: (data) => api.post('/api/users', data),
+    
+    // upload ảnh đại diện người dùng
+    uploadUserImage: (file) => {
+        const formData = new FormData();
+        formData.append("file", file);
+        return api.post("/api/upload/user-image", formData, {
+            headers: { "Content-Type": "multipart/form-data" }
+        });
+    },
+  
+    // upload sản phẩm
+    uploadProductImage: (file) => {
+        const formData = new FormData();
+        formData.append("file", file); 
+        return api.post("/api/upload/product-image", formData, {
+            headers: { "Content-Type": "multipart/form-data" }
+        });
+    },
 };
 
 console.log("API OBJECT:", API);

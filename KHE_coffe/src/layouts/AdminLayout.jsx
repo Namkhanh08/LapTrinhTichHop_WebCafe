@@ -8,7 +8,8 @@ import {
   Database,
   Settings,
   LogOut,
-  TicketPercent
+  TicketPercent,
+  Users
 } from 'lucide-react';
 
 export default function AdminLayout() {
@@ -51,6 +52,7 @@ export default function AdminLayout() {
       path: '/admin/inventory',
       icon: <Archive size={20} />
     },
+    { name: 'Người dùng', path: '/admin/users', icon: <Users size={20} /> },
   ];
 
   return (

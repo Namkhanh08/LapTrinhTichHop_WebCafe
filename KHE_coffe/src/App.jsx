@@ -1,28 +1,29 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Layout from './layouts/Layout';
-import Home from './pages/Home';
-import Shop from './pages/Shop';
-import ProductDetail from './pages/ProductDetail';
-import Cart from './pages/Cart';
-import Checkout from './pages/Checkout';
-import Subscription from './pages/Subscription';
-import Orders from './pages/Orders';
-import Profile from './pages/Profile';
-import OrderDetail from './pages/OrderDetail';
-import EditOrder from './pages/EditOrder';
-import PaymentPage from './pages/PaymentPage';
+import React from "react";
+import ProtectedRoute from "./components/ProtectedRoute";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Layout from "./layouts/Layout";
+import Home from "./pages/Home";
+import Shop from "./pages/Shop";
+import ProductDetail from "./pages/ProductDetail";
+import Cart from "./pages/Cart";
+import Checkout from "./pages/Checkout";
+import Subscription from "./pages/Subscription";
+import Orders from "./pages/Orders";
+import Profile from "./pages/Profile";
+import OrderDetail from "./pages/OrderDetail";
+import EditOrder from "./pages/EditOrder";
+import PaymentPage from "./pages/PaymentPage";
 
 // Admin imports
-import AdminLayout from './layouts/AdminLayout';
-import AdminDashboard from './pages/admin/Dashboard';
-import AdminOrders from './pages/admin/Orders';
-import AdminProducts from './pages/admin/Products';
-import AdminBatches from './pages/admin/Batches';
-import AdminInventory from './pages/admin/Inventory';
-import AdminVouchers from './pages/admin/Vouchers';
-
-import './App.css';
+import AdminLayout from "./layouts/AdminLayout";
+import AdminDashboard from "./pages/admin/Dashboard";
+import AdminOrders from "./pages/admin/Orders";
+import AdminProducts from "./pages/admin/Products";
+import AdminBatches from "./pages/admin/Batches";
+import AdminInventory from "./pages/admin/Inventory";
+import AdminVouchers from "./pages/admin/Vouchers";
+import AdminUsers from "./pages/admin/Users";
+import "./App.css";
 
 function App() {
   return (
@@ -40,11 +41,10 @@ function App() {
           <Route path="orders/:id" element={<OrderDetail />} />
           <Route path="/orders/edit/:id" element={<EditOrder />} />
           <Route path="checkout/payment/:orderId" element={<PaymentPage />} />
-         
-          
         </Route>
-        
+
         {/* Lớp Admin Routing */}
+        <Route element={<ProtectedRoute allowedRoles={[1, 2, 3]} />}></Route>
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<AdminDashboard />} />
           <Route path="orders" element={<AdminOrders />} />
@@ -52,6 +52,9 @@ function App() {
           <Route path="batches" element={<AdminBatches />} />
           <Route path="inventory" element={<AdminInventory />} />
           <Route path="vouchers" element={<AdminVouchers />} />
+          <Route element={<ProtectedRoute allowedRoles={[1]} />}>
+            <Route path="users" element={<AdminUsers />} />
+          </Route>
         </Route>
       </Routes>
     </Router>

@@ -1,89 +1,185 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\ASUS-laptop\\source\\repos\\KHE_AuthService\\",
+  "WorkspaceRootPath": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B652E0D5-E6D6-4C05-9466-59E008816A1B}|KHE_APIGateway\\KHE_APIGateway.csproj|c:\\users\\asus-laptop\\source\\repos\\khe_authservice\\khe_apigateway\\ocelot.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "AbsoluteMoniker": "D:0:0:{B652E0D5-E6D6-4C05-9466-59E008816A1B}|KHE_APIGateway\\KHE_APIGateway.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_apigateway\\ocelot.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{B652E0D5-E6D6-4C05-9466-59E008816A1B}|KHE_APIGateway\\KHE_APIGateway.csproj|solutionrelative:khe_apigateway\\ocelot.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B652E0D5-E6D6-4C05-9466-59E008816A1B}|KHE_APIGateway\\KHE_APIGateway.csproj|c:\\users\\asus-laptop\\source\\repos\\khe_authservice\\khe_apigateway\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B652E0D5-E6D6-4C05-9466-59E008816A1B}|KHE_APIGateway\\KHE_APIGateway.csproj|solutionrelative:khe_apigateway\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_authservice\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|c:\\users\\asus-laptop\\source\\repos\\khe_authservice\\khe_authservice\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_authservice\\controllers\\uploadcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\controllers\\uploadcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B652E0D5-E6D6-4C05-9466-59E008816A1B}|KHE_APIGateway\\KHE_APIGateway.csproj|c:\\users\\asus-laptop\\source\\repos\\khe_authservice\\khe_apigateway\\khe_apigateway.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
-      "RelativeMoniker": "D:0:0:{B652E0D5-E6D6-4C05-9466-59E008816A1B}|KHE_APIGateway\\KHE_APIGateway.csproj|solutionrelative:khe_apigateway\\khe_apigateway.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_authservice\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B652E0D5-E6D6-4C05-9466-59E008816A1B}|KHE_APIGateway\\KHE_APIGateway.csproj|c:\\users\\asus-laptop\\source\\repos\\khe_authservice\\khe_apigateway\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{B652E0D5-E6D6-4C05-9466-59E008816A1B}|KHE_APIGateway\\KHE_APIGateway.csproj|solutionrelative:khe_apigateway\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_authservice\\controllers\\inventorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\controllers\\inventorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|c:\\users\\asus-laptop\\source\\repos\\khe_authservice\\khe_authservice\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_authservice\\controllers\\categoriescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\controllers\\categoriescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|c:\\users\\asus-laptop\\source\\repos\\khe_authservice\\khe_authservice\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|c:\\users\\asus-laptop\\source\\repos\\khe_authservice\\khe_authservice\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|c:\\users\\asus-laptop\\source\\repos\\khe_authservice\\khe_authservice\\repositories\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\repositories\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|c:\\users\\asus-laptop\\source\\repos\\khe_authservice\\khe_authservice\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|c:\\users\\asus-laptop\\source\\repos\\khe_authservice\\khe_authservice\\dtos\\authreponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\dtos\\authreponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|c:\\users\\asus-laptop\\source\\repos\\khe_authservice\\khe_authservice\\dtos\\loginrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\dtos\\loginrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|c:\\users\\asus-laptop\\source\\repos\\khe_authservice\\khe_authservice\\helpers\\jwtservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\helpers\\jwtservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|c:\\users\\asus-laptop\\source\\repos\\khe_authservice\\khe_authservice\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|c:\\users\\asus-laptop\\source\\repos\\khe_authservice\\khe_authservice\\helpers\\passwordhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\helpers\\passwordhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|c:\\users\\asus-laptop\\source\\repos\\khe_authservice\\khe_authservice\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_authservice\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B652E0D5-E6D6-4C05-9466-59E008816A1B}|KHE_APIGateway\\KHE_APIGateway.csproj|c:\\users\\asus-laptop\\source\\repos\\khe_authservice\\khe_apigateway\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{B652E0D5-E6D6-4C05-9466-59E008816A1B}|KHE_APIGateway\\KHE_APIGateway.csproj|solutionrelative:khe_apigateway\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_authservice\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B652E0D5-E6D6-4C05-9466-59E008816A1B}|KHE_APIGateway\\KHE_APIGateway.csproj|c:\\users\\asus-laptop\\source\\repos\\khe_authservice\\khe_apigateway\\ocelot.json||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{B652E0D5-E6D6-4C05-9466-59E008816A1B}|KHE_APIGateway\\KHE_APIGateway.csproj|solutionrelative:khe_apigateway\\ocelot.json||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_authservice\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B652E0D5-E6D6-4C05-9466-59E008816A1B}|KHE_APIGateway\\KHE_APIGateway.csproj|c:\\users\\asus-laptop\\source\\repos\\khe_authservice\\khe_apigateway\\khe_apigateway.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{B652E0D5-E6D6-4C05-9466-59E008816A1B}|KHE_APIGateway\\KHE_APIGateway.csproj|solutionrelative:khe_apigateway\\khe_apigateway.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_authservice\\entities\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\entities\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|c:\\users\\asus-laptop\\source\\repos\\khe_authservice\\khe_authservice\\services\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_authservice\\repositories\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\repositories\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_authservice\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_authservice\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_authservice\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_authservice\\repositories\\icategoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\repositories\\icategoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_authservice\\repositories\\categoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\repositories\\categoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_authservice\\repositories\\iinventoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\repositories\\iinventoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_authservice\\repositories\\inventoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\repositories\\inventoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_authservice\\repositories\\iproductrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\repositories\\iproductrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_authservice\\repositories\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\repositories\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_authservice\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_authservice\\dtos\\productrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\dtos\\productrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_authservice\\dtos\\productdetailrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\dtos\\productdetailrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_authservice\\dtos\\admincreateuserrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\dtos\\admincreateuserrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_authservice\\services\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\services\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|c:\\users\\asus-laptop\\source\\repos\\khe_authservice\\khe_authservice\\khe_authservice.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
+      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_authservice\\services\\tokenhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\services\\tokenhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_authservice\\dtos\\authrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\dtos\\authrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_authservice\\dtos\\apiresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\dtos\\apiresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_authservice\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_authservice\\entities\\roastingbatch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\entities\\roastingbatch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_authservice\\entities\\productdetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\entities\\productdetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_authservice\\entities\\orderdetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\entities\\orderdetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_authservice\\entities\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\entities\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_authservice\\entities\\inventorylog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\entities\\inventorylog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_authservice\\entities\\grindingoption.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\entities\\grindingoption.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_authservice\\entities\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\entities\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_authservice\\entities\\cartitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\entities\\cartitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_authservice\\entities\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\entities\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B652E0D5-E6D6-4C05-9466-59E008816A1B}|KHE_APIGateway\\KHE_APIGateway.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_apigateway\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{B652E0D5-E6D6-4C05-9466-59E008816A1B}|KHE_APIGateway\\KHE_APIGateway.csproj|solutionrelative:khe_apigateway\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B652E0D5-E6D6-4C05-9466-59E008816A1B}|KHE_APIGateway\\KHE_APIGateway.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_apigateway\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B652E0D5-E6D6-4C05-9466-59E008816A1B}|KHE_APIGateway\\KHE_APIGateway.csproj|solutionrelative:khe_apigateway\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B652E0D5-E6D6-4C05-9466-59E008816A1B}|KHE_APIGateway\\KHE_APIGateway.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_apigateway\\ocelot.json||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{B652E0D5-E6D6-4C05-9466-59E008816A1B}|KHE_APIGateway\\KHE_APIGateway.csproj|solutionrelative:khe_apigateway\\ocelot.json||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B652E0D5-E6D6-4C05-9466-59E008816A1B}|KHE_APIGateway\\KHE_APIGateway.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_apigateway\\khe_apigateway.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{B652E0D5-E6D6-4C05-9466-59E008816A1B}|KHE_APIGateway\\KHE_APIGateway.csproj|solutionrelative:khe_apigateway\\khe_apigateway.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B652E0D5-E6D6-4C05-9466-59E008816A1B}|KHE_APIGateway\\KHE_APIGateway.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_apigateway\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{B652E0D5-E6D6-4C05-9466-59E008816A1B}|KHE_APIGateway\\KHE_APIGateway.csproj|solutionrelative:khe_apigateway\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B652E0D5-E6D6-4C05-9466-59E008816A1B}|KHE_APIGateway\\KHE_APIGateway.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_apigateway\\khe_apigateway.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
+      "RelativeMoniker": "D:0:0:{B652E0D5-E6D6-4C05-9466-59E008816A1B}|KHE_APIGateway\\KHE_APIGateway.csproj|solutionrelative:khe_apigateway\\khe_apigateway.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_authservice\\khe_authservice.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
       "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\khe_authservice.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
     }
   ],
@@ -94,16 +190,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 13,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:1:0:{e8b06f52-6d01-11d2-aa7d-00c04f990343}"
@@ -114,232 +202,513 @@
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "KHE_APIGateway.http",
-              "DocumentMoniker": "C:\\Users\\ASUS-laptop\\source\\repos\\KHE_AuthService\\KHE_APIGateway\\KHE_APIGateway.http",
-              "RelativeDocumentMoniker": "KHE_APIGateway\\KHE_APIGateway.http",
-              "ToolTip": "C:\\Users\\ASUS-laptop\\source\\repos\\KHE_AuthService\\KHE_APIGateway\\KHE_APIGateway.http",
-              "RelativeToolTip": "KHE_APIGateway\\KHE_APIGateway.http",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAADAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
-              "WhenOpened": "2026-05-09T14:36:40.82Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\ASUS-laptop\\source\\repos\\KHE_AuthService\\KHE_APIGateway\\Program.cs",
-              "RelativeDocumentMoniker": "KHE_APIGateway\\Program.cs",
-              "ToolTip": "C:\\Users\\ASUS-laptop\\source\\repos\\KHE_AuthService\\KHE_APIGateway\\Program.cs",
-              "RelativeToolTip": "KHE_APIGateway\\Program.cs",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAiwBIAAAADAAAAAAAAAA==",
+              "DocumentIndex": 5,
+              "Title": "CategoriesController.cs",
+              "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Controllers\\CategoriesController.cs",
+              "RelativeDocumentMoniker": "KHE_AuthService\\Controllers\\CategoriesController.cs",
+              "ToolTip": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Controllers\\CategoriesController.cs",
+              "RelativeToolTip": "KHE_AuthService\\Controllers\\CategoriesController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-05T03:11:21.537Z"
+              "WhenOpened": "2026-05-20T06:50:47.446Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UploadController.cs",
+              "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Controllers\\UploadController.cs",
+              "RelativeDocumentMoniker": "KHE_AuthService\\Controllers\\UploadController.cs",
+              "ToolTip": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Controllers\\UploadController.cs",
+              "RelativeToolTip": "KHE_AuthService\\Controllers\\UploadController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADwAAABLAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-20T07:31:48.64Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "IProductRepository.cs",
+              "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Repositories\\IProductRepository.cs",
+              "RelativeDocumentMoniker": "KHE_AuthService\\Repositories\\IProductRepository.cs",
+              "ToolTip": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Repositories\\IProductRepository.cs",
+              "RelativeToolTip": "KHE_AuthService\\Repositories\\IProductRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-20T06:47:26.464Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Services\\AuthService.cs",
+              "RelativeDocumentMoniker": "KHE_AuthService\\Services\\AuthService.cs",
+              "ToolTip": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Services\\AuthService.cs",
+              "RelativeToolTip": "KHE_AuthService\\Services\\AuthService.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAYwDQAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-04T16:04:10.257Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ProductRepository.cs",
+              "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Repositories\\ProductRepository.cs",
+              "RelativeDocumentMoniker": "KHE_AuthService\\Repositories\\ProductRepository.cs",
+              "ToolTip": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Repositories\\ProductRepository.cs",
+              "RelativeToolTip": "KHE_AuthService\\Repositories\\ProductRepository.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAYwBMAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-20T06:46:33.761Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Product.cs",
+              "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Entities\\Product.cs",
+              "RelativeDocumentMoniker": "KHE_AuthService\\Entities\\Product.cs",
+              "ToolTip": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Entities\\Product.cs",
+              "RelativeToolTip": "KHE_AuthService\\Entities\\Product.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAIwB0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-20T05:44:39.308Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "ocelot.json",
-              "DocumentMoniker": "C:\\Users\\ASUS-laptop\\source\\repos\\KHE_AuthService\\KHE_APIGateway\\ocelot.json",
+              "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_APIGateway\\ocelot.json",
               "RelativeDocumentMoniker": "KHE_APIGateway\\ocelot.json",
-              "ToolTip": "C:\\Users\\ASUS-laptop\\source\\repos\\KHE_AuthService\\KHE_APIGateway\\ocelot.json",
-              "RelativeToolTip": "KHE_APIGateway\\ocelot.json",
-              "ViewState": "AgIAAD0AAAAAAAAAAAAgwE4AAAABAAAAAAAAAA==",
+              "ToolTip": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_APIGateway\\ocelot.json*",
+              "RelativeToolTip": "KHE_APIGateway\\ocelot.json*",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAAAGEAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2026-05-05T03:05:18.967Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\ASUS-laptop\\source\\repos\\KHE_AuthService\\KHE_APIGateway\\appsettings.json",
-              "RelativeDocumentMoniker": "KHE_APIGateway\\appsettings.json",
-              "ToolTip": "C:\\Users\\ASUS-laptop\\source\\repos\\KHE_AuthService\\KHE_APIGateway\\appsettings.json",
-              "RelativeToolTip": "KHE_APIGateway\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-05-05T03:05:15.428Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "ocelot.json",
-              "DocumentMoniker": "C:\\Users\\ASUS-laptop\\source\\repos\\KHE_AuthService\\KHE_APIGateway\\ocelot.json",
-              "RelativeDocumentMoniker": "KHE_APIGateway\\ocelot.json",
-              "ToolTip": "C:\\Users\\ASUS-laptop\\source\\repos\\KHE_AuthService\\KHE_APIGateway\\ocelot.json",
-              "RelativeToolTip": "KHE_APIGateway\\ocelot.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-05-05T03:03:52.623Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "KHE_APIGateway.csproj",
-              "DocumentMoniker": "C:\\Users\\ASUS-laptop\\source\\repos\\KHE_AuthService\\KHE_APIGateway\\KHE_APIGateway.csproj",
-              "RelativeDocumentMoniker": "KHE_APIGateway\\KHE_APIGateway.csproj",
-              "ToolTip": "C:\\Users\\ASUS-laptop\\source\\repos\\KHE_AuthService\\KHE_APIGateway\\KHE_APIGateway.csproj",
-              "RelativeToolTip": "KHE_APIGateway\\KHE_APIGateway.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-05-05T03:00:41.479Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "AuthReponse.cs",
-              "DocumentMoniker": "C:\\Users\\ASUS-laptop\\source\\repos\\KHE_AuthService\\KHE_AuthService\\DTOs\\AuthReponse.cs",
-              "RelativeDocumentMoniker": "KHE_AuthService\\DTOs\\AuthReponse.cs",
-              "ToolTip": "C:\\Users\\ASUS-laptop\\source\\repos\\KHE_AuthService\\KHE_AuthService\\DTOs\\AuthReponse.cs",
-              "RelativeToolTip": "KHE_AuthService\\DTOs\\AuthReponse.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAswAwAAAApAAAAAAAAAA==",
+              "DocumentIndex": 8,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "KHE_AuthService\\Controllers\\AuthController.cs",
+              "ToolTip": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "KHE_AuthService\\Controllers\\AuthController.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAqwBYAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-04T17:59:18.485Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "LoginRequest.cs",
-              "DocumentMoniker": "C:\\Users\\ASUS-laptop\\source\\repos\\KHE_AuthService\\KHE_AuthService\\DTOs\\LoginRequest.cs",
-              "RelativeDocumentMoniker": "KHE_AuthService\\DTOs\\LoginRequest.cs",
-              "ToolTip": "C:\\Users\\ASUS-laptop\\source\\repos\\KHE_AuthService\\KHE_AuthService\\DTOs\\LoginRequest.cs",
-              "RelativeToolTip": "KHE_AuthService\\DTOs\\LoginRequest.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-04T16:05:07.559Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "AuthService.cs",
-              "DocumentMoniker": "C:\\Users\\ASUS-laptop\\source\\repos\\KHE_AuthService\\KHE_AuthService\\Services\\AuthService.cs",
-              "RelativeDocumentMoniker": "KHE_AuthService\\Services\\AuthService.cs",
-              "ToolTip": "C:\\Users\\ASUS-laptop\\source\\repos\\KHE_AuthService\\KHE_AuthService\\Services\\AuthService.cs",
-              "RelativeToolTip": "KHE_AuthService\\Services\\AuthService.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAqwBMAAABCAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-04T16:04:10.257Z"
+              "WhenOpened": "2026-05-04T15:56:33.811Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Program.cs",
+              "RelativeDocumentMoniker": "KHE_AuthService\\Program.cs",
+              "ToolTip": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Program.cs",
+              "RelativeToolTip": "KHE_AuthService\\Program.cs",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAAADwAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-04T15:59:57.929Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "InventoryController.cs",
+              "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Controllers\\InventoryController.cs",
+              "RelativeDocumentMoniker": "KHE_AuthService\\Controllers\\InventoryController.cs",
+              "ToolTip": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Controllers\\InventoryController.cs",
+              "RelativeToolTip": "KHE_AuthService\\Controllers\\InventoryController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEAAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-20T06:51:14.871Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ProductsController.cs",
+              "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Controllers\\ProductsController.cs",
+              "RelativeDocumentMoniker": "KHE_AuthService\\Controllers\\ProductsController.cs",
+              "ToolTip": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Controllers\\ProductsController.cs",
+              "RelativeToolTip": "KHE_AuthService\\Controllers\\ProductsController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-20T06:52:00.459Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UsersController.cs",
+              "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Controllers\\UsersController.cs",
+              "RelativeDocumentMoniker": "KHE_AuthService\\Controllers\\UsersController.cs",
+              "ToolTip": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Controllers\\UsersController.cs",
+              "RelativeToolTip": "KHE_AuthService\\Controllers\\UsersController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-20T06:52:43.877Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "KHE_AuthService\\Properties\\launchSettings.json",
+              "ToolTip": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Properties\\launchSettings.json",
+              "RelativeToolTip": "KHE_AuthService\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-05-19T09:12:59.846Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "ICategoryRepository.cs",
+              "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Repositories\\ICategoryRepository.cs",
+              "RelativeDocumentMoniker": "KHE_AuthService\\Repositories\\ICategoryRepository.cs",
+              "ToolTip": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Repositories\\ICategoryRepository.cs",
+              "RelativeToolTip": "KHE_AuthService\\Repositories\\ICategoryRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-20T06:48:49.529Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Data\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "KHE_AuthService\\Data\\AppDbContext.cs",
+              "ToolTip": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Data\\AppDbContext.cs",
+              "RelativeToolTip": "KHE_AuthService\\Data\\AppDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-04T15:36:04.683Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\appsettings.json",
+              "RelativeDocumentMoniker": "KHE_AuthService\\appsettings.json",
+              "ToolTip": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\appsettings.json",
+              "RelativeToolTip": "KHE_AuthService\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAABaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-05-04T15:24:22.529Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "InventoryRepository.cs",
+              "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Repositories\\InventoryRepository.cs",
+              "RelativeDocumentMoniker": "KHE_AuthService\\Repositories\\InventoryRepository.cs",
+              "ToolTip": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Repositories\\InventoryRepository.cs",
+              "RelativeToolTip": "KHE_AuthService\\Repositories\\InventoryRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-20T06:47:54.93Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "IInventoryRepository.cs",
+              "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Repositories\\IInventoryRepository.cs",
+              "RelativeDocumentMoniker": "KHE_AuthService\\Repositories\\IInventoryRepository.cs",
+              "ToolTip": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Repositories\\IInventoryRepository.cs",
+              "RelativeToolTip": "KHE_AuthService\\Repositories\\IInventoryRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-20T06:48:22.096Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "CategoryRepository.cs",
+              "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Repositories\\CategoryRepository.cs",
+              "RelativeDocumentMoniker": "KHE_AuthService\\Repositories\\CategoryRepository.cs",
+              "ToolTip": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Repositories\\CategoryRepository.cs",
+              "RelativeToolTip": "KHE_AuthService\\Repositories\\CategoryRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-20T06:48:31.728Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "ProductRequest.cs",
+              "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\DTOs\\ProductRequest.cs",
+              "RelativeDocumentMoniker": "KHE_AuthService\\DTOs\\ProductRequest.cs",
+              "ToolTip": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\DTOs\\ProductRequest.cs",
+              "RelativeToolTip": "KHE_AuthService\\DTOs\\ProductRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-20T06:42:33.709Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "ProductDetailRequest.cs",
+              "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\DTOs\\ProductDetailRequest.cs",
+              "RelativeDocumentMoniker": "KHE_AuthService\\DTOs\\ProductDetailRequest.cs",
+              "ToolTip": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\DTOs\\ProductDetailRequest.cs",
+              "RelativeToolTip": "KHE_AuthService\\DTOs\\ProductDetailRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-20T06:41:52.057Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "AdminCreateUserRequest.cs",
+              "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\DTOs\\AdminCreateUserRequest.cs",
+              "RelativeDocumentMoniker": "KHE_AuthService\\DTOs\\AdminCreateUserRequest.cs",
+              "ToolTip": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\DTOs\\AdminCreateUserRequest.cs",
+              "RelativeToolTip": "KHE_AuthService\\DTOs\\AdminCreateUserRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-20T06:41:08.988Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
               "Title": "UserRepository.cs",
-              "DocumentMoniker": "C:\\Users\\ASUS-laptop\\source\\repos\\KHE_AuthService\\KHE_AuthService\\Repositories\\UserRepository.cs",
+              "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Repositories\\UserRepository.cs",
               "RelativeDocumentMoniker": "KHE_AuthService\\Repositories\\UserRepository.cs",
-              "ToolTip": "C:\\Users\\ASUS-laptop\\source\\repos\\KHE_AuthService\\KHE_AuthService\\Repositories\\UserRepository.cs",
+              "ToolTip": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Repositories\\UserRepository.cs",
               "RelativeToolTip": "KHE_AuthService\\Repositories\\UserRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAfAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAgwFMAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-04T16:02:08.858Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\ASUS-laptop\\source\\repos\\KHE_AuthService\\KHE_AuthService\\Program.cs",
-              "RelativeDocumentMoniker": "KHE_AuthService\\Program.cs",
-              "ToolTip": "C:\\Users\\ASUS-laptop\\source\\repos\\KHE_AuthService\\KHE_AuthService\\Program.cs",
-              "RelativeToolTip": "KHE_AuthService\\Program.cs",
-              "ViewState": "AgIAACwAAAAAAAAAAAAwwDwAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-04T15:59:57.929Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "AuthController.cs",
-              "DocumentMoniker": "C:\\Users\\ASUS-laptop\\source\\repos\\KHE_AuthService\\KHE_AuthService\\Controllers\\AuthController.cs",
-              "RelativeDocumentMoniker": "KHE_AuthService\\Controllers\\AuthController.cs",
-              "ToolTip": "C:\\Users\\ASUS-laptop\\source\\repos\\KHE_AuthService\\KHE_AuthService\\Controllers\\AuthController.cs",
-              "RelativeToolTip": "KHE_AuthService\\Controllers\\AuthController.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAswBQAAAA0AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-04T15:56:33.811Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "JwtService.cs",
-              "DocumentMoniker": "C:\\Users\\ASUS-laptop\\source\\repos\\KHE_AuthService\\KHE_AuthService\\Helpers\\JwtService.cs",
-              "RelativeDocumentMoniker": "KHE_AuthService\\Helpers\\JwtService.cs",
-              "ToolTip": "C:\\Users\\ASUS-laptop\\source\\repos\\KHE_AuthService\\KHE_AuthService\\Helpers\\JwtService.cs",
-              "RelativeToolTip": "KHE_AuthService\\Helpers\\JwtService.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAQwB8AAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-04T15:47:59.238Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "PasswordHelper.cs",
-              "DocumentMoniker": "C:\\Users\\ASUS-laptop\\source\\repos\\KHE_AuthService\\KHE_AuthService\\Helpers\\PasswordHelper.cs",
-              "RelativeDocumentMoniker": "KHE_AuthService\\Helpers\\PasswordHelper.cs",
-              "ToolTip": "C:\\Users\\ASUS-laptop\\source\\repos\\KHE_AuthService\\KHE_AuthService\\Helpers\\PasswordHelper.cs",
-              "RelativeToolTip": "KHE_AuthService\\Helpers\\PasswordHelper.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-04T15:46:00.172Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 19,
-              "Title": "IAuthService.cs",
-              "DocumentMoniker": "C:\\Users\\ASUS-laptop\\source\\repos\\KHE_AuthService\\KHE_AuthService\\Services\\IAuthService.cs",
-              "RelativeDocumentMoniker": "KHE_AuthService\\Services\\IAuthService.cs",
-              "ToolTip": "C:\\Users\\ASUS-laptop\\source\\repos\\KHE_AuthService\\KHE_AuthService\\Services\\IAuthService.cs",
-              "RelativeToolTip": "KHE_AuthService\\Services\\IAuthService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAYAAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-04T16:03:44.673Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "User.cs",
-              "DocumentMoniker": "C:\\Users\\ASUS-laptop\\source\\repos\\KHE_AuthService\\KHE_AuthService\\Entities\\User.cs",
-              "RelativeDocumentMoniker": "KHE_AuthService\\Entities\\User.cs",
-              "ToolTip": "C:\\Users\\ASUS-laptop\\source\\repos\\KHE_AuthService\\KHE_AuthService\\Entities\\User.cs",
-              "RelativeToolTip": "KHE_AuthService\\Entities\\User.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-04T15:29:36.557Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
               "Title": "IUserRepository.cs",
-              "DocumentMoniker": "C:\\Users\\ASUS-laptop\\source\\repos\\KHE_AuthService\\KHE_AuthService\\Repositories\\IUserRepository.cs",
+              "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Repositories\\IUserRepository.cs",
               "RelativeDocumentMoniker": "KHE_AuthService\\Repositories\\IUserRepository.cs",
-              "ToolTip": "C:\\Users\\ASUS-laptop\\source\\repos\\KHE_AuthService\\KHE_AuthService\\Repositories\\IUserRepository.cs",
+              "ToolTip": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Repositories\\IUserRepository.cs",
               "RelativeToolTip": "KHE_AuthService\\Repositories\\IUserRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAmAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-04T16:02:37.301Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "AppDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\ASUS-laptop\\source\\repos\\KHE_AuthService\\KHE_AuthService\\Data\\AppDbContext.cs",
-              "RelativeDocumentMoniker": "KHE_AuthService\\Data\\AppDbContext.cs",
-              "ToolTip": "C:\\Users\\ASUS-laptop\\source\\repos\\KHE_AuthService\\KHE_AuthService\\Data\\AppDbContext.cs",
-              "RelativeToolTip": "KHE_AuthService\\Data\\AppDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 26,
+              "Title": "AuthRequest.cs",
+              "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\DTOs\\AuthRequest.cs",
+              "RelativeDocumentMoniker": "KHE_AuthService\\DTOs\\AuthRequest.cs",
+              "ToolTip": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\DTOs\\AuthRequest.cs",
+              "RelativeToolTip": "KHE_AuthService\\DTOs\\AuthRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-04T15:36:04.683Z"
+              "WhenOpened": "2026-05-04T16:05:07.559Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 25,
+              "Title": "TokenHelper.cs",
+              "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Services\\TokenHelper.cs",
+              "RelativeDocumentMoniker": "KHE_AuthService\\Services\\TokenHelper.cs",
+              "ToolTip": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Services\\TokenHelper.cs",
+              "RelativeToolTip": "KHE_AuthService\\Services\\TokenHelper.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-20T06:06:34.771Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "IAuthService.cs",
+              "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Services\\IAuthService.cs",
+              "RelativeDocumentMoniker": "KHE_AuthService\\Services\\IAuthService.cs",
+              "ToolTip": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Services\\IAuthService.cs",
+              "RelativeToolTip": "KHE_AuthService\\Services\\IAuthService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-04T16:03:44.673Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "ApiResponse.cs",
+              "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\DTOs\\ApiResponse.cs",
+              "RelativeDocumentMoniker": "KHE_AuthService\\DTOs\\ApiResponse.cs",
+              "ToolTip": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\DTOs\\ApiResponse.cs",
+              "RelativeToolTip": "KHE_AuthService\\DTOs\\ApiResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-04T17:59:18.485Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "User.cs",
+              "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Entities\\User.cs",
+              "RelativeDocumentMoniker": "KHE_AuthService\\Entities\\User.cs",
+              "ToolTip": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Entities\\User.cs",
+              "RelativeToolTip": "KHE_AuthService\\Entities\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-04T15:29:36.557Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "RoastingBatch.cs",
+              "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Entities\\RoastingBatch.cs",
+              "RelativeDocumentMoniker": "KHE_AuthService\\Entities\\RoastingBatch.cs",
+              "ToolTip": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Entities\\RoastingBatch.cs",
+              "RelativeToolTip": "KHE_AuthService\\Entities\\RoastingBatch.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAA1wBoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-20T05:46:09.774Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "ProductDetail.cs",
+              "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Entities\\ProductDetail.cs",
+              "RelativeDocumentMoniker": "KHE_AuthService\\Entities\\ProductDetail.cs",
+              "ToolTip": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Entities\\ProductDetail.cs",
+              "RelativeToolTip": "KHE_AuthService\\Entities\\ProductDetail.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAA9wB0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-20T05:45:29.727Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "OrderDetail.cs",
+              "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Entities\\OrderDetail.cs",
+              "RelativeDocumentMoniker": "KHE_AuthService\\Entities\\OrderDetail.cs",
+              "ToolTip": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Entities\\OrderDetail.cs",
+              "RelativeToolTip": "KHE_AuthService\\Entities\\OrderDetail.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-20T05:44:02.016Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "Order.cs",
+              "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Entities\\Order.cs",
+              "RelativeDocumentMoniker": "KHE_AuthService\\Entities\\Order.cs",
+              "ToolTip": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Entities\\Order.cs",
+              "RelativeToolTip": "KHE_AuthService\\Entities\\Order.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAcwCUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-20T05:43:06.578Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "InventoryLog.cs",
+              "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Entities\\InventoryLog.cs",
+              "RelativeDocumentMoniker": "KHE_AuthService\\Entities\\InventoryLog.cs",
+              "ToolTip": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Entities\\InventoryLog.cs",
+              "RelativeToolTip": "KHE_AuthService\\Entities\\InventoryLog.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAA9wBsAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-20T05:42:31.162Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "GrindingOption.cs",
+              "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Entities\\GrindingOption.cs",
+              "RelativeDocumentMoniker": "KHE_AuthService\\Entities\\GrindingOption.cs",
+              "ToolTip": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Entities\\GrindingOption.cs",
+              "RelativeToolTip": "KHE_AuthService\\Entities\\GrindingOption.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-20T05:41:55.571Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "Category.cs",
+              "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Entities\\Category.cs",
+              "RelativeDocumentMoniker": "KHE_AuthService\\Entities\\Category.cs",
+              "ToolTip": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Entities\\Category.cs",
+              "RelativeToolTip": "KHE_AuthService\\Entities\\Category.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-20T05:41:19.644Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "CartItem.cs",
+              "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Entities\\CartItem.cs",
+              "RelativeDocumentMoniker": "KHE_AuthService\\Entities\\CartItem.cs",
+              "ToolTip": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Entities\\CartItem.cs",
+              "RelativeToolTip": "KHE_AuthService\\Entities\\CartItem.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-20T05:40:39.614Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "Cart.cs",
+              "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Entities\\Cart.cs",
+              "RelativeDocumentMoniker": "KHE_AuthService\\Entities\\Cart.cs",
+              "ToolTip": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Entities\\Cart.cs",
+              "RelativeToolTip": "KHE_AuthService\\Entities\\Cart.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-20T05:39:49.251Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_APIGateway\\Program.cs",
+              "RelativeDocumentMoniker": "KHE_APIGateway\\Program.cs",
+              "ToolTip": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_APIGateway\\Program.cs",
+              "RelativeToolTip": "KHE_APIGateway\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-05T03:11:21.537Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
               "Title": "launchSettings.json",
-              "DocumentMoniker": "C:\\Users\\ASUS-laptop\\source\\repos\\KHE_AuthService\\KHE_APIGateway\\Properties\\launchSettings.json",
+              "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_APIGateway\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "KHE_APIGateway\\Properties\\launchSettings.json",
-              "ToolTip": "C:\\Users\\ASUS-laptop\\source\\repos\\KHE_AuthService\\KHE_APIGateway\\Properties\\launchSettings.json",
+              "ToolTip": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_APIGateway\\Properties\\launchSettings.json",
               "RelativeToolTip": "KHE_APIGateway\\Properties\\launchSettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
@@ -347,27 +716,63 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 41,
+              "Title": "KHE_APIGateway.csproj",
+              "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_APIGateway\\KHE_APIGateway.csproj",
+              "RelativeDocumentMoniker": "KHE_APIGateway\\KHE_APIGateway.csproj",
+              "ToolTip": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_APIGateway\\KHE_APIGateway.csproj",
+              "RelativeToolTip": "KHE_APIGateway\\KHE_APIGateway.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-05-05T03:00:41.479Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "ocelot.json",
+              "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_APIGateway\\ocelot.json",
+              "RelativeDocumentMoniker": "KHE_APIGateway\\ocelot.json",
+              "ToolTip": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_APIGateway\\ocelot.json",
+              "RelativeToolTip": "KHE_APIGateway\\ocelot.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-05-05T03:03:52.623Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_APIGateway\\appsettings.json",
+              "RelativeDocumentMoniker": "KHE_APIGateway\\appsettings.json",
+              "ToolTip": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_APIGateway\\appsettings.json",
+              "RelativeToolTip": "KHE_APIGateway\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-05-05T03:05:15.428Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "KHE_APIGateway.http",
+              "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_APIGateway\\KHE_APIGateway.http",
+              "RelativeDocumentMoniker": "KHE_APIGateway\\KHE_APIGateway.http",
+              "ToolTip": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_APIGateway\\KHE_APIGateway.http",
+              "RelativeToolTip": "KHE_APIGateway\\KHE_APIGateway.http",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
+              "WhenOpened": "2026-05-09T14:36:40.82Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
               "Title": "KHE_AuthService.http",
-              "DocumentMoniker": "C:\\Users\\ASUS-laptop\\source\\repos\\KHE_AuthService\\KHE_AuthService\\KHE_AuthService.http",
+              "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\KHE_AuthService.http",
               "RelativeDocumentMoniker": "KHE_AuthService\\KHE_AuthService.http",
-              "ToolTip": "C:\\Users\\ASUS-laptop\\source\\repos\\KHE_AuthService\\KHE_AuthService\\KHE_AuthService.http",
+              "ToolTip": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\KHE_AuthService.http",
               "RelativeToolTip": "KHE_AuthService\\KHE_AuthService.http",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
               "WhenOpened": "2026-05-04T17:18:54.754Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\ASUS-laptop\\source\\repos\\KHE_AuthService\\KHE_AuthService\\appsettings.json",
-              "RelativeDocumentMoniker": "KHE_AuthService\\appsettings.json",
-              "ToolTip": "C:\\Users\\ASUS-laptop\\source\\repos\\KHE_AuthService\\KHE_AuthService\\appsettings.json",
-              "RelativeToolTip": "KHE_AuthService\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-05-04T15:24:22.529Z"
             }
           ]
         }

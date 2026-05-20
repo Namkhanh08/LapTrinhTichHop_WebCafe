@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useStore from "../store/useStore";
 import LoginModal from "./LoginModal";
 
@@ -8,6 +8,7 @@ import cartIcon from "../assets/img/header/cart-icon.svg";
 import { FaShoppingBag, FaUserCircle } from "react-icons/fa";
 
 export default function Navbar() {
+    const navigate = useNavigate(); 
     const totalItems = useStore((state) => state.getTotalQuantity());
     const totalOrders = useStore((state) => state.getTotalQuantityOrder());
     const user = useStore((state) => state.user);
@@ -15,6 +16,10 @@ export default function Navbar() {
 
     const [openLogin, setOpenLogin] = useState(false);
 
+    const handleLogout = () => {
+        logout();
+        navigate("/"); // Đưa về trang chủ
+    };
     return (
         <>
             <nav className="sticky top-0 z-50 w-full flex items-center justify-between px-8 lg:px-16 py-3 bg-accent-1">
@@ -80,7 +85,7 @@ export default function Navbar() {
                                 <Link to="/orders" className="block px-4 py-3 hover:bg-gray-100">Đơn hàng</Link>
 
                                 <button
-                                    onClick={logout}
+                                    onClick={handleLogout}
                                     className="w-full text-center px-4 py-3 text-red-500 hover:bg-gray-100"
                                 >
                                     Đăng xuất

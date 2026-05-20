@@ -3,6 +3,10 @@ namespace KHE_AuthService.Repositories
 {
     public interface IUserRepository
     {
-        User GetByUsername(string username);
+        Task<IEnumerable<User>> GetAllAsync();
+        Task<User> GetByIdAsync(string id);
+        Task<bool> UpdateAsync(User user, bool isAdmin);
+        Task<bool> DeleteAsync(string id);
+        Task<bool> CreateAsync(User user);
     }
 }

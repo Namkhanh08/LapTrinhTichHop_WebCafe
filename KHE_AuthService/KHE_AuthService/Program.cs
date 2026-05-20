@@ -1,6 +1,6 @@
 using KHE_AuthService.Repositories;
 using KHE_AuthService.Services;
-using KHE_AuthService.Helpers;
+
 using KHE_AuthService.Repositories;
 using Microsoft.EntityFrameworkCore;
 using KHE_AuthService.Data;
@@ -11,32 +11,38 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var key = Encoding.UTF8.GetBytes("SUPERKEY_VU_NAM_KHANH_KEY_08112005");
+
+var jwtSettings = builder.Configuration.GetSection("Jwt");
+var key = Encoding.UTF8.GetBytes(jwtSettings["Key"]);
 
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 })
-    .AddJwtBearer(opstions =>
-    {
-        opstions.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateIssuerSigningKey = true,
-            IssuerSigningKey = new SymmetricSecurityKey(key),
-            ValidateIssuer = false,
-            ValidateAudience = false
-        };
-    });
+   .AddJwtBearer(options =>
+   {
+       options.TokenValidationParameters = new TokenValidationParameters
+       {
+           ValidateIssuer = true,
+           ValidateAudience = true,
+           ValidateLifetime = true,
+           ValidateIssuerSigningKey = true,
+           ValidIssuer = "RevoCoffee_Identity",
+           ValidAudience = "RevoCoffee_Users",
+           IssuerSigningKey = new SymmetricSecurityKey(key)
+       };
+   });
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
-
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IInventoryRepository, InventoryRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IAuthService, AuthService>();
-builder.Services.AddScoped<JwtService, JwtService>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 
-// Add services to the container.
+
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
@@ -52,6 +58,8 @@ builder.Services.AddCors(options =>
     });
 });     
 var app = builder.Build();
+app.UseStaticFiles();
+app.UseRouting();
 app.UseCors("AllowAll");
 
 // Configure the HTTP request pipeline.

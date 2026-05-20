@@ -1,5 +1,196 @@
 [
   {
+    "ContainingType": "KHE_AuthService.Controllers.CategoriesController",
+    "Method": "GetCategories",
+    "RelativePath": "api/auth/admin/Categories",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KHE_AuthService.Controllers.ProductsController",
+    "Method": "GetAll",
+    "RelativePath": "api/auth/admin/products",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KHE_AuthService.Controllers.ProductsController",
+    "Method": "Create",
+    "RelativePath": "api/auth/admin/products",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "KHE_AuthService.DTOs.ProductRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KHE_AuthService.Controllers.ProductsController",
+    "Method": "GetById",
+    "RelativePath": "api/auth/admin/products/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KHE_AuthService.Controllers.ProductsController",
+    "Method": "Update",
+    "RelativePath": "api/auth/admin/products/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "KHE_AuthService.DTOs.ProductRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KHE_AuthService.Controllers.ProductsController",
+    "Method": "DeleteProduct",
+    "RelativePath": "api/auth/admin/products/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KHE_AuthService.Controllers.InventoryController",
+    "Method": "GetBatches",
+    "RelativePath": "api/auth/Inventory/batches",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KHE_AuthService.Controllers.InventoryController",
+    "Method": "CreateBatchDetail",
+    "RelativePath": "api/auth/Inventory/create-batch-detail",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "productId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "batchCode",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "roastLevel",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "inputWeight",
+        "Type": "System.Double",
+        "IsRequired": false
+      },
+      {
+        "Name": "status",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KHE_AuthService.Controllers.InventoryController",
+    "Method": "GetLogs",
+    "RelativePath": "api/auth/Inventory/logs",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KHE_AuthService.Controllers.InventoryController",
+    "Method": "GetProducts",
+    "RelativePath": "api/auth/Inventory/products",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KHE_AuthService.Controllers.InventoryController",
+    "Method": "GetTotalStock",
+    "RelativePath": "api/auth/Inventory/total-stock",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KHE_AuthService.Controllers.InventoryController",
+    "Method": "UpdateStock",
+    "RelativePath": "api/auth/Inventory/update-stock",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "productId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "quantity",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "reason",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "KHE_AuthService.Controllers.AuthController",
     "Method": "Login",
     "RelativePath": "api/auth/login",
@@ -8,8 +199,135 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "req",
+        "Name": "request",
         "Type": "KHE_AuthService.DTOs.LoginRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KHE_AuthService.Controllers.AuthController",
+    "Method": "Register",
+    "RelativePath": "api/auth/register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "KHE_AuthService.DTOs.RegisterRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CNPM_TTN.Controllers.UploadController",
+    "Method": "UploadProductImage",
+    "RelativePath": "api/auth/Upload/product-image",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "file",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CNPM_TTN.Controllers.UploadController",
+    "Method": "UploadUserImage",
+    "RelativePath": "api/auth/Upload/user-image",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "file",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KHE_AuthService.Controllers.UsersController",
+    "Method": "GetAll",
+    "RelativePath": "api/auth/Users",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KHE_AuthService.Controllers.UsersController",
+    "Method": "Create",
+    "RelativePath": "api/auth/Users",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "KHE_AuthService.DTOs.AdminCreateUserRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KHE_AuthService.Controllers.UsersController",
+    "Method": "Get",
+    "RelativePath": "api/auth/Users/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KHE_AuthService.Controllers.UsersController",
+    "Method": "Update",
+    "RelativePath": "api/auth/Users/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "user",
+        "Type": "KHE_AuthService.Entities.User",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KHE_AuthService.Controllers.UsersController",
+    "Method": "Delete",
+    "RelativePath": "api/auth/Users/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
         "IsRequired": true
       }
     ],

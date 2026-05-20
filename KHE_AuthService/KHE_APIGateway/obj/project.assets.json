@@ -570,26 +570,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ASUS-laptop\\.nuget\\packages\\": {},
-    "C:\\Program Files\\DevExpress 24.1\\Components\\Offline Packages": {},
+    "C:\\Users\\Windows\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ASUS-laptop\\source\\repos\\KHE_AuthService\\KHE_APIGateway\\KHE_APIGateway.csproj",
+      "projectUniqueName": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_APIGateway\\KHE_APIGateway.csproj",
       "projectName": "KHE_APIGateway",
-      "projectPath": "C:\\Users\\ASUS-laptop\\source\\repos\\KHE_AuthService\\KHE_APIGateway\\KHE_APIGateway.csproj",
-      "packagesPath": "C:\\Users\\ASUS-laptop\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ASUS-laptop\\source\\repos\\KHE_AuthService\\KHE_APIGateway\\obj\\",
+      "projectPath": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_APIGateway\\KHE_APIGateway.csproj",
+      "packagesPath": "C:\\Users\\Windows\\.nuget\\packages\\",
+      "outputPath": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_APIGateway\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files\\DevExpress 24.1\\Components\\Offline Packages",
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\ASUS-laptop\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 24.1.config",
+        "C:\\Users\\Windows\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -598,7 +595,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\DevExpress 24.1\\Components\\System\\Components\\Packages": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -651,7 +647,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.311/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
