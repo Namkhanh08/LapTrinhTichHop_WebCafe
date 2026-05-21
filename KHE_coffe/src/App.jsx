@@ -12,7 +12,6 @@ import Orders from "./pages/Orders";
 import Profile from "./pages/Profile";
 import OrderDetail from "./pages/OrderDetail";
 import EditOrder from "./pages/EditOrder";
-import PaymentPage from "./pages/PaymentPage";
 
 // Admin imports
 import AdminLayout from "./layouts/AdminLayout";
@@ -21,8 +20,8 @@ import AdminOrders from "./pages/admin/Orders";
 import AdminProducts from "./pages/admin/Products";
 import AdminBatches from "./pages/admin/Batches";
 import AdminInventory from "./pages/admin/Inventory";
-import AdminVouchers from "./pages/admin/Vouchers";
-import AdminUsers from "./pages/admin/Users";
+import AdminUsers from './pages/admin/Users';
+
 import "./App.css";
 
 function App() {
@@ -40,20 +39,20 @@ function App() {
           <Route path="profile" element={<Profile />} />
           <Route path="orders/:id" element={<OrderDetail />} />
           <Route path="/orders/edit/:id" element={<EditOrder />} />
-          <Route path="checkout/payment/:orderId" element={<PaymentPage />} />
         </Route>
 
-        {/* Lớp Admin Routing */}
-        <Route element={<ProtectedRoute allowedRoles={[1, 2, 3]} />}></Route>
-        <Route path="/admin" element={<AdminLayout />}>
-          <Route index element={<AdminDashboard />} />
-          <Route path="orders" element={<AdminOrders />} />
-          <Route path="products" element={<AdminProducts />} />
-          <Route path="batches" element={<AdminBatches />} />
-          <Route path="inventory" element={<AdminInventory />} />
-          <Route path="vouchers" element={<AdminVouchers />} />
-          <Route element={<ProtectedRoute allowedRoles={[1]} />}>
-            <Route path="users" element={<AdminUsers />} />
+        <Route element={<ProtectedRoute allowedRoles={[1, 2, 3]} fallbackTo="/" />}>
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route index element={<AdminDashboard />} />
+            <Route path="orders" element={<AdminOrders />} />
+            <Route path="products" element={<AdminProducts />} />
+            <Route path="batches" element={<AdminBatches />} />
+            <Route path="inventory" element={<AdminInventory />} />
+            
+          
+            <Route element={<ProtectedRoute allowedRoles={[1]} fallbackTo="/admin" />}>
+              <Route path="users" element={<AdminUsers />} />
+            </Route>
           </Route>
         </Route>
       </Routes>

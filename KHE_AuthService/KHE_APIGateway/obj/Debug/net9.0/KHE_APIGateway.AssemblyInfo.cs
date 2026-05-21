@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("KHE_APIGateway")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bf7c699fc0e6dbc662b9d76c6bec3724f0d669f4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f9b3ba19d0de2c74dbe42f1226e94d1970022e23")]
 [assembly: System.Reflection.AssemblyProductAttribute("KHE_APIGateway")]
 [assembly: System.Reflection.AssemblyTitleAttribute("KHE_APIGateway")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

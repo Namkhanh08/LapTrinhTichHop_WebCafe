@@ -22,8 +22,8 @@ namespace KHE_AuthService.Entities
         public DateTime? RoastDate { get; set; }
 
         public string? UserId { get; set; }
+        public double? OutputWeight { get; set; }
 
-    
         public virtual Product Product { get; set; } = null!;
 
         public virtual User? User { get; set; }

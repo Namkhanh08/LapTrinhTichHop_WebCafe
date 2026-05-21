@@ -3,16 +3,32 @@
   "WorkspaceRootPath": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_authservice\\entities\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\entities\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_authservice\\repositories\\inventoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\repositories\\inventoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_authservice\\controllers\\inventorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\controllers\\inventorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_authservice\\dtos\\createbatchrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\dtos\\createbatchrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_authservice\\repositories\\iinventoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\repositories\\iinventoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_authservice\\dtos\\inventoryresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\dtos\\inventoryresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_authservice\\entities\\roastingbatch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\entities\\roastingbatch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_authservice\\entities\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\entities\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_authservice\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -31,24 +47,12 @@
       "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_authservice\\repositories\\iinventoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\repositories\\iinventoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_authservice\\controllers\\inventorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\controllers\\inventorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_authservice\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_authservice\\dtos\\updatebatchstatusrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\dtos\\updatebatchstatusrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_authservice\\dtos\\createbatchrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|solutionrelative:khe_authservice\\dtos\\createbatchrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6F9B571D-49BA-4440-99BB-4696A73F379E}|KHE_AuthService\\KHE_AuthService.csproj|d:\\laptrinhtichhop_webcafe\\khe_authservice\\khe_authservice\\dtos\\importmaterialrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -210,7 +214,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 18,
+          "SelectedChildIndex": 14,
           "Children": [
             {
               "$type": "Bookmark",
@@ -242,7 +246,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 4,
+              "Title": "InventoryResult.cs",
+              "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\DTOs\\InventoryResult.cs",
+              "RelativeDocumentMoniker": "KHE_AuthService\\DTOs\\InventoryResult.cs",
+              "ToolTip": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\DTOs\\InventoryResult.cs",
+              "RelativeToolTip": "KHE_AuthService\\DTOs\\InventoryResult.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-21T09:05:13.349Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
               "Title": "UpdateBatchStatusRequest.cs",
               "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\DTOs\\UpdateBatchStatusRequest.cs",
               "RelativeDocumentMoniker": "KHE_AuthService\\DTOs\\UpdateBatchStatusRequest.cs",
@@ -250,25 +266,23 @@
               "RelativeToolTip": "KHE_AuthService\\DTOs\\UpdateBatchStatusRequest.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-21T02:07:16.266Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-21T02:07:16.266Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 2,
               "Title": "CreateBatchRequest.cs",
               "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\DTOs\\CreateBatchRequest.cs",
               "RelativeDocumentMoniker": "KHE_AuthService\\DTOs\\CreateBatchRequest.cs",
               "ToolTip": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\DTOs\\CreateBatchRequest.cs",
               "RelativeToolTip": "KHE_AuthService\\DTOs\\CreateBatchRequest.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAZAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-21T02:07:09.189Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-21T02:07:09.189Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 8,
               "Title": "InventoryReceipt.cs",
               "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Entities\\InventoryReceipt.cs",
               "RelativeDocumentMoniker": "KHE_AuthService\\Entities\\InventoryReceipt.cs",
@@ -276,12 +290,11 @@
               "RelativeToolTip": "KHE_AuthService\\Entities\\InventoryReceipt.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-21T02:04:47.467Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-21T02:04:47.467Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 11,
               "Title": "AppDbContext.cs",
               "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Data\\AppDbContext.cs",
               "RelativeDocumentMoniker": "KHE_AuthService\\Data\\AppDbContext.cs",
@@ -289,51 +302,49 @@
               "RelativeToolTip": "KHE_AuthService\\Data\\AppDbContext.cs",
               "ViewState": "AgIAAAsAAAAAAAAAAAAwwBsAAABCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-04T15:36:04.683Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-04T15:36:04.683Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 1,
               "Title": "InventoryController.cs",
               "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Controllers\\InventoryController.cs",
               "RelativeDocumentMoniker": "KHE_AuthService\\Controllers\\InventoryController.cs",
               "ToolTip": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Controllers\\InventoryController.cs",
               "RelativeToolTip": "KHE_AuthService\\Controllers\\InventoryController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHgAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-20T06:51:14.871Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 3,
               "Title": "IInventoryRepository.cs",
               "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Repositories\\IInventoryRepository.cs",
               "RelativeDocumentMoniker": "KHE_AuthService\\Repositories\\IInventoryRepository.cs",
               "ToolTip": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Repositories\\IInventoryRepository.cs",
               "RelativeToolTip": "KHE_AuthService\\Repositories\\IInventoryRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAB5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-20T06:48:22.096Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-20T06:48:22.096Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "InventoryRepository.cs",
               "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Repositories\\InventoryRepository.cs",
               "RelativeDocumentMoniker": "KHE_AuthService\\Repositories\\InventoryRepository.cs",
               "ToolTip": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Repositories\\InventoryRepository.cs",
               "RelativeToolTip": "KHE_AuthService\\Repositories\\InventoryRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAEgAAAAAAAAAAAAuwGcAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-20T06:47:54.93Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 10,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Program.cs",
               "RelativeDocumentMoniker": "KHE_AuthService\\Program.cs",
@@ -341,12 +352,11 @@
               "RelativeToolTip": "KHE_AuthService\\Program.cs",
               "ViewState": "AgIAAA8AAAAAAAAAAAAAADwAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-04T15:59:57.929Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-04T15:59:57.929Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 9,
               "Title": "UserRepository.cs",
               "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Repositories\\UserRepository.cs",
               "RelativeDocumentMoniker": "KHE_AuthService\\Repositories\\UserRepository.cs",
@@ -354,12 +364,11 @@
               "RelativeToolTip": "KHE_AuthService\\Repositories\\UserRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAgwFMAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-04T16:02:08.858Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-04T16:02:08.858Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 7,
               "Title": "User.cs",
               "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Entities\\User.cs",
               "RelativeDocumentMoniker": "KHE_AuthService\\Entities\\User.cs",
@@ -367,25 +376,23 @@
               "RelativeToolTip": "KHE_AuthService\\Entities\\User.cs",
               "ViewState": "AgIAABoAAAAAAAAAAAAAwCMAAABuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-04T15:29:36.557Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-04T15:29:36.557Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "RoastingBatch.cs",
               "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Entities\\RoastingBatch.cs",
               "RelativeDocumentMoniker": "KHE_AuthService\\Entities\\RoastingBatch.cs",
               "ToolTip": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Entities\\RoastingBatch.cs",
               "RelativeToolTip": "KHE_AuthService\\Entities\\RoastingBatch.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABIAAAA0AAAAAAAAAA==",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAowBgAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-20T05:46:09.774Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-20T05:46:09.774Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 6,
               "Title": "Product.cs",
               "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Entities\\Product.cs",
               "RelativeDocumentMoniker": "KHE_AuthService\\Entities\\Product.cs",
@@ -393,12 +400,11 @@
               "RelativeToolTip": "KHE_AuthService\\Entities\\Product.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAowBgAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-20T05:44:39.308Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-20T05:44:39.308Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "ImportMaterialRequest.cs",
               "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\DTOs\\ImportMaterialRequest.cs",
               "RelativeDocumentMoniker": "KHE_AuthService\\DTOs\\ImportMaterialRequest.cs",
@@ -406,12 +412,11 @@
               "RelativeToolTip": "KHE_AuthService\\DTOs\\ImportMaterialRequest.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-21T02:06:54.379Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-21T02:06:54.379Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "RawMaterial.cs",
               "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Entities\\RawMaterial.cs",
               "RelativeDocumentMoniker": "KHE_AuthService\\Entities\\RawMaterial.cs",
@@ -419,12 +424,11 @@
               "RelativeToolTip": "KHE_AuthService\\Entities\\RawMaterial.cs",
               "ViewState": "AgIAAA0AAAAAAAAAAAAgwAUAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-21T02:05:31.146Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-21T02:05:31.146Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "RawMaterialLog.cs",
               "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Entities\\RawMaterialLog.cs",
               "RelativeDocumentMoniker": "KHE_AuthService\\Entities\\RawMaterialLog.cs",
@@ -432,12 +436,11 @@
               "RelativeToolTip": "KHE_AuthService\\Entities\\RawMaterialLog.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-21T02:06:01.056Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-21T02:06:01.056Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 22,
               "Title": "ProductRepository.cs",
               "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Repositories\\ProductRepository.cs",
               "RelativeDocumentMoniker": "KHE_AuthService\\Repositories\\ProductRepository.cs",
@@ -449,7 +452,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 23,
               "Title": "AuthService.cs",
               "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Services\\AuthService.cs",
               "RelativeDocumentMoniker": "KHE_AuthService\\Services\\AuthService.cs",
@@ -461,7 +464,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 28,
               "Title": "IProductRepository.cs",
               "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Repositories\\IProductRepository.cs",
               "RelativeDocumentMoniker": "KHE_AuthService\\Repositories\\IProductRepository.cs",
@@ -473,7 +476,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "UploadController.cs",
               "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Controllers\\UploadController.cs",
               "RelativeDocumentMoniker": "KHE_AuthService\\Controllers\\UploadController.cs",
@@ -485,7 +488,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 21,
               "Title": "ocelot.json",
               "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_APIGateway\\ocelot.json",
               "RelativeDocumentMoniker": "KHE_APIGateway\\ocelot.json",
@@ -497,7 +500,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 20,
               "Title": "AuthController.cs",
               "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "KHE_AuthService\\Controllers\\AuthController.cs",
@@ -509,7 +512,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 18,
               "Title": "ProductsController.cs",
               "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Controllers\\ProductsController.cs",
               "RelativeDocumentMoniker": "KHE_AuthService\\Controllers\\ProductsController.cs",
@@ -521,7 +524,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "UsersController.cs",
               "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Controllers\\UsersController.cs",
               "RelativeDocumentMoniker": "KHE_AuthService\\Controllers\\UsersController.cs",
@@ -529,12 +532,11 @@
               "RelativeToolTip": "KHE_AuthService\\Controllers\\UsersController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-20T06:52:43.877Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-20T06:52:43.877Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": "CategoriesController.cs",
               "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Controllers\\CategoriesController.cs",
               "RelativeDocumentMoniker": "KHE_AuthService\\Controllers\\CategoriesController.cs",
@@ -546,7 +548,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 24,
               "Title": "launchSettings.json",
               "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "KHE_AuthService\\Properties\\launchSettings.json",
@@ -558,7 +560,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 26,
               "Title": "ICategoryRepository.cs",
               "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Repositories\\ICategoryRepository.cs",
               "RelativeDocumentMoniker": "KHE_AuthService\\Repositories\\ICategoryRepository.cs",
@@ -570,7 +572,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 25,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\appsettings.json",
               "RelativeDocumentMoniker": "KHE_AuthService\\appsettings.json",
@@ -582,7 +584,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 27,
               "Title": "CategoryRepository.cs",
               "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Repositories\\CategoryRepository.cs",
               "RelativeDocumentMoniker": "KHE_AuthService\\Repositories\\CategoryRepository.cs",
@@ -594,7 +596,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 30,
               "Title": "ProductRequest.cs",
               "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\DTOs\\ProductRequest.cs",
               "RelativeDocumentMoniker": "KHE_AuthService\\DTOs\\ProductRequest.cs",
@@ -606,7 +608,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 31,
               "Title": "ProductDetailRequest.cs",
               "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\DTOs\\ProductDetailRequest.cs",
               "RelativeDocumentMoniker": "KHE_AuthService\\DTOs\\ProductDetailRequest.cs",
@@ -618,7 +620,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 32,
               "Title": "AdminCreateUserRequest.cs",
               "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\DTOs\\AdminCreateUserRequest.cs",
               "RelativeDocumentMoniker": "KHE_AuthService\\DTOs\\AdminCreateUserRequest.cs",
@@ -630,7 +632,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 29,
               "Title": "IUserRepository.cs",
               "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Repositories\\IUserRepository.cs",
               "RelativeDocumentMoniker": "KHE_AuthService\\Repositories\\IUserRepository.cs",
@@ -642,7 +644,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 35,
               "Title": "AuthRequest.cs",
               "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\DTOs\\AuthRequest.cs",
               "RelativeDocumentMoniker": "KHE_AuthService\\DTOs\\AuthRequest.cs",
@@ -654,7 +656,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 34,
               "Title": "TokenHelper.cs",
               "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Services\\TokenHelper.cs",
               "RelativeDocumentMoniker": "KHE_AuthService\\Services\\TokenHelper.cs",
@@ -666,7 +668,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 33,
               "Title": "IAuthService.cs",
               "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Services\\IAuthService.cs",
               "RelativeDocumentMoniker": "KHE_AuthService\\Services\\IAuthService.cs",
@@ -678,7 +680,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 36,
               "Title": "ApiResponse.cs",
               "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\DTOs\\ApiResponse.cs",
               "RelativeDocumentMoniker": "KHE_AuthService\\DTOs\\ApiResponse.cs",
@@ -690,7 +692,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 37,
               "Title": "ProductDetail.cs",
               "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Entities\\ProductDetail.cs",
               "RelativeDocumentMoniker": "KHE_AuthService\\Entities\\ProductDetail.cs",
@@ -702,7 +704,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 38,
               "Title": "OrderDetail.cs",
               "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Entities\\OrderDetail.cs",
               "RelativeDocumentMoniker": "KHE_AuthService\\Entities\\OrderDetail.cs",
@@ -714,7 +716,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 39,
               "Title": "Order.cs",
               "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Entities\\Order.cs",
               "RelativeDocumentMoniker": "KHE_AuthService\\Entities\\Order.cs",
@@ -726,7 +728,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 40,
               "Title": "GrindingOption.cs",
               "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Entities\\GrindingOption.cs",
               "RelativeDocumentMoniker": "KHE_AuthService\\Entities\\GrindingOption.cs",
@@ -738,7 +740,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 41,
               "Title": "Category.cs",
               "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Entities\\Category.cs",
               "RelativeDocumentMoniker": "KHE_AuthService\\Entities\\Category.cs",
@@ -750,7 +752,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 42,
               "Title": "CartItem.cs",
               "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Entities\\CartItem.cs",
               "RelativeDocumentMoniker": "KHE_AuthService\\Entities\\CartItem.cs",
@@ -762,7 +764,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 43,
               "Title": "Cart.cs",
               "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\Entities\\Cart.cs",
               "RelativeDocumentMoniker": "KHE_AuthService\\Entities\\Cart.cs",
@@ -774,7 +776,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 45,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_APIGateway\\Program.cs",
               "RelativeDocumentMoniker": "KHE_APIGateway\\Program.cs",
@@ -786,7 +788,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 44,
               "Title": "launchSettings.json",
               "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_APIGateway\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "KHE_APIGateway\\Properties\\launchSettings.json",
@@ -798,7 +800,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 46,
+              "DocumentIndex": 47,
               "Title": "KHE_APIGateway.csproj",
               "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_APIGateway\\KHE_APIGateway.csproj",
               "RelativeDocumentMoniker": "KHE_APIGateway\\KHE_APIGateway.csproj",
@@ -810,7 +812,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 45,
+              "DocumentIndex": 46,
               "Title": "ocelot.json",
               "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_APIGateway\\ocelot.json",
               "RelativeDocumentMoniker": "KHE_APIGateway\\ocelot.json",
@@ -822,7 +824,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 47,
+              "DocumentIndex": 48,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_APIGateway\\appsettings.json",
               "RelativeDocumentMoniker": "KHE_APIGateway\\appsettings.json",
@@ -834,7 +836,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 48,
+              "DocumentIndex": 49,
               "Title": "KHE_APIGateway.http",
               "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_APIGateway\\KHE_APIGateway.http",
               "RelativeDocumentMoniker": "KHE_APIGateway\\KHE_APIGateway.http",
@@ -846,7 +848,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 49,
+              "DocumentIndex": 50,
               "Title": "KHE_AuthService.http",
               "DocumentMoniker": "D:\\LapTrinhTichHop_WebCafe\\KHE_AuthService\\KHE_AuthService\\KHE_AuthService.http",
               "RelativeDocumentMoniker": "KHE_AuthService\\KHE_AuthService.http",

@@ -1,4 +1,5 @@
-﻿using KHE_AuthService.Entities;
+﻿using KHE_AuthService.DTOs;
+using KHE_AuthService.Entities;
 
 namespace KHE_AuthService.Repositories
 {
@@ -13,8 +14,8 @@ namespace KHE_AuthService.Repositories
         Task<IEnumerable<Product>> GetAllProductAsync();
         Task<IEnumerable<object>> GetRawMaterialLogsAsync();
         Task<IEnumerable<object>> GetRoastingBatchesAsync();
-        Task<bool> CreateRoastingBatchAsync(int productId, int inventoryReceiptId, string batchCode, string roastLevel, double inputWeight, string status, string userId);
+        Task<InventoryResult> CreateRoastingBatchAsync(int productId, int inventoryReceiptId, string batchCode, string roastLevel, double inputWeight, string status, double? outputWeight, string userId);
         Task<double> GetTotalQuantityAsync();
-        Task<bool> UpdateBatchStatusAsync(int batchId, string newStatus, string userId);
+        Task<InventoryResult> UpdateBatchStatusAsync(int batchId, string newStatus, double? outputWeight, string userId);
     }
 }
