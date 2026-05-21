@@ -107,29 +107,25 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "productId",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
+        "Name": "request",
+        "Type": "KHE_AuthService.Dtos.CreateBatchRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KHE_AuthService.Controllers.InventoryController",
+    "Method": "ImportMaterial",
+    "RelativePath": "api/auth/Inventory/import-material",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
       {
-        "Name": "batchCode",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "roastLevel",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "inputWeight",
-        "Type": "System.Double",
-        "IsRequired": false
-      },
-      {
-        "Name": "status",
-        "Type": "System.String",
-        "IsRequired": false
+        "Name": "request",
+        "Type": "KHE_AuthService.Dtos.ImportMaterialRequest",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
@@ -156,6 +152,26 @@
   },
   {
     "ContainingType": "KHE_AuthService.Controllers.InventoryController",
+    "Method": "GetRawMaterials",
+    "RelativePath": "api/auth/Inventory/raw-materials",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KHE_AuthService.Controllers.InventoryController",
+    "Method": "GetInventoryReceipts",
+    "RelativePath": "api/auth/Inventory/receipts",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KHE_AuthService.Controllers.InventoryController",
     "Method": "GetTotalStock",
     "RelativePath": "api/auth/Inventory/total-stock",
     "HttpMethod": "GET",
@@ -166,26 +182,21 @@
   },
   {
     "ContainingType": "KHE_AuthService.Controllers.InventoryController",
-    "Method": "UpdateStock",
-    "RelativePath": "api/auth/Inventory/update-stock",
-    "HttpMethod": "POST",
+    "Method": "UpdateBatchStatus",
+    "RelativePath": "api/auth/Inventory/update-batch-status/{id}",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "productId",
+        "Name": "id",
         "Type": "System.Int32",
-        "IsRequired": false
+        "IsRequired": true
       },
       {
-        "Name": "quantity",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "reason",
-        "Type": "System.String",
-        "IsRequired": false
+        "Name": "request",
+        "Type": "KHE_AuthService.Dtos.UpdateBatchStatusRequest",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("KHE_AuthService")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c68dcfbc5b907c0b58bba3532e1f082dfd8ef83a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bf7c699fc0e6dbc662b9d76c6bec3724f0d669f4")]
 [assembly: System.Reflection.AssemblyProductAttribute("KHE_AuthService")]
 [assembly: System.Reflection.AssemblyTitleAttribute("KHE_AuthService")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

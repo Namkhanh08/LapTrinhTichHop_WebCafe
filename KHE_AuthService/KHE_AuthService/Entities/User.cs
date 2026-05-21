@@ -33,5 +33,6 @@ namespace KHE_AuthService.Entities
         public int UserType { get; set; }
 
         public DateTime Created { get; set; }
+        public virtual ICollection<RawMaterialLog> RawMaterialLogs { get; set; } = new List<RawMaterialLog>();
     }
 }

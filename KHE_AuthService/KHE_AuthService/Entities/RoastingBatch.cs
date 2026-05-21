@@ -16,6 +16,7 @@ namespace KHE_AuthService.Entities
 
         public double? InputWeight { get; set; }
 
+        public int? InventoryReceiptId { get; set; }
         public string? Status { get; set; }
 
         public DateTime? RoastDate { get; set; }
@@ -26,5 +27,6 @@ namespace KHE_AuthService.Entities
         public virtual Product Product { get; set; } = null!;
 
         public virtual User? User { get; set; }
+        public virtual InventoryReceipt? InventoryReceipt { get; set; }
     }
 }

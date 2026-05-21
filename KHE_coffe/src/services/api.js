@@ -126,17 +126,21 @@ const API = {
         api.patch(`/vouchers/${id}/toggle`),
 
 
-    // Inventory Management
-    getProducts: () => api.get('/api/inventory/products'),
-    updateStock: (productId, quantity, reason) => 
-      api.post(`/api/inventory/update-stock?productId=${productId}&quantity=${quantity}&reason=${reason}`),
-    getLogs: () => api.get('/api/inventory/logs'),
-    getTotalStock: () => api.get('/api/inventory/total-stock'),
+  // KHO 
+  getProducts: () => api.get('/api/inventory/products'),
+  getRawMaterials: () => api.get('/api/inventory/raw-materials'),
+  getInventoryReceipts: () => api.get('/api/inventory/receipts'),
+  
+  // Nhập lô nguyên liệu mới 
+  importRawMaterial: (data) => api.post('/api/inventory/import-material', data),
+  
+  getLogs: () => api.get('/api/inventory/logs'),
+  getTotalStock: () => api.get('/api/inventory/total-stock'),
 
-    // Quản lý mẻ rang 
-    getBatchesDetail: () => api.get('/api/inventory/batches'), 
-    createBatchDetail: (productId, batchCode, roastLevel, inputWeight, status) => 
-    api.post(`/api/inventory/create-batch-detail?productId=${productId}&batchCode=${batchCode}&roastLevel=${roastLevel}&inputWeight=${inputWeight}&status=${status}`),
+  // Quản lý mẻ rang 
+  getBatchesDetail: () => api.get('/api/inventory/batches'), 
+  createBatchDetail: (data) => api.post('/api/inventory/create-batch-detail', data),
+  updateBatchStatus: (id, statusData) => api.put(`/api/Inventory/update-batch-status/${id}`, statusData),
 
     // User Profile
     getUserProfile: (id) => api.get(`/api/users/${id}`),

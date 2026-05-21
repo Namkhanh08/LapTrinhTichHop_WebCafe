@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\KHE_AuthService",
+    "\\KHE_AuthService\\Controllers",
+    "\\KHE_AuthService\\Data",
+    "\\KHE_AuthService\\DTOs",
+    "\\KHE_AuthService\\Entities",
+    "\\KHE_AuthService\\Helpers",
+    "\\KHE_AuthService\\Properties",
+    "\\KHE_AuthService\\Repositories",
+    "\\KHE_AuthService\\Services"
+  ],
+  "SelectedNode": "\\KHE_AuthService.sln",
+  "PreviewInSolutionExplorer": false
+}

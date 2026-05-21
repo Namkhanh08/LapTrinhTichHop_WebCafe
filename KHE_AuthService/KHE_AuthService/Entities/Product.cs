@@ -22,7 +22,7 @@ namespace KHE_AuthService.Entities
 
         public virtual Category Category { get; set; } = null!;
 
-        public virtual ICollection<InventoryLog> InventoryLogs { get; set; } = new List<InventoryLog>();
+       
 
         public virtual ICollection<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
 
