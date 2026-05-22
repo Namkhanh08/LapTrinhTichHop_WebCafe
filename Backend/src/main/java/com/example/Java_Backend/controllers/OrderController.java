@@ -83,4 +83,34 @@ public class OrderController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+    //SHIPPER
+    @PutMapping("/{id}/shipping-complete")
+    public ResponseEntity<?> shipperComplete(@PathVariable int id) {
+        try {
+            Order completedOrder = orderService.shipperCompleteOrder(id);
+            return ResponseEntity.ok(completedOrder);
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @PutMapping("/{id}/shipper-fail")
+    public ResponseEntity<?> shipperFail(@PathVariable int id) {
+        try {
+            Order failedOrder = orderService.shipperFailOrder(id);
+            return ResponseEntity.ok(failedOrder);
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @GetMapping("/shipper/list")
+    public ResponseEntity<PageResponse<Order>> getShipperOrders(
+            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(required = false) String searchTerm) {
+
+        PageResponse<Order> response = orderService.getShipperOrders(page, searchTerm);
+        return ResponseEntity.ok(response);
+    }
 }

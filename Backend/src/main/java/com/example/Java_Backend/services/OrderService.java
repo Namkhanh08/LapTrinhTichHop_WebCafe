@@ -241,4 +241,57 @@ public class OrderService {
 
         return new PageResponse<>(orders, totalItems, page, pageSize);
     }
+
+
+    //SHIPPER
+    public Order shipperCompleteOrder(int id){
+        Order order = oRepo.getById(id);
+        if(order == null){
+            throw new RuntimeException("Không tìm thấy đơn hàng!");
+        }
+
+        if(!"Đang trung chuyển".equals(order.getStatus())){
+            throw new RuntimeException("Đơn hàng không ở trạng thái chờ giao hàng, không thể lấy");
+        }
+
+        order.setStatus("Hoàn thành");
+        oRepo.update(order);
+        return order;
+    }
+
+    public Order shipperFailOrder(int id){
+        Order order = oRepo.getById(id);
+        if(order == null){
+            throw new RuntimeException("Không tìm thấy đơn hàng!");
+        }
+
+        if(!"Đang trung chuyển".equals(order.getStatus())){
+            throw new RuntimeException("Đơn hàng không ở trạng thái chờ giao hàng, không thể lấy");
+        }
+
+        List<OrderDetail> details = oRepo.getByOrder(id);
+        for(OrderDetail detail : details){
+            Product product = pRepo.getById(detail.getProductId());
+            if(product != null){
+                int weightPerPackage = extractWeightValue(detail.getWeight());
+                int totalReturn = weightPerPackage * detail.getQuantity();
+
+                product.setStock(product.getStock() + totalReturn);
+                pRepo.Update(product);
+            }
+        }
+
+        order.setStatus("Đã hủy");
+        oRepo.update(order);
+        return order;
+    }
+
+    public PageResponse<Order> getShipperOrders(int page, String searchTerm) {
+        int pageSize = 10;
+
+        List<Order> orders = oRepo.getOrdersForShipper(page, pageSize, searchTerm);
+        int totalItems = oRepo.countOrdersForShipper(searchTerm);
+
+        return new PageResponse<>(orders, totalItems, page, pageSize);
+    }
 }

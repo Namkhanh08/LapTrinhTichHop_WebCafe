@@ -21,6 +21,7 @@ import AdminProducts from './pages/admin/Products';
 import AdminBatches from './pages/admin/Batches';
 import AdminInventory from './pages/admin/Inventory';
 import AdminVouchers from './pages/admin/Vouchers';
+import AdminShipping from './pages/admin/ShipperOrders';
 
 import './App.css';
 
@@ -52,6 +53,7 @@ function App() {
           <Route path="batches" element={<AdminBatches />} />
           <Route path="inventory" element={<AdminInventory />} />
           <Route path="vouchers" element={<AdminVouchers />} />
+          <Route path="shipping" element={<AdminShipping />} />
         </Route>
       </Routes>
     </Router>

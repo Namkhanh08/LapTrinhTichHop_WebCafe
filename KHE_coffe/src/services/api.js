@@ -1,5 +1,6 @@
 import axios from "axios";
-
+console.log("API FILE PATH LOADED");
+console.log(import.meta.url);
 // Tất cả đều đi qua Gateway
 const api = axios.create({
     baseURL: "http://localhost:5096",
@@ -20,6 +21,7 @@ api.interceptors.request.use((config) => {
 });
 
 const API = {
+     test123: () => console.log("HELLO"),
 
     // AUTH
     login: (data) => api.post("/auth/login", data),
@@ -27,6 +29,10 @@ const API = {
     // PRODUCTS
     getProducts: () => api.get("/products"),
     getProductById: (id) => api.get(`/products/${id}`),
+    getQuizMatchedProducts: (flavorNotes, region, process, roast, height) => 
+        api.get("/products/quiz-match", {
+            params: {flavorNotes, region, process, roast, height}
+        }),
 
     // CARTS
     getCart: () => api.get("/carts"),
@@ -82,14 +88,28 @@ const API = {
     updateOrder: (id, data) =>
         api.put(`/orders/${id}`, data),
 
+    //SHIPPING
+    fetchShipperOrders: (page = 1, searchTerm = "") => 
+        api.get("/orders/shipper/list", {
+            params: {page, searchTerm}
+        }),
+
+    shipperCompleteOrder: (id) => 
+        api.put(`/orders/${id}/shipping-complete`),
+
+    shipperFailOrder: (id) => 
+        api.put(`/orders/${id}/shipper-fail`),
+
     // DASHBOARD
     getDashboard: () =>
         api.get("/dashboard"),
 
     // VOUCHERS
-    getVouchersAdmin: () =>
-        api.get("/vouchers"),
-
+    getVouchersAdmin: (page = 1, searchTerm = "", status = "all") =>
+        api.get("/vouchers", {
+            params: { page, searchTerm, status }
+        }),
+        
     getAvailableVouchers: (data) =>
         api.post("/vouchers/available", data),
 
@@ -105,8 +125,10 @@ const API = {
     deleteVoucher: (id) =>
         api.delete(`/vouchers/${id}`),
 
-    toggleVoucher: (id) =>
-        api.patch(`/vouchers/${id}/toggle`),
+    toggleVoucher: (id, active) =>
+    api.patch(`/vouchers/${id}/toggle`, null, {
+        params: { active }
+    }),
 
 };
 

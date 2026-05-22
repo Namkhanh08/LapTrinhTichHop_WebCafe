@@ -19,6 +19,10 @@ export default function EditOrder() {
     const [provinces, setProvinces] = useState([]);
     const [districts, setDistricts] = useState([]);
     const [wards, setWards] = useState([]);
+    const isPaymentLocked =
+        order.Status === "Đã xác nhận" ||
+        order.Status === "Đang giao" ||
+        order.Status === "Hoàn thành" || order.Status === 'Đã thanh toán';
 
     const [paymentMethod, setPaymentMethod] = useState('cod');
 
@@ -195,11 +199,11 @@ export default function EditOrder() {
                             {/* SHIPPING */}
                             <div className="bg-white rounded-[32px] p-8 shadow-sm mb-8">
 
-                                <h2 className="font-montserrat font-bold text-xl text-primary mb-6 border-b border-gray-100 pb-4">
+                                <h2 className="font-montserrat font-bold text-xl text-primary mb-6 border-b border-gray-100 pb-4 text-center">
                                     Thông tin giao hàng
                                 </h2>
 
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-center">
 
                                     <div className="space-y-2">
                                         <label className="font-nunito font-semibold text-primary/80">Họ và tên <span className="text-red-500">*</span></label>
@@ -311,12 +315,17 @@ export default function EditOrder() {
                             </div>
 
                             {/* PAYMENT */}
-                            <div className="space-y-4">
+                            <div className={`space-y-4 ${isPaymentLocked ? 'opacity-60 pointer-events-none' : ''}`}>
+                                {isPaymentLocked && (
+                                    <div className="bg-yellow-50 border border-yellow-200 rounded-2xl p-4 mb-4 text-sm text-yellow-700 font-nunito">
+                                        Phương thức thanh toán đã bị khóa vì đơn hàng đã được xác nhận.
+                                    </div>
+                                )}
                                 <label className={`flex items-start gap-4 p-4 border-2 rounded-2xl cursor-pointer transition-all ${paymentMethod === 'cod' ? 'border-primary bg-primary/5' : 'border-gray-100'}`}>
                                     <div className={`mt-1 w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 ${paymentMethod === 'cod' ? 'border-primary' : 'border-gray-300'}`}>
                                         {paymentMethod === 'cod' && <div className="w-2.5 h-2.5 bg-primary rounded-full"></div>}
                                     </div>
-                                    <input type="radio" name="payment" value="cod" className="hidden" onChange={() => setPaymentMethod('cod')} />
+                                    <input type="radio" disabled={isPaymentLocked} name="payment" value="cod" className="hidden" onChange={() => setPaymentMethod('cod')} />
                                     <div>
                                         <h3 className="font-montserrat font-bold text-primary mb-1">Thanh toán khi nhận hàng (COD)</h3>
                                         <p className="font-nunito text-primary/60 text-sm">Trả bằng tiền mặt hoặc chuyển khoản QR Code cho Shipper khi giao cà phê đến tay bạn.</p>
@@ -327,7 +336,7 @@ export default function EditOrder() {
                                     <div className={`mt-1 w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 ${paymentMethod === 'vnpay' ? 'border-primary' : 'border-gray-300'}`}>
                                         {paymentMethod === 'vnpay' && <div className="w-2.5 h-2.5 bg-primary rounded-full"></div>}
                                     </div>
-                                    <input type="radio" name="payment" value="vnpay" className="hidden" onChange={() => setPaymentMethod('vnpay')} />
+                                    <input type="radio" name="payment" disabled={isPaymentLocked} value="vnpay" className="hidden" onChange={() => setPaymentMethod('vnpay')} />
                                     <div>
                                         <h3 className="font-montserrat font-bold text-primary mb-1">Chuyển khoản trực tuyến / VNPAY</h3>
                                         <p className="font-nunito text-primary/60 text-sm">Thanh toán qua ví điện tử VNPay hoặc ứng dụng ngân hàng chuẩn bảo mật.</p>

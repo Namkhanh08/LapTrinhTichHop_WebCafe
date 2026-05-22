@@ -158,4 +158,58 @@ public class ProductRepository {
         );
     }
 
+    public List<Product> findMatchedProductsByQuiz(String flavorNotes, String region, String process, String roast, String height){
+        StringBuilder sql = new StringBuilder("SELECT DISTINCT P.* FROM Products P " +
+                "INNER JOIN ProductDetails PD ON P.Id = PD.ProductId WHERE 1=1 ");
+
+        List<Object> params = new ArrayList<>();
+
+        //Lọc theo hương vị
+        if(flavorNotes != null && !flavorNotes.isEmpty()){
+            sql.append("AND PD.FlavorNotes LIKE ?");
+            params.add("%" + flavorNotes + "%");
+        }
+
+        //Lọc theo vùng trồng
+        if(region != null && !region.isEmpty()){
+            sql.append(" AND PD.Region LIKE ? ");
+            params.add("%" + region + "%");
+        }
+        //Lọc theo phương pháp sơ chế
+        if(process != null && !process.isEmpty()){
+            sql.append(" AND PD.Process LIKE ? ");
+            params.add("%" + process + "%");
+        }
+        //Lọc theo Mức độ rang (Roast)
+        if (roast != null && !roast.isEmpty()) {
+            sql.append(" AND PD.Roast LIKE ? ");
+            params.add("%" + roast + "%");
+        }
+
+        //Lọc theo Độ cao (Height / Altitude)
+        if (height != null && !height.isEmpty()) {
+            sql.append(" AND PD.Height LIKE ? ");
+            params.add("%" + height + "%");
+        }
+
+        List<Product> matchedList = jdbcTemplate.query(sql.toString(), (rs, rowNum) -> {
+            Product p = new Product();
+            p.setId(rs.getInt("Id"));
+            p.setName(rs.getString("Name"));
+            p.setPrice(rs.getDouble("Price"));
+            p.setStock(rs.getInt("Stock"));
+            p.setImageUrl(rs.getString("ImageUrl"));
+            p.setDescription(rs.getString("Description"));
+            p.setCategoryId(rs.getInt("CategoryId"));
+            return p;
+        }, params.toArray());
+
+        // Nếu lọc quá sâu không ra hạt nào, trả về danh sách Manual mặc định để không lỗi giao diện
+        if (matchedList.isEmpty()) {
+            return findAllManual();
+        }
+
+        return matchedList;
+    }
+
 }

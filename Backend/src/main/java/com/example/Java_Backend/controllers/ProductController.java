@@ -27,7 +27,18 @@ public class ProductController{
 
     @GetMapping("/{id}")
     public ProductDetail getByProductId(@PathVariable int id){
+
         return _productRepo.findProductById(id);
+    }
+
+    @GetMapping("/quiz-match")
+    public List<Product> getQuizMatchedProducts(@RequestParam(required = false) String flavorNotes,
+                                                @RequestParam(required = false) String region,
+                                                @RequestParam(required = false) String process,
+                                                @RequestParam(required = false) String roast,
+                                                @RequestParam(required = false) String height){
+        System.out.println("Đang phân tích Quiz: flavor=" + flavorNotes + ", height=" + height);
+        return _productRepo.findMatchedProductsByQuiz(flavorNotes, region, process, roast, height);
     }
     
 }

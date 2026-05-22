@@ -200,7 +200,7 @@ export default function Checkout() {
       if (paymentMethod === 'vnpay') {
         // LUỒNG VNPAY/BANKING: Đẩy sang trang cổng thanh toán trung gian kèm theo ID đơn hàng
         navigate(`/checkout/payment/${newOrderId}`, {
-          state: { amount: totalPrice + shippingFee }
+          state: { amount: finalPrice }
         });
       } else {
         // LUỒNG COD: Giữ nguyên hiển thị màn đặt hàng thành công tại chỗ

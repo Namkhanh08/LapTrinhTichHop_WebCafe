@@ -5,6 +5,8 @@ console.log("USESTORE FILE RUNNING");
 console.log("API imported:", API);
 console.log("getDashboard:", API.getDashboard);
 console.log("getVouchers:", API.getAvailableVouchers);
+console.log("API KEYS:", Object.keys(API));
+console.log("QUIZ API EXISTS:", typeof API.getQuizMatchedProducts);
 
 const useStore = create(
   persist(
@@ -26,6 +28,7 @@ const useStore = create(
       },
       availableVouchers: [],
       publicVouchers: [],
+      shipperOrders: [],
 
 
       //USERS
@@ -180,6 +183,7 @@ const useStore = create(
       fetchOrders: async () => {
         try {
           const res = await API.getMyOrders();
+          console.log("MY ORDER RESPONSE:", res.data);
           set({ orders: res.data || [] });
         } catch (err) {
           console.error("Fetch orders failed:", err.response?.data?.message || err.message);
@@ -286,7 +290,7 @@ const useStore = create(
         }
       },
 
-
+      //PRODUCTS
       fetchProducts: async () => {
         try {
           const res = await API.getProducts();
@@ -297,6 +301,16 @@ const useStore = create(
           });
         } catch (err) {
           console.error("Fetch products failed:", err.response?.data?.message || err.message);
+        }
+      },
+
+      fetchQuizMatchedProducts: async (flavorNotes, region, process, roast, height) => {
+        try {
+          const res = await API.getQuizMatchedProducts(flavorNotes, region, process, roast, height);
+          console.log("MATCHED:", res.data);
+          return res.data || [];
+        } catch (err) {
+          console.error("Lỗi khi lấy sản phẩm theo gu: ", err.response?.data || err.message);
         }
       },
 
@@ -320,22 +334,23 @@ const useStore = create(
 
 
       //VOUCHERS ADMIN
-      fetchVouchersAdmin: async () => {
+      fetchVouchersAdmin: async (page = 1, searchTerm = '', status = 'all') => {
         try {
-          const res = await API.getVouchersAdmin();
-          console.log("Voucher API Data:", res.data);
+          const res = await API.getVouchersAdmin(page, searchTerm, status);
+          const pagedData = res.data.pagedData || {};
 
-          // Tách mảng danh sách và các con số thống kê từ DTO của Backend trả về
           set({
-            vouchers: res.data.voucher || [],
+            vouchers: pagedData.items || [],
+            totalItems: pagedData.totalItems || 0,
+            currentPage: pagedData.page || page,
             voucherStats: {
-              activeCount: res.data.activeCount,
-              usedTodayCount: res.data.usedTodayCount,
-              freeshipCount: res.data.freeshipCount
+              activeCount: res.data.activeCount || 0,
+              usedTodayCount: res.data.usedCount || 0,
+              freeshipCount: res.data.freeshipCount || 0
             }
           });
         } catch (err) {
-          console.error("Fetch vouchers failed:", err.response?.data?.message || err.message);
+          console.error("Lỗi lấy danh sách voucher:", err.message);
         }
       },
 
@@ -448,10 +463,54 @@ const useStore = create(
         }
       },
 
+
+      fetchShipperOrders: async (page = 1, searchTerm = "") => {
+        try {
+          const res = await API.fetchShipperOrders(page, searchTerm);
+
+          set({
+            shipperOrders: res.data.items || [],
+            totalItems: res.data.totalItems || 0,
+            currentPage: res.data.page || 1
+          });
+
+        } catch (err) {
+          console.error(
+            "Lỗi lấy danh sách đơn cho Shipper:",
+            err.response?.data || err.message
+          );
+        }
+      },
+
+      updateShipperStatus: async (id, statusAction) => {
+        try {
+          let res;
+          if (statusAction === 'Hoàn thành') {
+            res = await API.shipperCompleteOrder(id);
+          } else {
+            res = await API.shipperFailOrder(id);
+          }
+
+          // Đồng bộ xóa đơn khỏi màn hình hiện tại của Shipper
+          set((state) => ({
+            shipperOrders: (state.shipperOrders || [])
+              .filter(order => order.Id !== id),
+
+            totalItems: Math.max(0, state.totalItems - 1)
+          }));
+
+          return { success: true, data: res.data };
+        } catch (err) {
+          console.error("Cập nhật đơn hàng Shipper thất bại:", err);
+          const errorMsg = err.response?.data || "Cập nhật trạng thái đơn hàng thất bại";
+          return { success: false, error: errorMsg };
+        }
+      },
+
     }),
     {
       name: 'revo-coffee-storage',
-      version: 2,
+      version: 5,
       partialize: (state) => ({
         cart: state.cart,
         user: state.user,

@@ -360,4 +360,64 @@ public class OrderRepository {
         }
         return jdbcTemplate.queryForObject(sql.toString(), Integer.class, params.toArray());
     }
+
+
+    //SHIPPER
+    public List<Order> getOrdersForShipper(int page, int pageSize, String searchTerm) {
+        StringBuilder sql = new StringBuilder("SELECT * FROM Orders WHERE Status = N'Đang trung chuyển' \n" +
+                "OR Status = N'Shipper đã nhận' \n" +
+                "OR Status = N'Đang giao'");
+        List<Object> params = new ArrayList<>();
+
+        // Nếu shipper muốn tìm kiếm nhanh mã đơn hoặc tên khách trong tập đơn đang giao
+        if (searchTerm != null && !searchTerm.isEmpty()) {
+            sql.append(" AND (CAST(Id AS NVARCHAR) LIKE ? OR ReceiverName LIKE ?)");
+            params.add("%" + searchTerm + "%");
+            params.add("%" + searchTerm + "%");
+        }
+
+        sql.append(" ORDER BY OrderDate DESC OFFSET ? ROWS FETCH NEXT ? ROWS ONLY");
+        params.add((page - 1) * pageSize);
+        params.add(pageSize);
+
+        List<Order> orders = jdbcTemplate.query(sql.toString(), (rs, rowNum) -> {
+            Order o = new Order();
+            o.setId(rs.getInt("Id"));
+            o.setUserId(rs.getString("UserId"));
+            o.setOrderDate(rs.getTimestamp("OrderDate").toLocalDateTime());
+            o.setTotalAmount(rs.getDouble("TotalAmount"));
+            o.setStatus(rs.getString("Status"));
+            o.setReceiverName(rs.getString("ReceiverName"));
+            o.setReceiverPhone(rs.getString("ReceiverPhone"));
+            o.setShippingProvince(rs.getString("ShippingProvince"));
+            o.setShippingDistrict(rs.getString("ShippingDistrict"));
+            o.setShippingWard(rs.getString("ShippingWard"));
+            o.setShippingDetailAddress(rs.getString("ShippingDetailAddress"));
+            o.setShippingNote(rs.getString("ShippingNote"));
+            o.setPaymentMethod(rs.getString("PaymentMethod"));
+            o.setDiscountAmount(rs.getDouble("DiscountAmount"));
+            o.setFinalAmount(rs.getDouble("FinalAmount"));
+            o.setVoucherCode(rs.getString("VoucherCode"));
+            return o;
+        }, params.toArray());
+
+        // Đổ chi tiết sản phẩm để shipper kiểm đếm hàng hóa
+        for (Order order : orders) {
+            order.setOrderDetails(getByOrder(order.getId()));
+        }
+
+        return orders;
+    }
+
+    public int countOrdersForShipper(String searchTerm) {
+        StringBuilder sql = new StringBuilder("SELECT COUNT(*) FROM Orders WHERE Status = N'Đang giao' OR Status = N'Shipper đã nhận' OR Status = N'Đang trung chuyển'" );
+        List<Object> params = new ArrayList<>();
+
+        if (searchTerm != null && !searchTerm.isEmpty()) {
+            sql.append(" AND (CAST(Id AS NVARCHAR) LIKE ? OR ReceiverName LIKE ?)");
+            params.add("%" + searchTerm + "%");
+            params.add("%" + searchTerm + "%");
+        }
+        return jdbcTemplate.queryForObject(sql.toString(), Integer.class, params.toArray());
+    }
 }

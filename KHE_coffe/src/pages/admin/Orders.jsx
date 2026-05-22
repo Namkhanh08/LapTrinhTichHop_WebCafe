@@ -146,8 +146,11 @@ export default function AdminOrders() {
             className="px-4 py-2 bg-white border border-gray-200 rounded-xl outline-none text-sm"
           >
             <option value="all">Tất cả trạng thái</option>
+            <option value="Chờ thanh toán">Chờ thanh toán</option>
             <option value="Chờ xử lý">Chờ xử lý</option>
             <option value="Đã xác nhận">Đã xác nhận</option>
+            <option value="Đang trung chuyển">Chờ bên vận chuyển</option>
+            <option value="Shipper đã nhận">Shipper đã nhận</option>
             <option value="Đang giao">Đang giao</option>
             <option value="Hoàn thành">Hoàn thành</option>
             <option value="Đã hủy">Đã hủy</option>
@@ -211,16 +214,13 @@ export default function AdminOrders() {
                   </td>
                   <td className="px-6 py-4">
                     <div className="flex justify-center gap-2">
-                      {order.Status === 'Chờ xử lý' && (
+                      {(order.Status === 'Chờ xử lý' || order.Status === 'Đã thanh toán') && (
                         <ActionButton icon={<Check size={16} />} color="blue" onClick={() => handleUpdateStatus(order.Id, 'Đã xác nhận')} title="Xác nhận" />
                       )}
                       {order.Status === 'Đã xác nhận' && (
-                        <ActionButton icon={<Truck size={16} />} color="indigo" onClick={() => handleUpdateStatus(order.Id, 'Đang giao')} title="Giao hàng" />
+                        <ActionButton icon={<Truck size={16} />} color="indigo" onClick={() => handleUpdateStatus(order.Id, 'Đang trung chuyển')} title="Giao hàng" />
                       )}
-                      {order.Status === 'Đang giao' && (
-                        <ActionButton icon={<CheckCircle size={16} />} color="green" onClick={() => handleUpdateStatus(order.Id, 'Hoàn thành')} title="Hoàn thành" />
-                      )}
-                      {!['Hoàn thành', 'Đang giao', 'Đã hủy'].includes(order.Status) && (
+                      {!['Hoàn thành', 'Đang giao', 'Đã hủy', 'Shipper đã nhận'].includes(order.Status) && (
                         <ActionButton icon={<XCircle size={16} />} color="red" onClick={() => handleUpdateStatus(order.Id, 'Đã hủy')} title="Hủy đơn" />
                       )}
                     </div>
@@ -261,8 +261,11 @@ export default function AdminOrders() {
 const StatusBadge = ({ status }) => {
   const styles = {
     'Chờ thanh toán': 'bg-orange-100 text-orange-600',
+    'Đã thanh toán': 'bg-green-100 text-green-600',
     'Chờ xử lý': 'bg-blue-100 text-blue-600',
     'Đã xác nhận': 'bg-purple-100 text-purple-600',
+    'Đang trung chuyển': 'bg-indigo-100 text-indigo-600',
+    'Shipper đã nhận': 'bg-amber-100 text-amber-600',
     'Đang giao': 'bg-indigo-100 text-indigo-600',
     'Hoàn thành': 'bg-green-100 text-green-600',
     'Đã hủy': 'bg-red-100 text-red-600',

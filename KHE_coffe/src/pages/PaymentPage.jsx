@@ -35,7 +35,7 @@ export default function PaymentPage() {
         try {
             // Truyền trạng thái trực tiếp lên URL theo kiểu Query Parameter (?status=...)
             // Đồng thời gọi trực tiếp port Backend để né lỗi cấu hình proxy của Vite
-            const response = await axios.put(`http://localhost:8080/api/orders/${orderId}/status?status=Chờ xử lý`);
+            const response = await axios.put(`http://localhost:8080/api/orders/${orderId}/status?status=Đã thanh toán`);
 
             if (response.data) {
                 alert('Hệ thống đã ghi nhận yêu cầu. Đang chuyển hướng về chi tiết đơn hàng!');

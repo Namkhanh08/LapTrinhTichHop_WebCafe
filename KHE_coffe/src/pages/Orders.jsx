@@ -23,7 +23,7 @@ export default function Orders() {
   const tabs = [
     { id: 'all', label: 'Tất cả' },
     { id: 'Chờ thanh toán', label: 'Chờ thanh toán' },
-    { id: 'Chờ xử lý', label: 'Đang xử lý' }, // Khớp với "Chờ xử lý" trong JSON
+    { id: 'Chờ xử lý', label: 'Đang xử lý' },
     { id: 'Đang giao', label: 'Đang giao' },
     { id: 'Hoàn thành', label: 'Hoàn thành' },
     { id: 'Đã hủy', label: 'Đã hủy' }
@@ -42,15 +42,18 @@ export default function Orders() {
   const filteredOrders = activeTab === 'all'
     ? orders
     : activeTab === 'Chờ xử lý'
-      ? orders.filter(o => o.Status === 'Chờ xử lý' || o.Status === 'Đã xác nhận') // Gom cả 2 vào 1 tab cho user đỡ rối
+      ? orders.filter(o => o.Status === 'Chờ xử lý' || o.Status === 'Đã xác nhận' || o.Status === 'Đã thanh toán') // Gom cả 2 vào 1 tab cho user đỡ rối
       : orders.filter(o => o.Status === activeTab);
 
   // 3. Map màu sắc dựa trên chuỗi tiếng Việt
   const translateStatus = (status) => {
     const statusMap = {
       'Chờ thanh toán': { text: 'CHỜ THANH TOÁN', color: 'text-orange-500' },
+      'Đã thanh toán': { text: 'ĐÃ THANH TOÁN', color: 'text-green-500' },
       'Chờ xử lý': { text: 'CHỜ XỬ LÝ', color: 'text-blue-400' },
       'Đã xác nhận': { text: 'ĐÃ XÁC NHẬN', color: 'text-blue-600' }, // Đậm hơn chút
+      'Đang trung chuyển': { text: 'ĐANG GIAO HÀNG', color: 'text-indigo-500' },
+      'Shipper đã nhận': { text: 'ĐANG GIAO HÀNG', color: 'text-indigo-500' },
       'Đang giao': { text: 'ĐANG GIAO HÀNG', color: 'text-indigo-500' },
       'Hoàn thành': { text: 'HOÀN THÀNH', color: 'text-green-500' },
       'Đã hủy': { text: 'ĐÃ HỦY', color: 'text-red-500' },
@@ -80,7 +83,7 @@ export default function Orders() {
   };
 
   return (
-    <div className="bg-white min-h-screen py-2 pb-20">
+    <div className="bg-white min-h-screen py-20 pb-20">
       <div className="container mx-auto px-4 md:px-8 max-w-5xl">
         <div className="w-full">
           <h1 className="font-nunito font-bold text-4xl text-primary mb-6 text-center">ĐƠN HÀNG CỦA TÔI</h1>
@@ -165,7 +168,7 @@ export default function Orders() {
                       {/* Action Buttons - Chỉ hiển thị khi đơn hàng chưa hủy hoặc hoàn thành */}
                       <div className="flex gap-3 w-full md:w-auto flex-wrap">
 
-                        {(order.Status === 'Chờ xử lý') && (
+                        {(order.Status === 'Chờ xử lý' || order.Status === 'Đã thanh toán') && (
                           <>
                             <Link
                               to={`/orders/${order.Id}`}
@@ -243,7 +246,7 @@ export default function Orders() {
 
                         )}
 
-                        {(order.Status === 'Đang giao' || order.Status === "Hoàn thành") && (
+                        {(order.Status === 'Đang giao' || order.Status === "Hoàn thành" || order.Status === "Đang trung chuyển" || order.Status === "Shipper đã nhận") && (
                           <>
                             <Link
                               to={`/orders/${order.Id}`}
@@ -261,12 +264,6 @@ export default function Orders() {
                               className="py-2 px-6 rounded-lg font-nunito font-bold text-accent-1 border border-accent-1 hover:-translate-y-1 transition-all duration-300 hover:scale-110"
                             >
                               Mua Lại
-                            </Link>
-                            <Link
-                              to="/shop"
-                              className="py-2 px-6 rounded-lg font-nunito font-bold text-blue-500 border hover:-translate-y-1 transition-all duration-300 hover:scale-110 hover:bg-blue-200"
-                            >
-                              Đánh giá
                             </Link>
                           </>
 

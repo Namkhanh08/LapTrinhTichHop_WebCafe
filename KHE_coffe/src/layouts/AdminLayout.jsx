@@ -10,6 +10,7 @@ import {
   LogOut,
   TicketPercent
 } from 'lucide-react';
+import { FaMotorcycle } from "react-icons/fa6";
 
 export default function AdminLayout() {
   const location = useLocation();
@@ -50,6 +51,11 @@ export default function AdminLayout() {
       name: 'Tồn kho',
       path: '/admin/inventory',
       icon: <Archive size={20} />
+    },
+    {
+      name: 'Giao hàng',
+      path: '/admin/shipping',
+      icon: <FaMotorcycle size={20} />
     },
   ];
 
