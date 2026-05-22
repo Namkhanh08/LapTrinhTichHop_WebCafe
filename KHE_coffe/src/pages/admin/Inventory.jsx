@@ -326,13 +326,13 @@ export default function Inventory() {
               {logs.length > 0 ? (
                 logs.map((log) => {
                   const currentUserId = localStorage.getItem("userId");
-                  const currentUserName = localStorage.getItem("userName");
+                  const currentUserName = localStorage.getItem("name");
 
                   const displayName =
                     log.modifiedBy === currentUserId && currentUserName
                       ? currentUserName
                       : log.modifiedByName ||
-                        log.user?.username ||
+                        log.user?.name ||
                         log.modifiedBy ||
                         "Hệ thống";
 
@@ -341,7 +341,6 @@ export default function Inventory() {
                       key={log.id}
                       className="hover:bg-gray-50/50 transition-colors"
                     >
-      
                       <td className="px-6 py-4 text-gray-500 whitespace-nowrap">
                         {new Date(log.modifiedDate).toLocaleString("vi-VN")}
                       </td>
@@ -376,12 +375,10 @@ export default function Inventory() {
                         </div>
                       </td>
 
-                     
                       <td className="px-6 py-4 text-gray-700 text-xs whitespace-normal break-words">
                         {log.reason || "Thay đổi tồn kho hệ thống"}
                       </td>
 
-                     
                       <td className="px-6 py-4 text-gray-600 font-medium whitespace-nowrap">
                         <div className="flex items-center gap-1.5">
                           <User

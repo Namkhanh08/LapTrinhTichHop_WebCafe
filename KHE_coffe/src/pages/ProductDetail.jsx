@@ -252,7 +252,7 @@ export default function ProductDetail() {
 
                       {voucher.discountType === 'fixed' && (
                         <>
-                          <BsFillTicketPerforatedFill size={20}/> Giảm ngay{" "} {voucher.discountPreview?.toLocaleString('vi-VN')} đ
+                          <BsFillTicketPerforatedFill size={20}/>{voucher.title}
                         </>
                       )}
 

@@ -5,6 +5,8 @@ console.log("USESTORE FILE RUNNING");
 console.log("API imported:", API);
 console.log("getDashboard:", API.getDashboard);
 console.log("getVouchers:", API.getAvailableVouchers);
+console.log("API KEYS:", Object.keys(API));
+console.log("QUIZ API EXISTS:", typeof API.getQuizMatchedProducts);
 
 const useStore = create(
   persist(
@@ -26,7 +28,7 @@ const useStore = create(
       },
       availableVouchers: [],
       publicVouchers: [],
-
+      shipperOrders: [],
 
       //USERS
       setUser: (user) => set({ user }),
@@ -300,6 +302,16 @@ const useStore = create(
         }
       },
 
+  
+      fetchQuizMatchedProducts: async (flavorNotes, region, process, roast, height) => {
+        try {
+          const res = await API.getQuizMatchedProducts(flavorNotes, region, process, roast, height);
+          console.log("MATCHED:", res.data);
+          return res.data || [];
+        } catch (err) {
+          console.error("Lỗi khi lấy sản phẩm theo gu: ", err.response?.data || err.message);
+        }
+      }, 
 
       //ADMIN
       fetchDashboard: async () => {
@@ -447,6 +459,50 @@ const useStore = create(
           throw err;
         }
       },
+
+      fetchShipperOrders: async (page = 1, searchTerm = "") => {
+        try {
+          const res = await API.fetchShipperOrders(page, searchTerm);
+
+          set({
+            shipperOrders: res.data.items || [],
+            totalItems: res.data.totalItems || 0,
+            currentPage: res.data.page || 1
+          });
+
+        } catch (err) {
+          console.error(
+            "Lỗi lấy danh sách đơn cho Shipper:",
+            err.response?.data || err.message
+          );
+        }
+      },
+
+      updateShipperStatus: async (id, statusAction) => {
+        try {
+          let res;
+          if (statusAction === 'Hoàn thành') {
+            res = await API.shipperCompleteOrder(id);
+          } else {
+            res = await API.shipperFailOrder(id);
+          }
+
+          // Đồng bộ xóa đơn khỏi màn hình hiện tại của Shipper
+          set((state) => ({
+            shipperOrders: (state.shipperOrders || [])
+              .filter(order => order.Id !== id),
+
+            totalItems: Math.max(0, state.totalItems - 1)
+          }));
+
+          return { success: true, data: res.data };
+        } catch (err) {
+          console.error("Cập nhật đơn hàng Shipper thất bại:", err);
+          const errorMsg = err.response?.data || "Cập nhật trạng thái đơn hàng thất bại";
+          return { success: false, error: errorMsg };
+        }
+      },
+
 
     }),
     {

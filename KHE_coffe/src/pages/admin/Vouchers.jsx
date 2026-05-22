@@ -11,12 +11,17 @@ import {
     BadgePercent,
     Truck,
     Ban,
-    CheckCircle
+    CheckCircle,
+    ChevronLeft,
+    ChevronRight
 } from 'lucide-react';
 
 export default function AdminVouchers() {
+    // SỬA: Tách searchInput (để gõ) và searchTerm (để trigger API) nhằm tránh loop request
+    const [searchInput, setSearchInput] = useState('');
     const [searchTerm, setSearchTerm] = useState('');
     const [statusFilter, setStatusFilter] = useState('all');
+    const [page, setPage] = useState(1); 
 
     const [showCreateModal, setShowCreateModal] = useState(false);
     const [editingVoucher, setEditingVoucher] = useState(null);
@@ -35,10 +40,11 @@ export default function AdminVouchers() {
         isActive: true
     });
 
-    // Lấy dữ liệu và hàm fetch từ Zustand store
+    // Lấy dữ liệu và các thông tin phân trang từ Zustand store
     const {
         vouchers,
         voucherStats,
+        totalItems,
         fetchVouchersAdmin,
         createVoucher,
         updateVoucher,
@@ -46,10 +52,27 @@ export default function AdminVouchers() {
         toggleVoucher
     } = useStore();
 
-    // Tự động gọi API lấy dữ liệu thực tế từ Backend khi load trang
+    // Định nghĩa số lượng item trên một trang
+    const pageSize = 10; 
+    const totalPages = Math.ceil(totalItems / pageSize) || 1;
+
+    // Tự động gọi API lấy dữ liệu thực tế từ Java Backend khi trang, từ khóa hoặc bộ lọc thực sự thay đổi
     useEffect(() => {
-        fetchVouchersAdmin();
-    }, [fetchVouchersAdmin]);
+        fetchVouchersAdmin(page, searchTerm, statusFilter);
+    }, [page, searchTerm, statusFilter, fetchVouchersAdmin]);
+
+    // SỬA: Khi đổi bộ lọc trạng thái, chủ động đưa về trang 1 và gọi API luôn
+    const handleStatusChange = (newStatus) => {
+        setStatusFilter(newStatus);
+        setPage(1);
+    };
+
+    // SỬA: Hàm xử lý hành động Tìm kiếm khi bấm Enter hoặc click biểu tượng kính lúp
+    const handleSearchSubmit = (e) => {
+        if (e) e.preventDefault();
+        setSearchTerm(searchInput); // Cập nhật searchTerm thực tế để kích hoạt useEffect fetch API
+        setPage(1); // Tìm kiếm mới luôn đưa về trang đầu
+    };
 
     const formatMoney = (value) => {
         return value?.toLocaleString('vi-VN') + '₫';
@@ -60,29 +83,15 @@ export default function AdminVouchers() {
         alert(`Đã copy mã: ${code}`);
     };
 
-    // Lọc tìm kiếm dựa trên cấu trúc trường viết thường (camelCase) từ JSON API Java
-    const filteredVouchers = (vouchers || []).filter(v => {
-        const codeStr = v.code || '';
-        const titleStr = v.title || '';
-        const matchSearch =
-            codeStr.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            titleStr.toLowerCase().includes(searchTerm.toLowerCase());
-
-        if (statusFilter === 'active') {
-            return matchSearch && v.isActive;
+    // Chuyển trang
+    const handlePageChange = (targetPage) => {
+        if (targetPage >= 1 && targetPage <= totalPages) {
+            setPage(targetPage); 
         }
-
-        if (statusFilter === 'inactive') {
-            return matchSearch && !v.isActive;
-        }
-
-        return matchSearch;
-    });
+    };
 
     const handleSaveVoucher = async () => {
-
         try {
-
             const payload = {
                 code: voucherForm.code,
                 title: voucherForm.title,
@@ -98,25 +107,15 @@ export default function AdminVouchers() {
             };
 
             if (editingVoucher) {
-
-                await updateVoucher(
-                    editingVoucher.Id,
-                    payload
-                );
-
+                await updateVoucher(editingVoucher.Id, payload);
                 alert("Cập nhật voucher thành công!");
-
             } else {
-
                 await createVoucher(payload);
-
                 alert("Tạo voucher thành công!");
             }
 
             setShowCreateModal(false);
-
             setEditingVoucher(null);
-
             setVoucherForm({
                 code: '',
                 title: '',
@@ -130,37 +129,33 @@ export default function AdminVouchers() {
                 endDate: '',
                 isActive: true
             });
-
+            // Tải lại dữ liệu trang hiện tại sau khi lưu
+            fetchVouchersAdmin(page, searchTerm, statusFilter);
         } catch (error) {
-
             console.error(error);
-
             alert("Lưu voucher thất bại!");
         }
     };
 
     const handleDeleteVoucher = async (id) => {
-
         if (!window.confirm("Xóa voucher này?")) {
             return;
         }
-
         try {
-
             await deleteVoucher(id);
-
             alert("Xóa voucher thành công!");
-
+            fetchVouchersAdmin(page, searchTerm, statusFilter);
         } catch (err) {
-
             console.error(err);
-
             alert("Xóa voucher thất bại!");
         }
     };
+
     const handleToggleVoucher = async (voucher) => {
         try {
             await toggleVoucher(voucher.Id, !voucher.IsActive);
+            alert("Đổi trạng thái voucher thành công!");
+            fetchVouchersAdmin(page, searchTerm, statusFilter);
         } catch (err) {
             console.error(err);
             alert("Đổi trạng thái thất bại!");
@@ -184,204 +179,147 @@ export default function AdminVouchers() {
                     </p>
                 </div>
 
-                <div className="flex flex-wrap gap-3 w-full md:w-auto">
+                <div className="flex flex-wrap gap-3 w-full md:w-auto items-center">
                     {/* CREATE BUTTON */}
                     <button
-                        onClick={() => setShowCreateModal(true)}
+                        onClick={() => {
+                            setEditingVoucher(null);
+                            setShowCreateModal(true);
+                        }}
                         className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-xl hover:bg-green-700 transition-all text-sm font-bold shadow-sm"
                     >Tạo Vouchers</button>
+                    
                     {showCreateModal && (
                         <div className="fixed inset-0 bg-black/40 z-50 flex items-center justify-center p-4">
                             <div className="bg-white rounded-2xl p-6 w-full max-w-2xl space-y-5">
-
                                 <div className="flex justify-between items-center">
                                     <h2 className="text-2xl font-bold">
-                                        Tạo Voucher
+                                        {editingVoucher ? "Chỉnh Sửa Voucher" : "Tạo Voucher"}
                                     </h2>
-
                                     <button
                                         onClick={() => setShowCreateModal(false)}
                                         className="text-gray-400 hover:text-red-500"
-                                    >
-                                        ✕
-                                    </button>
+                                    >✕</button>
                                 </div>
 
                                 <div className="grid grid-cols-2 gap-4">
-
                                     <input
                                         placeholder="Mã voucher"
                                         value={voucherForm.code}
-                                        onChange={(e) =>
-                                            setVoucherForm({
-                                                ...voucherForm,
-                                                code: e.target.value
-                                            })
-                                        }
+                                        onChange={(e) => setVoucherForm({ ...voucherForm, code: e.target.value })}
                                         className="border p-3 rounded-xl"
                                     />
-
                                     <input
                                         placeholder="Tiêu đề"
                                         value={voucherForm.title}
-                                        onChange={(e) =>
-                                            setVoucherForm({
-                                                ...voucherForm,
-                                                title: e.target.value
-                                            })
-                                        }
+                                        onChange={(e) => setVoucherForm({ ...voucherForm, title: e.target.value })}
                                         className="border p-3 rounded-xl"
                                     />
-
                                     <select
                                         value={voucherForm.discountType}
-                                        onChange={(e) =>
-                                            setVoucherForm({
-                                                ...voucherForm,
-                                                discountType: e.target.value
-                                            })
-                                        }
+                                        onChange={(e) => setVoucherForm({ ...voucherForm, discountType: e.target.value })}
                                         className="border p-3 rounded-xl"
                                     >
                                         <option value="percent">Giảm %</option>
                                         <option value="fixed">Giảm tiền</option>
                                         <option value="shipping">Freeship</option>
                                     </select>
-
                                     <input
                                         type="number"
                                         placeholder="Giá trị giảm"
                                         value={voucherForm.discountValue}
-                                        onChange={(e) =>
-                                            setVoucherForm({
-                                                ...voucherForm,
-                                                discountValue: e.target.value
-                                            })
-                                        }
+                                        onChange={(e) => setVoucherForm({ ...voucherForm, discountValue: e.target.value })}
                                         className="border p-3 rounded-xl"
                                     />
-
                                     <input
                                         type="number"
                                         placeholder="Giảm tối đa"
                                         value={voucherForm.maxDiscount}
-                                        onChange={(e) =>
-                                            setVoucherForm({
-                                                ...voucherForm,
-                                                maxDiscount: e.target.value
-                                            })
-                                        }
+                                        onChange={(e) => setVoucherForm({ ...voucherForm, maxDiscount: e.target.value })}
                                         className="border p-3 rounded-xl"
                                     />
-
                                     <input
                                         type="number"
                                         placeholder="Đơn tối thiểu"
                                         value={voucherForm.minOrderValue}
-                                        onChange={(e) =>
-                                            setVoucherForm({
-                                                ...voucherForm,
-                                                minOrderValue: e.target.value
-                                            })
-                                        }
+                                        onChange={(e) => setVoucherForm({ ...voucherForm, minOrderValue: e.target.value })}
                                         className="border p-3 rounded-xl"
                                     />
-
                                     <input
                                         type="number"
                                         placeholder="Giới hạn lượt dùng"
                                         value={voucherForm.usageLimit}
-                                        onChange={(e) =>
-                                            setVoucherForm({
-                                                ...voucherForm,
-                                                usageLimit: e.target.value
-                                            })
-                                        }
+                                        onChange={(e) => setVoucherForm({ ...voucherForm, usageLimit: e.target.value })}
                                         className="border p-3 rounded-xl"
                                     />
-
                                     <select
                                         value={voucherForm.paymentMethod}
-                                        onChange={(e) =>
-                                            setVoucherForm({
-                                                ...voucherForm,
-                                                paymentMethod: e.target.value
-                                            })
-                                        }
+                                        onChange={(e) => setVoucherForm({ ...voucherForm, paymentMethod: e.target.value })}
                                         className="border p-3 rounded-xl"
                                     >
                                         <option value="ALL">ALL</option>
                                         <option value="COD">COD</option>
                                         <option value="VNPAY">VNPAY</option>
                                     </select>
-
                                     <input
                                         type="datetime-local"
                                         value={voucherForm.startDate}
-                                        onChange={(e) =>
-                                            setVoucherForm({
-                                                ...voucherForm,
-                                                startDate: e.target.value
-                                            })
-                                        }
+                                        onChange={(e) => setVoucherForm({ ...voucherForm, startDate: e.target.value })}
                                         className="border p-3 rounded-xl"
                                     />
-
                                     <input
                                         type="datetime-local"
                                         value={voucherForm.endDate}
-                                        onChange={(e) =>
-                                            setVoucherForm({
-                                                ...voucherForm,
-                                                endDate: e.target.value
-                                            })
-                                        }
+                                        onChange={(e) => setVoucherForm({ ...voucherForm, endDate: e.target.value })}
                                         className="border p-3 rounded-xl"
                                     />
-
                                 </div>
 
                                 <button
                                     onClick={handleSaveVoucher}
                                     className="w-full bg-green-600 text-white py-4 rounded-xl font-bold hover:bg-green-700"
                                 >
-                                    {editingVoucher
-                                        ? "Chỉnh sửa Voucher"
-                                        : "Tạo Voucher"}
+                                    {editingVoucher ? "Chỉnh sửa Voucher" : "Tạo Voucher"}
                                 </button>
-
                             </div>
                         </div>
                     )}
-                    {/* SEARCH */}
-                    <div className="relative flex-1 md:w-72">
+
+                    {/* SEARCH BOX BỌC TRONG FORM ĐỂ SUBMIT KHI ANTER */}
+                    <form onSubmit={handleSearchSubmit} className="relative flex-1 md:w-72">
                         <input
                             type="text"
-                            placeholder="Tìm mã voucher..."
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                            className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 outline-none"
+                            placeholder="Tìm mã voucher (Ấn Enter)..."
+                            value={searchInput}
+                            onChange={(e) => setSearchInput(e.target.value)}
+                            className="w-full pl-10 pr-10 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500/20 outline-none text-sm"
                         />
-                        <Search
-                            size={18}
-                            className="absolute left-3 top-2.5 text-gray-400"
-                        />
-                    </div>
+                        <button type="submit" className="absolute left-3 top-2.5 text-gray-400 hover:text-green-600">
+                            <Search size={18} />
+                        </button>
+                        {searchInput && (
+                            <button 
+                                type="button" 
+                                onClick={() => { setSearchInput(''); setSearchTerm(''); setPage(1); }}
+                                className="absolute right-3 top-2.5 text-gray-400 hover:text-red-500 text-xs font-bold"
+                            >✕</button>
+                        )}
+                    </form>
 
-                    {/* FILTER */}
+                    {/* FILTER STATUS */}
                     <select
                         value={statusFilter}
-                        onChange={(e) => setStatusFilter(e.target.value)}
-                        className="px-4 py-2 bg-white border border-gray-200 rounded-xl outline-none text-sm"
+                        onChange={(e) => handleStatusChange(e.target.value)}
+                        className="px-4 py-2 bg-white border border-gray-200 rounded-xl outline-none text-sm cursor-pointer"
                     >
-                        <option value="all">Tất cả</option>
+                        <option value="all">Tất cả trạng thái</option>
                         <option value="active">Đang hoạt động</option>
                         <option value="inactive">Đã tắt</option>
                     </select>
                 </div>
             </div>
 
-            {/* STATS - Đổ dữ liệu thật từ thuộc tính voucherStats của store */}
+            {/* STATS */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
                 <StatsCard
                     icon={<TicketPercent size={22} />}
@@ -404,7 +342,7 @@ export default function AdminVouchers() {
             </div>
 
             {/* TABLE */}
-            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden mb-6">
                 <div className="overflow-x-auto">
                     <table className="w-full text-left font-nunito text-sm">
                         <thead className="bg-gray-50 text-gray-600 font-bold border-b">
@@ -422,41 +360,29 @@ export default function AdminVouchers() {
                         </thead>
 
                         <tbody className="divide-y divide-gray-100">
-                            {filteredVouchers.length === 0 ? (
+                            {(vouchers || []).length === 0 ? (
                                 <tr>
                                     <td colSpan="9" className="px-6 py-10 text-center text-gray-400 font-medium">
                                         Không tìm thấy voucher nào phù hợp.
                                     </td>
                                 </tr>
                             ) : (
-                                filteredVouchers.map(voucher => (
-                                    <tr
-                                        key={voucher.Id}
-                                        className="hover:bg-gray-50/50 transition-colors"
-                                    >
-                                        {/* CODE */}
+                                vouchers.map(voucher => (
+                                    <tr key={voucher.Id} className="hover:bg-gray-50/50 transition-colors">
                                         <td className="px-6 py-4">
                                             <div className="flex items-center gap-3">
                                                 <div className="w-11 h-11 rounded-xl bg-orange-50 flex items-center justify-center text-accent-1">
                                                     <TicketPercent size={20} />
                                                 </div>
                                                 <div>
-                                                    <div className="font-bold text-primary">
-                                                        {voucher.Code}
-                                                    </div>
-                                                    <div className="text-xs text-gray-400">
-                                                        {voucher.Title}
-                                                    </div>
+                                                    <div className="font-bold text-primary">{voucher.Code}</div>
+                                                    <div className="text-xs text-gray-400">{voucher.Title}</div>
                                                 </div>
                                             </div>
                                         </td>
-
-                                        {/* TYPE */}
                                         <td className="px-6 py-4">
                                             <VoucherType type={voucher.DiscountType} />
                                         </td>
-
-                                        {/* VALUE */}
                                         <td className="px-6 py-4">
                                             <div className="font-bold text-gray-800">
                                                 {voucher.DiscountType === 'percent' && `${voucher.DiscountValue}%`}
@@ -469,15 +395,9 @@ export default function AdminVouchers() {
                                                 </div>
                                             )}
                                         </td>
-
-                                        {/* CONDITION */}
                                         <td className="px-6 py-4">
-                                            <div className="font-medium">
-                                                Đơn từ {formatMoney(voucher.MinOrderValue)}
-                                            </div>
+                                            <div className="font-medium">{formatMoney(voucher.MinOrderValue)}</div>
                                         </td>
-
-                                        {/* USAGE */}
                                         <td className="px-6 py-4">
                                             <div className="font-bold text-primary">
                                                 {voucher.UsedCount}/{voucher.UsageLimit}
@@ -491,22 +411,15 @@ export default function AdminVouchers() {
                                                 ></div>
                                             </div>
                                         </td>
-
-                                        {/* DATE */}
                                         <td className="px-6 py-4">
                                             <div className="flex items-center gap-2 text-sm">
-                                                <Calendar
-                                                    size={14}
-                                                    className="text-gray-400"
-                                                />
+                                                <Calendar size={14} className="text-gray-400" />
                                                 <div>
                                                     <div>{voucher.StartDate}</div>
                                                     <div className="text-gray-400 text-xs">đến {voucher.EndDate}</div>
                                                 </div>
                                             </div>
                                         </td>
-
-                                        {/* PAYMENT */}
                                         <td className="px-6 py-4">
                                             <span className={`
                                                 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider
@@ -518,13 +431,9 @@ export default function AdminVouchers() {
                                                 {voucher.PaymentMethod}
                                             </span>
                                         </td>
-
-                                        {/* STATUS */}
                                         <td className="px-6 py-4 text-center">
                                             <VoucherStatus active={voucher.IsActive} />
                                         </td>
-
-                                        {/* ACTIONS */}
                                         <td className="px-6 py-4">
                                             <div className="flex justify-center gap-2">
                                                 <ActionButton
@@ -538,9 +447,7 @@ export default function AdminVouchers() {
                                                     color="blue"
                                                     title="Chỉnh sửa"
                                                     onClick={() => {
-
                                                         setEditingVoucher(voucher);
-
                                                         setVoucherForm({
                                                             code: voucher.Code,
                                                             title: voucher.Title,
@@ -554,25 +461,14 @@ export default function AdminVouchers() {
                                                             endDate: voucher.EndDate,
                                                             isActive: voucher.IsActive
                                                         });
-
                                                         setShowCreateModal(true);
                                                     }}
                                                 />
                                                 <ActionButton
-                                                    icon={
-                                                        voucher.IsActive
-                                                            ? <Ban size={16} />
-                                                            : <CheckCircle size={16} />
-                                                    }
+                                                    icon={voucher.IsActive ? <Ban size={16} /> : <CheckCircle size={16} />}
                                                     color={voucher.IsActive ? 'orange' : 'green'}
-                                                    title={
-                                                        voucher.IsActive
-                                                            ? 'Tắt voucher'
-                                                            : 'Kích hoạt'
-                                                    }
-                                                    onClick={() =>
-                                                        handleToggleVoucher(voucher.Id)
-                                                    }
+                                                    title={voucher.IsActive ? 'Tắt voucher' : 'Kích hoạt'}
+                                                    onClick={() => handleToggleVoucher(voucher)}
                                                 />
                                                 <ActionButton
                                                     icon={<Trash2 size={16} />}
@@ -589,47 +485,69 @@ export default function AdminVouchers() {
                     </table>
                 </div>
             </div>
+
+            {/* PHÂN TRANG (PAGINATION) */}
+            <div className="flex items-center justify-between bg-white px-6 py-4 border border-gray-100 rounded-2xl shadow-sm font-nunito">
+                <div className="text-sm text-gray-500">
+                    Hiển thị từ <span className="font-semibold">{Math.min((page - 1) * pageSize + 1, totalItems)}</span> đến{" "}
+                    <span className="font-semibold">{Math.min(page * pageSize, totalItems)}</span> trong tổng số{" "}
+                    <span className="font-semibold">{totalItems}</span> voucher
+                </div>
+                <div className="flex items-center gap-2">
+                    <button
+                        onClick={() => handlePageChange(page - 1)}
+                        disabled={page === 1}
+                        className="p-2 border border-gray-200 rounded-xl hover:bg-gray-50 disabled:opacity-50 disabled:hover:bg-transparent transition-all"
+                    >
+                        <ChevronLeft size={18} />
+                    </button>
+                    
+                    {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
+                        <button
+                            key={p}
+                            onClick={() => handlePageChange(p)}
+                            className={`w-9 h-9 rounded-xl font-bold text-sm transition-all ${
+                                page === p
+                                    ? "bg-green-600 text-white shadow-md shadow-green-600/20"
+                                    : "border border-gray-200 text-gray-600 hover:bg-gray-50"
+                            }`}
+                        >
+                            {p}
+                        </button>
+                    ))}
+
+                    <button
+                        onClick={() => handlePageChange(page + 1)}
+                        disabled={page === totalPages}
+                        className="p-2 border border-gray-200 rounded-xl hover:bg-gray-50 disabled:opacity-50 disabled:hover:bg-transparent transition-all"
+                    >
+                        <ChevronRight size={18} />
+                    </button>
+                </div>
+            </div>
+
         </div>
     );
 }
 
-/* STATUS */
 const VoucherStatus = ({ active }) => {
     return (
-        <span className={`
-            px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider
-            ${active ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600'}
-        `}>
+        <span className={`px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider ${active ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600'}`}>
             {active ? 'Đang hoạt động' : 'Đã tắt'}
         </span>
     );
 };
 
-/* TYPE */
 const VoucherType = ({ type }) => {
-    const styles = {
-        percent: 'bg-blue-100 text-blue-600',
-        fixed: 'bg-purple-100 text-purple-600',
-        shipping: 'bg-orange-100 text-orange-600',
-    };
-
-    const labels = {
-        percent: 'Giảm %',
-        fixed: 'Giảm tiền',
-        shipping: 'Freeship',
-    };
-
+    const styles = { percent: 'bg-blue-100 text-blue-600', fixed: 'bg-purple-100 text-purple-600', shipping: 'bg-orange-100 text-orange-600' };
+    const labels = { percent: 'Giảm %', fixed: 'Giảm tiền', shipping: 'Freeship' };
     return (
-        <span className={`
-            px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider
-            ${styles[type] || 'bg-gray-100 text-gray-600'}
-        `}>
+        <span className={`px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider ${styles[type] || 'bg-gray-100 text-gray-600'}`}>
             {labels[type] || type}
         </span>
     );
 };
 
-/* ACTION BUTTON */
 const ActionButton = ({ icon, color, onClick, title }) => {
     const colors = {
         blue: 'bg-blue-50 text-blue-600 hover:bg-blue-600',
@@ -638,34 +556,21 @@ const ActionButton = ({ icon, color, onClick, title }) => {
         orange: 'bg-orange-50 text-orange-600 hover:bg-orange-600',
         gray: 'bg-gray-100 text-gray-600 hover:bg-gray-600',
     };
-
     return (
-        <button
-            onClick={onClick}
-            title={title}
-            className={`p-2 rounded-lg transition-all hover:text-white ${colors[color]}`}
-        >
+        <button onClick={onClick} title={title} className={`p-2 rounded-lg transition-all hover:text-white ${colors[color]}`}>
             {icon}
         </button>
     );
 };
 
-/* STATS CARD */
 const StatsCard = ({ icon, title, value, color }) => {
-    const colors = {
-        green: 'bg-green-100 text-green-600',
-        blue: 'bg-blue-100 text-blue-600',
-        indigo: 'bg-indigo-100 text-indigo-600',
-    };
-
+    const colors = { green: 'bg-green-100 text-green-600', blue: 'bg-blue-100 text-blue-600', indigo: 'bg-indigo-100 text-indigo-600' };
     return (
         <div className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm">
             <div className="flex items-center justify-between">
                 <div>
                     <p className="text-gray-400 text-sm font-medium">{title}</p>
-                    <h3 className="text-3xl font-black text-gray-800 mt-2">
-                        {value}
-                    </h3>
+                    <h3 className="text-3xl font-black text-gray-800 mt-2">{value}</h3>
                 </div>
                 <div className={`w-14 h-14 rounded-2xl flex items-center justify-center ${colors[color]}`}>
                     {icon}
