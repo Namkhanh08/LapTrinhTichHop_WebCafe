@@ -1,0 +1,217 @@
+services:
+  # API Gateway
+  api-gateway:
+    build:
+      context: ./services/api-gateway-dotnet
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    environment:
+      ASPNETCORE_URLS: http://+:80
+      IDENTITY_SERVICE_URL: http://identity-service:80
+      PRODUCT_SERVICE_URL: http://product-service:80
+      INVENTORY_SERVICE_URL: http://inventory-service:80
+      ORDER_SERVICE_URL: http://order-service:8080
+      BATCH_SERVICE_URL: http://batch-service:8080
+    depends_on:
+      identity-service:
+        condition: service_healthy
+      product-service:
+        condition: service_healthy
+      inventory-service:
+        condition: service_healthy
+      order-service:
+        condition: service_healthy
+      batch-service:
+        condition: service_healthy
+    networks:
+      - revo-network
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # MySQL Database
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: revo_coffee
+    ports:
+      - "3307:3306"
+    networks:
+      - revo-network
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./infra/mysql/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # phpMyAdmin
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      PMA_USER: root
+      PMA_PASSWORD: root
+    ports:
+      - "8081:80"
+    depends_on:
+      - mysql
+    networks:
+      - revo-network
+
+  # RabbitMQ
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: revo
+      RABBITMQ_DEFAULT_PASS: revo123
+    networks:
+      - revo-network
+
+  # Identity Service (.NET)
+  identity-service:
+    build:
+      context: ./services/identity-service-dotnet
+      dockerfile: Dockerfile
+    ports:
+      - "8001:80"
+    environment:
+      ASPNETCORE_URLS: http://+:80
+      ASPNETCORE_ENVIRONMENT: Development
+      JWT_SECRET: revo-dev-secret-change-before-production
+      ConnectionStrings__DefaultConnection: "Server=mysql;Port=3306;Database=revo_identity;User=root;Password=root;"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - revo-network
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Product Catalog Service (PHP)
+  product-service:
+    build:
+      context: ./services/product-catalog-service
+      dockerfile: Dockerfile
+    ports:
+      - "8002:80"
+    environment:
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_NAME: revo_products
+      DB_USER: root
+      DB_PASS: root
+      JWT_SECRET: revo-dev-secret-change-before-production
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - revo-network
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Inventory Service (C# .NET)
+  inventory-service:
+    build:
+      context: ./services/inventory-service
+      dockerfile: Dockerfile
+    ports:
+      - "8004:80"
+    environment:
+      ASPNETCORE_URLS: http://+:80
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__DefaultConnection: "Server=mysql;Port=3306;Database=revo_inventory;User=root;Password=root;"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - revo-network
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Order Service (Java Spring Boot)
+  order-service:
+    build:
+      context: ./services/order-service
+      dockerfile: Dockerfile
+    ports:
+      - "8003:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/revo_orders?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_JPA_SHOW_SQL: "true"
+      INVENTORY_SERVICE_URL: http://inventory-service:80
+    depends_on:
+      mysql:
+        condition: service_healthy
+      inventory-service:
+        condition: service_healthy
+    networks:
+      - revo-network
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8080/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Batch Service (Java Spring Boot)
+  batch-service:
+    build:
+      context: ./services/batch-service
+      dockerfile: Dockerfile
+    ports:
+      - "8005:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/revo_batches?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_JPA_SHOW_SQL: "true"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - revo-network
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8080/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Unified Frontend (KHE_coffe)
+  unified-frontend:
+    build:
+      context: ./LapTrinhTichHop_WebCafe/KHE_coffe
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    networks:
+      - revo-network
+
+networks:
+  revo-network:
+    driver: bridge
+
+volumes:
+  mysql_data:

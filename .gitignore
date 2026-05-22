@@ -1,0 +1,34 @@
+# Dependencies
+node_modules/
+
+# Frontend builds
+dist/
+dist-ssr/
+
+# .NET build output
+bin/
+obj/
+
+# Java/Gradle build output
+build/
+.gradle/
+
+# Logs and local env
+logs/
+*.log
+*.local
+.env
+.env.*
+
+# IDE/system files
+.idea/
+.vscode/
+.cursor/
+.DS_Store
+*.suo
+*.user
+*.sw?
+
+# Generated analysis/cache files
+repomix-output.xml
+*.lscache

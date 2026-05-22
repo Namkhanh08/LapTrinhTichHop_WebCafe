@@ -1,0 +1,21 @@
+{
+  "repoId": "5543150b-b044-4566-89a4-cb67d7855a69",
+  "repoName": "demo_web_cf",
+  "server": "https://api.grapuco.com",
+  "language": "javascript",
+  "features": {
+    "embeddings": true,
+    "dataFlowAnalysis": true
+  },
+  "ignore": [
+    "node_modules",
+    "dist",
+    ".next",
+    ".git",
+    ".grapuco",
+    "__pycache__",
+    "vendor",
+    "target",
+    "build"
+  ]
+}
