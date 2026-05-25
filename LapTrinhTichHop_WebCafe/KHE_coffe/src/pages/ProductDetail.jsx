@@ -56,7 +56,7 @@ export default function ProductDetail() {
     '/assets/img/section2/image1.png': image1,
     '/assets/img/section2/image2.png': image2,
     '/assets/img/section2/image3.png': image3,
-    '/assets/img/section2/image4.png': image4,
+    '/assets/img/section2/image4.png': image4,0po'
     '/assets/img/section2/image5.png': image5,
   }
 

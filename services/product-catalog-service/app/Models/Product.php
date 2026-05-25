@@ -15,7 +15,7 @@ class Product extends Model
 
     protected $fillable = [
         'id', 'name', 'description', 'price', 'category_id', 'type', 
-        'region', 'altitude', 'process_method', 'processing_method', 
+        'region', 'altitude', 'processing_method', 
         'roast_level', 'flavor_notes', 'image_url', 'stock', 'is_active'
     ];
 

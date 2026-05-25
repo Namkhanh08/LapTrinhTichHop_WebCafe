@@ -1,6 +1,7 @@
 package com.example.order_service.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
@@ -19,28 +20,36 @@ public class OrderItem {
     private Order order;
 
     @Column(name = "product_id", nullable = false)
+    @JsonAlias("ProductId")
     private String productId;
 
     @Column(name = "product_name")
+    @JsonAlias("ProductName")
     private String productName;
 
     @Column(nullable = false)
+    @JsonAlias("Quantity")
     private Integer quantity;
 
     @Column(name = "unit_price", nullable = false, precision = 10, scale = 2)
+    @JsonAlias("UnitPrice")
     private BigDecimal unitPrice;
 
     @Column(nullable = false, precision = 12, scale = 2)
+    @JsonAlias("Subtotal")
     private BigDecimal subtotal;
 
     // --- Bổ sung các thuộc tính của hạt cà phê từ BC2.sql ---
     @Column(name = "flavor_notes")
+    @JsonAlias("FlavorNotes")
     private String flavorNotes;
 
     @Column(name = "grinding_option_id")
+    @JsonAlias("GrindingOptionId")
     private Integer grindingOptionId;
 
     @Column(name = "weight")
+    @JsonAlias("Weight")
     private String weight;
 
     @PrePersist

@@ -26,6 +26,15 @@ public class Batch {
     @Column(nullable = false)
     private Integer quantity;
 
+    @Column(name = "package_250g_count")
+    private Integer package250gCount = 0;
+
+    @Column(name = "package_500g_count")
+    private Integer package500gCount = 0;
+
+    @Column(name = "package_1000g_count")
+    private Integer package1000gCount = 0;
+
     @Column(name = "roast_date", nullable = false)
     private LocalDate roastDate;
 
@@ -77,6 +86,15 @@ public class Batch {
 
     public Integer getQuantity() { return quantity; }
     public void setQuantity(Integer quantity) { this.quantity = quantity; }
+
+    public Integer getPackage250gCount() { return package250gCount; }
+    public void setPackage250gCount(Integer package250gCount) { this.package250gCount = package250gCount; }
+
+    public Integer getPackage500gCount() { return package500gCount; }
+    public void setPackage500gCount(Integer package500gCount) { this.package500gCount = package500gCount; }
+
+    public Integer getPackage1000gCount() { return package1000gCount; }
+    public void setPackage1000gCount(Integer package1000gCount) { this.package1000gCount = package1000gCount; }
 
     public LocalDate getRoastDate() { return roastDate; }
     public void setRoastDate(LocalDate roastDate) { this.roastDate = roastDate; }

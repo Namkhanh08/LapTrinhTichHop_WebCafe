@@ -18,6 +18,8 @@ namespace InventoryService.Models
 
         public int QuantityReserved { get; set; } = 0;
 
+        public int? WarehouseId { get; set; }
+
         public string WarehouseLocation { get; set; } = string.Empty;
 
         public int ReorderLevel { get; set; } = 20;

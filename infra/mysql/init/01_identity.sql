@@ -1,18 +1,38 @@
 CREATE DATABASE IF NOT EXISTS revo_identity;
 USE revo_identity;
 
+CREATE TABLE IF NOT EXISTS roles (
+    code VARCHAR(50) PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    description TEXT,
+    is_active BOOLEAN DEFAULT TRUE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     full_name VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
     password_hash VARCHAR(255) NOT NULL,
-    role ENUM('customer', 'admin') DEFAULT 'customer',
+    role ENUM('customer', 'admin', 'barista', 'stock_manager') DEFAULT 'customer',
     loyalty_points INT DEFAULT 0,
     phone VARCHAR(20),
     address TEXT,
     legacy_user_id VARCHAR(450) UNIQUE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS loyalty_transactions (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    points INT NOT NULL,
+    reference_id VARCHAR(100),
+    reference_type VARCHAR(50),
+    notes TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    INDEX idx_loyalty_transactions_user_id (user_id),
+    INDEX idx_loyalty_transactions_reference (reference_type, reference_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS addresses (
@@ -22,8 +42,16 @@ CREATE TABLE IF NOT EXISTS addresses (
     city VARCHAR(100),
     district VARCHAR(100),
     is_default BOOLEAN DEFAULT FALSE,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    INDEX idx_addresses_user_id (user_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO roles (code, name, description) VALUES
+('customer', 'Customer', 'Customer account'),
+('admin', 'Admin', 'System administrator'),
+('barista', 'Barista', 'Production and preparation staff'),
+('stock_manager', 'Stock manager', 'Inventory management staff')
+ON DUPLICATE KEY UPDATE name = VALUES(name), description = VALUES(description);
 
 -- BC2.sql user mapping:
 -- 1 -> 3F2504E0-4F89-11D3-9A0C-0305E82C3301

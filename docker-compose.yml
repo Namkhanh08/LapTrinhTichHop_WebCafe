@@ -114,6 +114,9 @@ services:
       DB_NAME: revo_products
       DB_USER: root
       DB_PASS: root
+      DB_DATABASE: revo_products
+      DB_USERNAME: root
+      DB_PASSWORD: root
       JWT_SECRET: revo-dev-secret-change-before-production
     depends_on:
       mysql:
@@ -162,8 +165,11 @@ services:
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
       SPRING_JPA_SHOW_SQL: "true"
       INVENTORY_SERVICE_URL: http://inventory-service:80
+      IDENTITY_SERVICE_URL: http://identity-service:80
     depends_on:
       mysql:
+        condition: service_healthy
+      identity-service:
         condition: service_healthy
       inventory-service:
         condition: service_healthy

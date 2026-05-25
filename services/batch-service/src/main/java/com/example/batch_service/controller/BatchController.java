@@ -63,6 +63,16 @@ public class BatchController {
         return ResponseEntity.ok(batchService.updateBatchStatus(id, status));
     }
 
+    @PostMapping("/{id}/packaging")
+    public ResponseEntity<Batch> updatePackaging(@PathVariable Long id, @RequestBody Map<String, Integer> body) {
+        return ResponseEntity.ok(batchService.updatePackaging(
+            id,
+            body.get("package250gCount"),
+            body.get("package500gCount"),
+            body.get("package1000gCount")
+        ));
+    }
+
     @PostMapping("/{id}/quality-checks")
     public ResponseEntity<BatchQualityCheck> addQualityCheck(@PathVariable Long id, @RequestBody BatchQualityCheck check) {
         return ResponseEntity.status(HttpStatus.CREATED).body(batchService.addQualityCheck(id, check));
@@ -78,5 +88,9 @@ public class BatchController {
         batchService.deleteBatch(id);
         return ResponseEntity.noContent().build();
     }
-}
 
+    @ExceptionHandler({IllegalArgumentException.class, IllegalStateException.class})
+    public ResponseEntity<Map<String, String>> handleBadRequest(RuntimeException ex) {
+        return ResponseEntity.badRequest().body(Map.of("error", ex.getMessage()));
+    }
+}

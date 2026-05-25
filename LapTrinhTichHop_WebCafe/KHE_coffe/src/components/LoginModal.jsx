@@ -1,9 +1,11 @@
 import {useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import useStore from "../store/useStore";
 import "./Login.css";
 import API from "../services/api";
 
 export default function LoginModal({isOpen, onClose}) {
+    const navigate = useNavigate();
     const [isActive, setIsActive] = useState(false);
     const setUser = useStore((state) => state.setUser);
     const loadCart = useStore((state) => state.loadCart);
@@ -36,7 +38,12 @@ export default function LoginModal({isOpen, onClose}) {
 
             await loadCart();
             await loadOrder();
+
+            const role = (data.user?.role || data.position || "").toString().toLowerCase();
             onClose();
+            if (role === "admin") {
+                navigate("/admin");
+            }
         } catch (err) {
             // axios ném lỗi khi status != 2xx
             const msg = err.response?.data?.message || "Đăng nhập thất bại";
@@ -59,7 +66,7 @@ export default function LoginModal({isOpen, onClose}) {
             setRegEmail("");
             setRegPassword("");
         } catch (err) {
-            const msg = err.response?.data?.errors?.[0] || err.response?.data?.error || "Đăng ký thất bại. Lưu ý: Mật khẩu cần có 8 ký tự, chữ hoa, chữ thường, số và ký tự đặc biệt.";
+            const msg = err.response?.data?.errors?.[0] || err.response?.data?.error || "Đăng ký thất bại. Mật khẩu cần có ít nhất 6 ký tự và không chứa khoảng trắng.";
             alert(msg);
         } finally {
             setLoading(false);

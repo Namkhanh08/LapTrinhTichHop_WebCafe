@@ -1,6 +1,7 @@
 package com.example.order_service.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonAlias;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -19,15 +20,19 @@ public class Order {
     private String orderCode;
 
     @Column(name = "user_id", nullable = false)
+    @JsonAlias("UserId")
     private Long userId;
 
     @Column(name = "subscription_id")
+    @JsonAlias("SubscriptionId")
     private Long subscriptionId;
 
     @Column(name = "user_email")
+    @JsonAlias("UserEmail")
     private String userEmail;
 
     @Column(name = "user_name")
+    @JsonAlias("UserName")
     private String userName;
 
     @Enumerated(EnumType.STRING)
@@ -39,37 +44,48 @@ public class Order {
 
     // --- Bổ sung các cột thông tin người nhận từ BC2.sql ---
     @Column(name = "receiver_name")
+    @JsonAlias("ReceiverName")
     private String receiverName;
 
     @Column(name = "receiver_phone")
+    @JsonAlias("ReceiverPhone")
     private String receiverPhone;
 
     @Column(name = "receiver_email")
+    @JsonAlias("ReceiverEmail")
     private String receiverEmail;
 
     // --- Bổ sung các cột địa chỉ giao hàng phân cấp Việt Nam từ BC2.sql ---
     @Column(name = "shipping_province")
+    @JsonAlias("ShippingProvince")
     private String shippingProvince;
 
     @Column(name = "shipping_district")
+    @JsonAlias("ShippingDistrict")
     private String shippingDistrict;
 
     @Column(name = "shipping_ward")
+    @JsonAlias("ShippingWard")
     private String shippingWard;
 
     @Column(name = "shipping_detail_address")
+    @JsonAlias("ShippingDetailAddress")
     private String shippingDetailAddress;
 
     @Column(name = "shipping_note")
+    @JsonAlias("ShippingNote")
     private String shippingNote;
 
     @Column(name = "shipping_address", columnDefinition = "TEXT")
+    @JsonAlias("ShippingAddress")
     private String shippingAddress;
 
     @Column(name = "shipping_phone")
+    @JsonAlias("ShippingPhone")
     private String shippingPhone;
 
     @Column(name = "payment_method")
+    @JsonAlias("PaymentMethod")
     private String paymentMethod = "cod";
 
     @Enumerated(EnumType.STRING)
@@ -78,12 +94,15 @@ public class Order {
 
     // --- Bổ sung các cột Voucher giảm giá từ BC2.sql ---
     @Column(name = "voucher_code")
+    @JsonAlias("VoucherCode")
     private String voucherCode;
 
     @Column(name = "discount_amount", precision = 12, scale = 2)
+    @JsonAlias("DiscountAmount")
     private BigDecimal discountAmount = BigDecimal.ZERO;
 
     @Column(name = "final_amount", precision = 12, scale = 2)
+    @JsonAlias("FinalAmount")
     private BigDecimal finalAmount = BigDecimal.ZERO;
 
     @Column(columnDefinition = "TEXT")
@@ -93,6 +112,7 @@ public class Order {
     private String cancelReason;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonAlias({"Items", "OrderDetails"})
     private List<OrderItem> items = new ArrayList<>();
 
     @Column(name = "created_at", updatable = false)

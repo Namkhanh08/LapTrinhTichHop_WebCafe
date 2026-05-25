@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Collections.Concurrent;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
@@ -84,13 +85,21 @@ app.MapPost("/api/auth/register", async (RegisterRequest request, IdentityDbCont
 app.MapPost("/api/auth/login", async (LoginRequest request, IdentityDbContext db, IConfiguration configuration) =>
 {
     var email = NormalizeLoginIdentifier(request.Email ?? request.Username ?? string.Empty);
+    var attemptKey = LoginAttempts.Key(email);
+    if (LoginAttempts.IsBlocked(attemptKey))
+    {
+        return Results.Json(new { error = "Too many login attempts. Please try again later." }, statusCode: StatusCodes.Status429TooManyRequests);
+    }
+
     var user = await db.Users.FirstOrDefaultAsync(u => u.Email == email);
 
     if (user is null || !Passwords.Verify(request.Password, user.PasswordHash))
     {
+        LoginAttempts.RecordFailure(attemptKey);
         return Results.Unauthorized();
     }
 
+    LoginAttempts.RecordSuccess(attemptKey);
     var accessToken = Tokens.Create(user, configuration, TimeSpan.FromHours(2));
     var refreshToken = Tokens.Create(user, configuration, TimeSpan.FromDays(14));
 
@@ -106,9 +115,12 @@ app.MapPost("/api/auth/login", async (LoginRequest request, IdentityDbContext db
         name = user.FullName,
         position = user.Role == UserRole.admin ? "Admin" : "User",
         phone = user.Phone,
+        address = user.Address,
         user = PublicUser.From(user)
     });
 });
+
+app.MapPost("/api/auth/logout", () => Results.Ok(new { message = "Logged out" }));
 
 app.MapGet("/api/auth/profile", async (HttpContext context, IdentityDbContext db, IConfiguration configuration) =>
 {
@@ -122,6 +134,90 @@ app.MapGet("/api/auth/profile", async (HttpContext context, IdentityDbContext db
     return user is null
         ? Results.NotFound(new { error = "User not found" })
         : Results.Ok(new { user = PublicUser.From(user) });
+});
+
+app.MapPut("/api/auth/profile", async (HttpContext context, UpdateProfileRequest request, IdentityDbContext db, IConfiguration configuration) =>
+{
+    var userId = Tokens.ReadUserId(context, configuration);
+    if (userId is null)
+    {
+        return Results.Unauthorized();
+    }
+
+    var user = await db.Users.FindAsync(userId.Value);
+    if (user is null)
+    {
+        return Results.NotFound(new { error = "User not found" });
+    }
+
+    var errors = ValidateProfile(request);
+    if (errors.Count > 0)
+    {
+        return Results.BadRequest(new { errors });
+    }
+
+    if (!string.IsNullOrWhiteSpace(request.FullName))
+    {
+        user.FullName = request.FullName.Trim();
+    }
+    if (!string.IsNullOrWhiteSpace(request.Phone))
+    {
+        user.Phone = request.Phone.Trim();
+    }
+    if (request.Address is not null)
+    {
+        user.Address = request.Address.Trim();
+    }
+
+    await db.SaveChangesAsync();
+    return Results.Ok(new { message = "Profile updated", user = PublicUser.From(user) });
+});
+
+app.MapPost("/api/auth/change-password", async (HttpContext context, ChangePasswordRequest request, IdentityDbContext db, IConfiguration configuration) =>
+{
+    var userId = Tokens.ReadUserId(context, configuration);
+    if (userId is null)
+    {
+        return Results.Unauthorized();
+    }
+
+    var user = await db.Users.FindAsync(userId.Value);
+    if (user is null)
+    {
+        return Results.NotFound(new { error = "User not found" });
+    }
+
+    var errors = ValidatePasswordChange(request);
+    if (errors.Count > 0)
+    {
+        return Results.BadRequest(new { errors });
+    }
+    if (!Passwords.Verify(request.CurrentPassword, user.PasswordHash))
+    {
+        return Results.BadRequest(new { error = "Current password is incorrect" });
+    }
+
+    user.PasswordHash = Passwords.Hash(request.NewPassword);
+    await db.SaveChangesAsync();
+    return Results.Ok(new { message = "Password changed" });
+});
+
+app.MapPost("/api/auth/users/{id:int}/loyalty/earn", async (int id, LoyaltyEarnRequest request, IdentityDbContext db) =>
+{
+    if (request.Points <= 0)
+    {
+        return Results.BadRequest(new { error = "points must be greater than zero" });
+    }
+
+    var user = await db.Users.FindAsync(id);
+    if (user is null)
+    {
+        return Results.NotFound(new { error = "User not found" });
+    }
+
+    user.LoyaltyPoints += request.Points;
+    await db.SaveChangesAsync();
+    return Results.Ok(new { userId = user.Id, loyaltyPoints = user.LoyaltyPoints });
 });
 
 app.MapGet("/api/auth/users", async (HttpContext context, IdentityDbContext db, IConfiguration configuration) =>
@@ -154,13 +250,10 @@ static List<string> ValidateRegister(RegisterRequest request)
         errors.Add("Valid email is required");
     }
     if (string.IsNullOrWhiteSpace(request.Password)
-        || request.Password.Length < 8
-        || !request.Password.Any(char.IsUpper)
-        || !request.Password.Any(char.IsLower)
-        || !request.Password.Any(char.IsDigit)
-        || !request.Password.Any(ch => !char.IsLetterOrDigit(ch)))
+        || request.Password.Length < 6
+        || request.Password.Any(char.IsWhiteSpace))
     {
-        errors.Add("Password must be at least 8 characters and include uppercase, lowercase, number, and special character");
+        errors.Add("Password must be at least 6 characters and contain no whitespace");
     }
     return errors;
 }
@@ -175,6 +268,42 @@ static string NormalizeLoginIdentifier(string value)
         "user02" => "user02@gmail.com",
         _ => normalized
     };
+}
+
+static List<string> ValidateProfile(UpdateProfileRequest request)
+{
+    var errors = new List<string>();
+    if (request.FullName is not null && string.IsNullOrWhiteSpace(request.FullName))
+    {
+        errors.Add("Full name cannot be empty");
+    }
+    if (!string.IsNullOrWhiteSpace(request.Phone) && !request.Phone.All(char.IsDigit))
+    {
+        errors.Add("Phone must contain digits only");
+    }
+    if (!string.IsNullOrWhiteSpace(request.Phone) && (request.Phone.Length < 10 || request.Phone.Length > 11))
+    {
+        errors.Add("Phone must be 10 to 11 digits");
+    }
+    return errors;
+}
+
+static List<string> ValidatePasswordChange(ChangePasswordRequest request)
+{
+    var errors = new List<string>();
+    if (string.IsNullOrWhiteSpace(request.CurrentPassword))
+    {
+        errors.Add("Current password is required");
+    }
+    if (string.IsNullOrWhiteSpace(request.NewPassword) || request.NewPassword.Length < 6 || request.NewPassword.Any(char.IsWhiteSpace))
+    {
+        errors.Add("New password must be at least 6 characters and contain no whitespace");
+    }
+    if (request.NewPassword != request.ConfirmPassword)
+    {
+        errors.Add("Password confirmation does not match");
+    }
+    return errors;
 }
 
 static async Task SeedAdminUser(IdentityDbContext db)
@@ -212,15 +341,26 @@ public sealed record RegisterRequest(
 
 public sealed record LoginRequest(string? Email, string? Username, string Password);
 
-public sealed record PublicUser(int Id, string FullName, string Name, string Email, UserRole Role, int LoyaltyPoints, string? Phone)
+public sealed record UpdateProfileRequest(
+    [property: JsonPropertyName("name")] string? FullName,
+    string? Phone,
+    string? Address);
+
+public sealed record ChangePasswordRequest(string CurrentPassword, string NewPassword, string ConfirmPassword);
+
+public sealed record LoyaltyEarnRequest(int Points, string? ReferenceId);
+
+public sealed record PublicUser(int Id, string FullName, string Name, string Email, UserRole Role, int LoyaltyPoints, string? Phone, string? Address)
 {
-    public static PublicUser From(User user) => new(user.Id, user.FullName, user.FullName, user.Email, user.Role, user.LoyaltyPoints, user.Phone);
+    public static PublicUser From(User user) => new(user.Id, user.FullName, user.FullName, user.Email, user.Role, user.LoyaltyPoints, user.Phone, user.Address);
 }
 
 public enum UserRole
 {
     admin,
-    customer
+    customer,
+    barista,
+    stock_manager
 }
 
 public sealed class User
@@ -236,6 +376,7 @@ public sealed class User
     public int LoyaltyPoints { get; set; }
     [MaxLength(20)]
     public string? Phone { get; set; }
+    public string? Address { get; set; }
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 }
 
@@ -258,6 +399,7 @@ public sealed class IdentityDbContext : DbContext
             entity.Property(u => u.Role).HasColumnName("role").HasConversion<string>().HasDefaultValue(UserRole.customer);
             entity.Property(u => u.LoyaltyPoints).HasColumnName("loyalty_points").HasDefaultValue(0);
             entity.Property(u => u.Phone).HasColumnName("phone").HasMaxLength(20);
+            entity.Property(u => u.Address).HasColumnName("address");
             entity.Property(u => u.CreatedAt).HasColumnName("created_at");
         });
     }
@@ -380,5 +522,54 @@ public static class Tokens
         var padded = value.Replace('-', '+').Replace('_', '/');
         padded = padded.PadRight(padded.Length + (4 - padded.Length % 4) % 4, '=');
         return Convert.FromBase64String(padded);
+    }
+}
+
+public static class LoginAttempts
+{
+    private static readonly ConcurrentDictionary<string, AttemptState> Attempts = new();
+    private static readonly TimeSpan Window = TimeSpan.FromMinutes(5);
+    private const int MaxAttempts = 20;
+
+    public static string Key(string email) => email.Trim().ToLowerInvariant();
+
+    public static bool IsBlocked(string key)
+    {
+        var state = Attempts.GetOrAdd(key, _ => new AttemptState());
+        lock (state)
+        {
+            ResetIfExpired(state);
+            return state.Count >= MaxAttempts;
+        }
+    }
+
+    public static void RecordFailure(string key)
+    {
+        var state = Attempts.GetOrAdd(key, _ => new AttemptState());
+        lock (state)
+        {
+            ResetIfExpired(state);
+            state.Count++;
+        }
+    }
+
+    public static void RecordSuccess(string key)
+    {
+        Attempts.TryRemove(key, out _);
+    }
+
+    private static void ResetIfExpired(AttemptState state)
+    {
+        if (DateTimeOffset.UtcNow - state.WindowStartedAt > Window)
+        {
+            state.Count = 0;
+            state.WindowStartedAt = DateTimeOffset.UtcNow;
+        }
+    }
+
+    private sealed class AttemptState
+    {
+        public int Count { get; set; }
+        public DateTimeOffset WindowStartedAt { get; set; } = DateTimeOffset.UtcNow;
     }
 }

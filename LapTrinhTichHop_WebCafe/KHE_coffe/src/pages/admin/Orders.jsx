@@ -41,7 +41,7 @@ export default function AdminOrders() {
 
   const handleConfirmAll = async () => {
     const pendingOrders = orders.filter(
-      o => o.Status === 'Chờ xử lý'
+      o => ['Chờ thanh toán', 'Chờ xử lý'].includes(o.Status)
     );
     if (pendingOrders.length === 0) {
       return alert("Không có đơn hàng nào chờ xử lý.");
@@ -146,6 +146,7 @@ export default function AdminOrders() {
             className="px-4 py-2 bg-white border border-gray-200 rounded-xl outline-none text-sm"
           >
             <option value="all">Tất cả trạng thái</option>
+            <option value="Chờ thanh toán">Chờ thanh toán</option>
             <option value="Chờ xử lý">Chờ xử lý</option>
             <option value="Đã xác nhận">Đã xác nhận</option>
             <option value="Đang giao">Đang giao</option>
@@ -211,7 +212,7 @@ export default function AdminOrders() {
                   </td>
                   <td className="px-6 py-4">
                     <div className="flex justify-center gap-2">
-                      {order.Status === 'Chờ xử lý' && (
+                      {['Chờ thanh toán', 'Chờ xử lý'].includes(order.Status) && (
                         <ActionButton icon={<Check size={16} />} color="blue" onClick={() => handleUpdateStatus(order.Id, 'Đã xác nhận')} title="Xác nhận" />
                       )}
                       {order.Status === 'Đã xác nhận' && (

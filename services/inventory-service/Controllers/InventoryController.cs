@@ -39,6 +39,23 @@ namespace InventoryService.Controllers
             return Ok(item);
         }
 
+        [HttpGet("alerts")]
+        public async Task<IActionResult> GetAlerts()
+        {
+            var lowStock = await _context.InventoryItems
+                .Where(i => i.QuantityAvailable - i.QuantityReserved <= i.ReorderLevel)
+                .OrderBy(i => i.ProductName)
+                .ToListAsync();
+
+            var expiryThreshold = DateTime.UtcNow.Date.AddDays(30);
+            var expiringLots = await _context.RawMaterialLots
+                .Where(l => l.ExpirationDate <= expiryThreshold)
+                .OrderBy(l => l.ExpirationDate)
+                .ToListAsync();
+
+            return Ok(new { lowStock, expiringLots });
+        }
+
         [HttpPost]
         public async Task<ActionResult<InventoryItem>> CreateItem([FromBody] InventoryItem item)
         {

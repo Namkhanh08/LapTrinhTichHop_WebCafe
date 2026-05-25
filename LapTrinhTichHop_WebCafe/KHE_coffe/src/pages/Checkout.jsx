@@ -165,7 +165,9 @@ export default function Checkout() {
     const payload = {
       Items: selectedItems.map(item => ({
         ProductId: item.ProductId,
+        ProductName: item.Product?.Name,
         Quantity: item.Quantity,
+        UnitPrice: item.Product?.Price || 0,
         GrindingOptionId: item.GrindingOptionId,
         FlavorNotes: item.FlavorNotes,
         Weight: item.Weight

@@ -9,8 +9,12 @@ Route::get('/health', function () {
 });
 
 Route::get('/categories', [CategoryController::class, 'index']);
+Route::post('/categories', [CategoryController::class, 'store'])->middleware('admin');
+Route::put('/categories/{id}', [CategoryController::class, 'update'])->middleware('admin');
+Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->middleware('admin');
 
 // Read endpoints (Public)
+Route::get('/products/filters', [ProductController::class, 'filters']);
 Route::get('/products', [ProductController::class, 'index']);
 Route::get('/products/{id}', [ProductController::class, 'show']);
 

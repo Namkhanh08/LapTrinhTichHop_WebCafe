@@ -1,11 +1,16 @@
 package com.example.order_service.controller;
 
 import com.example.order_service.entity.Order;
+import com.example.order_service.entity.OrderStatusHistory;
 import com.example.order_service.service.OrderService;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 import java.util.List;
 import java.util.Map;
 
@@ -16,9 +21,15 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
+    @Autowired
+    private ObjectMapper objectMapper;
+
     @GetMapping
-    public Map<String, Object> getAllOrders() {
-        List<Order> orders = orderService.getAllOrders();
+    public Map<String, Object> getAllOrders(@RequestHeader(value = "Authorization", required = false) String authorization) {
+        Long userId = tryReadUserId(authorization);
+        List<Order> orders = userId != null
+            ? orderService.getOrdersByUser(userId)
+            : orderService.getAllOrders();
         return Map.of("items", orders, "total", orders.size());
     }
 
@@ -33,8 +44,20 @@ public class OrderController {
         return orderService.getOrderById(id);
     }
 
+    @GetMapping("/{id}/status-history")
+    public Map<String, Object> getStatusHistory(@PathVariable Long id) {
+        List<OrderStatusHistory> items = orderService.getStatusHistory(id);
+        return Map.of("items", items, "total", items.size());
+    }
+
     @PostMapping
-    public Order createOrder(@RequestBody Order order) {
+    public Order createOrder(
+            @RequestHeader(value = "Authorization", required = false) String authorization,
+            @RequestBody Order order) {
+        Long userId = tryReadUserId(authorization);
+        if (userId != null) {
+            order.setUserId(userId);
+        }
         return orderService.createOrder(order);
     }
 
@@ -126,5 +149,24 @@ public class OrderController {
     @ResponseStatus(HttpStatus.CONFLICT)
     public Map<String, String> handleConflict(IllegalStateException ex) {
         return Map.of("error", ex.getMessage());
+    }
+
+    private Long tryReadUserId(String authorization) {
+        if (authorization == null || !authorization.startsWith("Bearer ")) {
+            return null;
+        }
+
+        String[] parts = authorization.substring("Bearer ".length()).split("\\.");
+        if (parts.length != 3) {
+            return null;
+        }
+
+        try {
+            byte[] payload = Base64.getUrlDecoder().decode(parts[1]);
+            JsonNode json = objectMapper.readTree(new String(payload, StandardCharsets.UTF_8));
+            return json.path("sub").asLong();
+        } catch (Exception ex) {
+            return null;
+        }
     }
 }

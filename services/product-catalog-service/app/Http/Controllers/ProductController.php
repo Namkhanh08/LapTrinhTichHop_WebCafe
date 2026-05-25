@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\FlavorNote;
 use App\Models\GrindSize;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Str;
@@ -25,7 +26,6 @@ class ProductController extends Controller
                   ->orWhere('region', 'like', $search)
                   ->orWhere('roast_level', 'like', $search)
                   ->orWhere('flavor_notes', 'like', $search)
-                  ->orWhere('process_method', 'like', $search)
                   ->orWhere('processing_method', 'like', $search)
                   ->orWhereHas('category', function ($catQ) use ($search) {
                       $catQ->where('name', 'like', $search);
@@ -62,6 +62,40 @@ class ProductController extends Controller
                     $query->whereIn('region', $regions);
                 }
             }
+        }
+
+        if ($request->filled('type')) {
+            $types = $this->csv($request->input('type'));
+            if (count($types) > 0) {
+                $query->whereIn('type', $types);
+            }
+        }
+        if ($request->filled('region')) {
+            $regions = $this->csv($request->input('region'));
+            if (count($regions) > 0) {
+                $query->whereIn('region', $regions);
+            }
+        }
+        if ($request->filled('roast_level')) {
+            $roastLevels = $this->csv($request->input('roast_level'));
+            if (count($roastLevels) > 0) {
+                $query->whereIn('roast_level', $roastLevels);
+            }
+        }
+        if ($request->filled('processing_method')) {
+            $methods = $this->csv($request->input('processing_method'));
+            if (count($methods) > 0) {
+                $query->whereIn('processing_method', $methods);
+            }
+        }
+        if ($request->filled('flavor_note')) {
+            $notes = $this->csv($request->input('flavor_note'));
+            $query->where(function ($q) use ($notes) {
+                foreach ($notes as $note) {
+                    $q->orWhere('flavor_notes', 'like', '%' . $note . '%')
+                      ->orWhereHas('flavorNotes', fn($fq) => $fq->where('name', 'like', '%' . $note . '%'));
+                }
+            });
         }
 
         // Category filters
@@ -125,6 +159,19 @@ class ProductController extends Controller
         return response()->json($this->shapeProduct($product));
     }
 
+    public function filters(): JsonResponse
+    {
+        return response()->json([
+            'types' => Product::where('is_active', true)->whereNotNull('type')->distinct()->orderBy('type')->pluck('type'),
+            'regions' => Product::where('is_active', true)->whereNotNull('region')->distinct()->orderBy('region')->pluck('region'),
+            'roastLevels' => Product::where('is_active', true)->whereNotNull('roast_level')->distinct()->orderBy('roast_level')->pluck('roast_level'),
+            'processingMethods' => Product::where('is_active', true)->whereNotNull('processing_method')->distinct()->orderBy('processing_method')->pluck('processing_method'),
+            'categories' => Category::orderBy('name')->get(),
+            'flavorNotes' => FlavorNote::orderBy('name')->get(),
+            'grindSizes' => GrindSize::orderBy('name')->get(),
+        ]);
+    }
+
     public function store(Request $request): JsonResponse
     {
         $request->validate([
@@ -148,8 +195,7 @@ class ProductController extends Controller
         $product->region = $data['region'] ?? null;
         $product->altitude = $data['altitude'] ?? null;
         
-        $processMethod = $data['process_method'] ?? ($data['processing_method'] ?? null);
-        $product->process_method = $processMethod;
+        $processMethod = $data['processing_method'] ?? ($data['process_method'] ?? null);
         $product->processing_method = $processMethod;
         
         $product->roast_level = $data['roast_level'];
@@ -200,8 +246,7 @@ class ProductController extends Controller
         if ($request->has('altitude')) $product->altitude = $data['altitude'];
         
         if ($request->has('process_method') || $request->has('processing_method')) {
-            $processMethod = $data['process_method'] ?? ($data['processing_method'] ?? null);
-            $product->process_method = $processMethod;
+            $processMethod = $data['processing_method'] ?? ($data['process_method'] ?? null);
             $product->processing_method = $processMethod;
         }
 
@@ -310,5 +355,13 @@ class ProductController extends Controller
     private function splitFlavorNotes(string $value): array
     {
         return array_values(array_filter(array_map('trim', explode(',', $value))));
+    }
+
+    private function csv(string $value): array
+    {
+        return array_values(array_filter(
+            array_map('trim', explode(',', $value)),
+            fn($item) => $item !== '' && strtolower($item) !== 'all'
+        ));
     }
 }

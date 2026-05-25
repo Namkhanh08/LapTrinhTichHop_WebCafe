@@ -4,8 +4,9 @@
 
 ```text
 apps/
-  customer-web/        # React customer storefront
-  admin-web/           # React admin console
+  # not used in the current active tree
+LapTrinhTichHop_WebCafe/
+  KHE_coffe/           # React customer/admin frontend
 services/
   api-gateway-dotnet/  # .NET YARP API gateway
   identity-service-dotnet/ # .NET auth/users API
@@ -15,7 +16,7 @@ services/
   batch-service/       # Spring Boot coffee batch/QC API
 infra/
   mysql/init/          # database-per-service init scripts
-legacy/                # old monolith/artifacts kept out of the active path
+Backend/               # older Spring Boot backend kept for reference
 ```
 
 ## Run
@@ -29,8 +30,7 @@ docker compose up --build
 ## URLs
 
 - API gateway: `http://localhost:8080`
-- Customer web: `http://localhost:5173`
-- Admin web: `http://localhost:5174`
+- Unified web: `http://localhost:5173`
 - phpMyAdmin: `http://localhost:8081`
 - RabbitMQ management: `http://localhost:15672`
 
@@ -50,13 +50,9 @@ docker compose up --build
 ## Local Development
 
 ```powershell
-cd apps/customer-web
+cd LapTrinhTichHop_WebCafe/KHE_coffe
 npm install
 npm run dev
-
-cd ../../apps/admin-web
-npm install
-npm run dev -- --port 5174
 ```
 
-The active backend path is `services/*`. The old `legacy/be_revo_coffee` project is retained only for reference and should not receive new microservice work.
+The active backend path is `services/*`. Older backend folders are retained only for reference and should not receive new microservice work.

@@ -26,10 +26,16 @@ const API = {
     // AUTH
     login: (data) => api.post("/auth/login", data),
     register: (data) => api.post("/auth/register", data),
+    getProfile: () => api.get("/auth/profile"),
+    updateProfile: (data) => api.put("/auth/profile", data),
+    changePassword: (data) => api.post("/auth/change-password", data),
 
     // PRODUCTS
     getProducts: () => api.get("/products"),
     getProductById: (id) => api.get(`/products/${id}`),
+    createProduct: (data) => api.post("/products", data),
+    updateProduct: (id, data) => api.put(`/products/${id}`, data),
+    deleteProduct: (id) => api.delete(`/products/${id}`),
 
     // CARTS
     getCart: () => api.get("/carts"),
@@ -89,6 +95,23 @@ const API = {
     getDashboard: () =>
         api.get("/dashboard"),
 
+    // INVENTORY
+    getInventory: () =>
+        api.get("/inventory"),
+
+    updateInventoryItem: (id, data) =>
+        api.put(`/inventory/${id}`, data),
+
+    // BATCHES
+    getBatches: () =>
+        api.get("/batches"),
+
+    createBatch: (data) =>
+        api.post("/batches", data),
+
+    updateBatchStatus: (id, status) =>
+        api.put(`/batches/${id}/status`, { status }),
+
     // VOUCHERS
     getVouchersAdmin: () =>
         api.get("/vouchers"),
@@ -108,8 +131,10 @@ const API = {
     deleteVoucher: (id) =>
         api.delete(`/vouchers/${id}`),
 
-    toggleVoucher: (id) =>
-        api.patch(`/vouchers/${id}/toggle`),
+    toggleVoucher: (id, active) =>
+        api.patch(`/vouchers/${id}/toggle`, null, {
+            params: { active }
+        }),
 
 };
 

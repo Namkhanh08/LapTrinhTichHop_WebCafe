@@ -24,7 +24,7 @@ export default function AdminVouchers() {
     const [voucherForm, setVoucherForm] = useState({
         code: '',
         title: '',
-        discountType: 'percent',
+        discountType: 'percentage',
         discountValue: 0,
         maxDiscount: 0,
         minOrderValue: 0,
@@ -120,7 +120,7 @@ export default function AdminVouchers() {
             setVoucherForm({
                 code: '',
                 title: '',
-                discountType: 'percent',
+                discountType: 'percentage',
                 discountValue: 0,
                 maxDiscount: 0,
                 minOrderValue: 0,
@@ -243,7 +243,7 @@ export default function AdminVouchers() {
                                         }
                                         className="border p-3 rounded-xl"
                                     >
-                                        <option value="percent">Giảm %</option>
+                                        <option value="percentage">Giảm %</option>
                                         <option value="fixed">Giảm tiền</option>
                                         <option value="shipping">Freeship</option>
                                     </select>
@@ -459,7 +459,7 @@ export default function AdminVouchers() {
                                         {/* VALUE */}
                                         <td className="px-6 py-4">
                                             <div className="font-bold text-gray-800">
-                                                {voucher.DiscountType === 'percent' && `${voucher.DiscountValue}%`}
+                                                {voucher.DiscountType === 'percentage' && `${voucher.DiscountValue}%`}
                                                 {voucher.DiscountType === 'fixed' && formatMoney(voucher.DiscountValue)}
                                                 {voucher.DiscountType === 'shipping' && 'Freeship'}
                                             </div>
@@ -571,7 +571,7 @@ export default function AdminVouchers() {
                                                             : 'Kích hoạt'
                                                     }
                                                     onClick={() =>
-                                                        handleToggleVoucher(voucher.Id)
+                                                        handleToggleVoucher(voucher)
                                                     }
                                                 />
                                                 <ActionButton
@@ -608,13 +608,13 @@ const VoucherStatus = ({ active }) => {
 /* TYPE */
 const VoucherType = ({ type }) => {
     const styles = {
-        percent: 'bg-blue-100 text-blue-600',
+        percentage: 'bg-blue-100 text-blue-600',
         fixed: 'bg-purple-100 text-purple-600',
         shipping: 'bg-orange-100 text-orange-600',
     };
 
     const labels = {
-        percent: 'Giảm %',
+        percentage: 'Giảm %',
         fixed: 'Giảm tiền',
         shipping: 'Freeship',
     };

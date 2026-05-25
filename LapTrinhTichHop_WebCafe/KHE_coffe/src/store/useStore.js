@@ -16,17 +16,8 @@ const useStore = create(
       dashboard: null,
       totalItems: 0,
       currentPage: 1,
-      inventory: [
-        { id: 'GB-ARA-01', name: 'Arabica Cầu Đất (Sơ chế Washed)', type: 'Green Beans', quantity: 120, unit: 'kg' },
-        { id: 'GB-ROB-02', name: 'Robusta Đắk Lắk (Sơ chế Honey)', type: 'Green Beans', quantity: 85, unit: 'kg' },
-        { id: 'PKG-ZIP-250', name: 'Túi Zipper có van Drip (250g)', type: 'Packaging', quantity: 1250, unit: 'túi' },
-        { id: 'PKG-KRF-500', name: 'Túi Kraft Trơn (500g)', type: 'Packaging', quantity: 450, unit: 'túi' }
-      ],
-      restockItem: (itemId, amount) => set((state) => ({
-        inventory: (state.inventory || []).map(item =>
-          item.id === itemId ? { ...item, quantity: item.quantity + Number(amount) } : item
-        )
-      })),
+      inventory: [],
+      batches: [],
 
 
       vouchers: [],
@@ -327,6 +318,75 @@ const useStore = create(
       } catch (err) {
           console.error("Fetch products failed:", err.response?.data?.message || err.message);
         }
+      },
+
+      createProduct: async (data) => {
+        await API.createProduct(data);
+        await get().fetchProducts();
+      },
+
+      updateProduct: async (id, data) => {
+        await API.updateProduct(id, data);
+        await get().fetchProducts();
+      },
+
+      deleteProduct: async (id) => {
+        await API.deleteProduct(id);
+        await get().fetchProducts();
+      },
+
+      fetchInventory: async () => {
+        const res = await API.getInventory();
+        const items = Array.isArray(res.data) ? res.data : (res.data.items || []);
+        set({
+          inventory: items.map((item) => ({
+            ...item,
+            id: item.id ?? item.Id,
+            productId: item.productId ?? item.ProductId,
+            name: item.productName ?? item.ProductName,
+            quantity: item.quantityAvailable ?? item.QuantityAvailable ?? 0,
+            reserved: item.quantityReserved ?? item.QuantityReserved ?? 0,
+            available: (item.quantityAvailable ?? item.QuantityAvailable ?? 0) - (item.quantityReserved ?? item.QuantityReserved ?? 0),
+            location: item.warehouseLocation ?? item.WarehouseLocation,
+            reorderLevel: item.reorderLevel ?? item.ReorderLevel ?? 0,
+            type: 'Products',
+            unit: 'gói'
+          }))
+        });
+      },
+
+      restockItem: async (itemId, amount) => {
+        const item = get().inventory.find(i => String(i.id) === String(itemId));
+        if (!item) {
+          throw new Error("Inventory item not found");
+        }
+
+        await API.updateInventoryItem(item.id, {
+          id: item.id,
+          productId: item.productId,
+          productName: item.name,
+          quantityAvailable: Number(item.quantity) + Number(amount),
+          quantityReserved: Number(item.reserved || 0),
+          warehouseLocation: item.location || "",
+          reorderLevel: Number(item.reorderLevel || 0)
+        });
+        await get().fetchInventory();
+      },
+
+      fetchBatches: async () => {
+        const res = await API.getBatches();
+        const items = Array.isArray(res.data) ? res.data : (res.data.items || []);
+        set({ batches: items });
+      },
+
+      createBatch: async (data) => {
+        await API.createBatch(data);
+        await get().fetchBatches();
+      },
+
+      updateBatchStatus: async (id, status) => {
+        await API.updateBatchStatus(id, status);
+        await get().fetchBatches();
       },
 
 

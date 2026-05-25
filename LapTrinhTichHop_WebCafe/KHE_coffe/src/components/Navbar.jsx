@@ -11,6 +11,7 @@ export default function Navbar() {
     const totalItems = useStore((state) => state.getTotalQuantity());
     const totalOrders = useStore((state) => state.getTotalQuantityOrder());
     const user = useStore((state) => state.user);
+    const isAdmin = (user?.role || "").toString().toLowerCase() === "admin";
     const logout = useStore((state) => state.logout);
 
     const [openLogin, setOpenLogin] = useState(false);
@@ -76,6 +77,9 @@ export default function Navbar() {
                             </div>
 
                             <div className="absolute -right-5 top-12 w-48 bg-white rounded-2xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 text-center">
+                                {isAdmin && (
+                                    <Link to="/admin" className="block px-4 py-3 hover:bg-gray-100">Quản lý admin</Link>
+                                )}
                                 <Link to="/profile" className="block px-4 py-3 hover:bg-gray-100">Hồ sơ</Link>
                                 <Link to="/orders" className="block px-4 py-3 hover:bg-gray-100">Đơn hàng</Link>
 

@@ -2,7 +2,9 @@ package com.example.order_service.service;
 
 import com.example.order_service.entity.Order;
 import com.example.order_service.entity.OrderItem;
+import com.example.order_service.entity.OrderStatusHistory;
 import com.example.order_service.repository.OrderRepository;
+import com.example.order_service.repository.OrderStatusHistoryRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,13 +19,18 @@ import java.util.Map;
 public class OrderService {
 
     private final OrderRepository orderRepository;
+    private final OrderStatusHistoryRepository statusHistoryRepository;
     private final InventoryClient inventoryClient;
     private final VoucherService voucherService; // Tiêm VoucherService từ BC2.sql migration
 
-    public OrderService(OrderRepository orderRepository, InventoryClient inventoryClient, VoucherService voucherService) {
+    private final IdentityClient identityClient;
+
+    public OrderService(OrderRepository orderRepository, OrderStatusHistoryRepository statusHistoryRepository, InventoryClient inventoryClient, VoucherService voucherService, IdentityClient identityClient) {
         this.orderRepository = orderRepository;
+        this.statusHistoryRepository = statusHistoryRepository;
         this.inventoryClient = inventoryClient;
         this.voucherService = voucherService;
+        this.identityClient = identityClient;
     }
 
     public List<Order> getAllOrders() {
@@ -81,6 +88,7 @@ public class OrderService {
             }
             
             Order savedOrder = orderRepository.save(order);
+            recordStatusChange(savedOrder, null, savedOrder.getStatus(), "Order created", "system");
             
             // Tăng số lượt dùng voucher sau khi đặt đơn thành công
             if (order.getVoucherCode() != null && !order.getVoucherCode().isBlank()) {
@@ -109,17 +117,21 @@ public class OrderService {
         }
 
         Order order = getOrderById(id);
+        Order.OrderStatus previousStatus = order.getStatus();
         if (order.getStatus() == Order.OrderStatus.cancelled || order.getStatus() == Order.OrderStatus.delivered) {
             throw new IllegalStateException("Cannot update a completed or cancelled order");
         }
 
         order.setStatus(status);
         order.setUpdatedAt(LocalDateTime.now());
-        return orderRepository.save(order);
+        Order saved = orderRepository.save(order);
+        recordStatusChange(saved, previousStatus, status, "Order status updated", "system");
+        return saved;
     }
 
     public Order cancelOrder(Long id, String cancelReason) {
         Order order = getOrderById(id);
+        Order.OrderStatus previousStatus = order.getStatus();
         if (order.getStatus() == Order.OrderStatus.delivered) {
             throw new IllegalStateException("Cannot cancel a delivered order");
         }
@@ -135,11 +147,14 @@ public class OrderService {
         order.setCancelReason(normalizeCancelReason(cancelReason));
         order.setPaymentStatus(Order.PaymentStatus.refunded);
         order.setUpdatedAt(LocalDateTime.now());
-        return orderRepository.save(order);
+        Order saved = orderRepository.save(order);
+        recordStatusChange(saved, previousStatus, Order.OrderStatus.cancelled, saved.getCancelReason(), "system");
+        return saved;
     }
 
     public Order confirmDelivered(Long id) {
         Order order = getOrderById(id);
+        Order.OrderStatus previousStatus = order.getStatus();
         if (order.getStatus() == Order.OrderStatus.cancelled) {
             throw new IllegalStateException("Cannot complete a cancelled order");
         }
@@ -154,7 +169,10 @@ public class OrderService {
         order.setStatus(Order.OrderStatus.delivered);
         order.setPaymentStatus(Order.PaymentStatus.paid);
         order.setUpdatedAt(LocalDateTime.now());
-        return orderRepository.save(order);
+        Order saved = orderRepository.save(order);
+        recordStatusChange(saved, previousStatus, Order.OrderStatus.delivered, "Order delivered", "system");
+        awardLoyaltyPoints(saved);
+        return saved;
     }
 
     public Order updatePaymentStatus(Long id, Order.PaymentStatus paymentStatus) {
@@ -190,6 +208,10 @@ public class OrderService {
         orderRepository.deleteById(id);
     }
 
+    public List<OrderStatusHistory> getStatusHistory(Long orderId) {
+        return statusHistoryRepository.findByOrderIdOrderByCreatedAtAsc(orderId);
+    }
+
     private void validateNewOrder(Order order) {
         if (order.getUserId() == null) {
             throw new IllegalArgumentException("userId is required");
@@ -222,6 +244,36 @@ public class OrderService {
             return "Khach hang khong cung cap ly do";
         }
         return cancelReason.trim();
+    }
+
+    private void awardLoyaltyPoints(Order order) {
+        BigDecimal payable = order.getFinalAmount() != null ? order.getFinalAmount() : order.getTotalAmount();
+        int points = payable.divideToIntegralValue(BigDecimal.valueOf(10000)).intValue();
+        if (points <= 0) {
+            return;
+        }
+
+        try {
+            identityClient.addLoyaltyPoints(order.getUserId(), points, order.getOrderCode());
+        } catch (RuntimeException ignored) {
+            // Delivery completion should not roll back if identity is temporarily unavailable.
+        }
+    }
+
+    private void recordStatusChange(Order order, Order.OrderStatus fromStatus, Order.OrderStatus toStatus, String note, String changedBy) {
+        if (order.getId() == null || toStatus == null) {
+            return;
+        }
+
+        OrderStatusHistory history = new OrderStatusHistory();
+        history.setOrderId(order.getId());
+        history.setOrderCode(order.getOrderCode());
+        history.setFromStatus(fromStatus);
+        history.setToStatus(toStatus);
+        history.setNote(note);
+        history.setChangedBy(changedBy);
+        history.setCreatedAt(LocalDateTime.now());
+        statusHistoryRepository.save(history);
     }
 
     public Map<String, Object> fetchAllOrdersAdmin(int page, String searchTerm, String status) {

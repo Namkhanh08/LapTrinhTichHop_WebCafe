@@ -1,5 +1,44 @@
-CREATE DATABASE IF NOT EXISTS revo_orders;
+SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+CREATE DATABASE IF NOT EXISTS revo_orders
+    CHARACTER SET utf8mb4
+    COLLATE utf8mb4_unicode_ci;
 USE revo_orders;
+
+CREATE TABLE IF NOT EXISTS discount_types (
+    code VARCHAR(20) PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    description TEXT,
+    is_active BOOLEAN DEFAULT TRUE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS payment_methods (
+    code VARCHAR(50) PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    is_active BOOLEAN DEFAULT TRUE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS order_statuses (
+    code VARCHAR(50) PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    sort_order INT NOT NULL DEFAULT 0,
+    is_terminal BOOLEAN DEFAULT FALSE,
+    is_active BOOLEAN DEFAULT TRUE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS payment_statuses (
+    code VARCHAR(50) PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    is_terminal BOOLEAN DEFAULT FALSE,
+    is_active BOOLEAN DEFAULT TRUE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS subscription_frequencies (
+    code VARCHAR(50) PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    interval_days INT NOT NULL,
+    is_active BOOLEAN DEFAULT TRUE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS vouchers (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
@@ -54,7 +93,7 @@ CREATE TABLE IF NOT EXISTS subscriptions (
 CREATE TABLE IF NOT EXISTS orders (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     order_code VARCHAR(50) NOT NULL UNIQUE,
-    user_id BIGINT NOT NULL,
+    user_id INT NOT NULL,
     subscription_id BIGINT NULL,
     user_email VARCHAR(255),
     user_name VARCHAR(255),
@@ -80,7 +119,9 @@ CREATE TABLE IF NOT EXISTS orders (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (subscription_id) REFERENCES subscriptions(id) ON DELETE SET NULL,
-    FOREIGN KEY (voucher_code) REFERENCES vouchers(code) ON DELETE SET NULL
+    FOREIGN KEY (voucher_code) REFERENCES vouchers(code) ON DELETE SET NULL,
+    INDEX idx_orders_status (status),
+    INDEX idx_orders_user_id (user_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS order_items (
@@ -98,9 +139,29 @@ CREATE TABLE IF NOT EXISTS order_items (
     FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+CREATE TABLE IF NOT EXISTS order_item_flavor_notes (
+    order_item_id BIGINT NOT NULL,
+    flavor_note VARCHAR(100) NOT NULL,
+    PRIMARY KEY (order_item_id, flavor_note),
+    FOREIGN KEY (order_item_id) REFERENCES order_items(id) ON DELETE CASCADE,
+    INDEX idx_order_item_flavor_notes_note (flavor_note)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS order_status_history (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    order_id BIGINT NOT NULL,
+    order_code VARCHAR(50),
+    from_status ENUM('pending', 'confirmed', 'processing', 'shipped', 'delivered', 'cancelled') NULL,
+    to_status ENUM('pending', 'confirmed', 'processing', 'shipped', 'delivered', 'cancelled') NOT NULL,
+    note TEXT,
+    changed_by VARCHAR(100),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 CREATE TABLE IF NOT EXISTS carts (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    user_id BIGINT NOT NULL UNIQUE,
+    user_id INT NOT NULL UNIQUE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -117,6 +178,46 @@ CREATE TABLE IF NOT EXISTS cart_items (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (cart_id) REFERENCES carts(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS cart_item_flavor_notes (
+    cart_item_id BIGINT NOT NULL,
+    flavor_note VARCHAR(100) NOT NULL,
+    PRIMARY KEY (cart_item_id, flavor_note),
+    FOREIGN KEY (cart_item_id) REFERENCES cart_items(id) ON DELETE CASCADE,
+    INDEX idx_cart_item_flavor_notes_note (flavor_note)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO discount_types (code, name, description) VALUES
+('fixed', 'Fixed amount', 'Subtract a fixed amount from the order'),
+('percentage', 'Percentage', 'Subtract a percentage from the order')
+ON DUPLICATE KEY UPDATE name = VALUES(name), description = VALUES(description);
+
+INSERT INTO payment_methods (code, name) VALUES
+('ALL', 'All payment methods'),
+('COD', 'Cash on delivery'),
+('VNPAY', 'VNPAY')
+ON DUPLICATE KEY UPDATE name = VALUES(name);
+
+INSERT INTO order_statuses (code, name, sort_order, is_terminal) VALUES
+('pending', 'Pending', 10, FALSE),
+('confirmed', 'Confirmed', 20, FALSE),
+('processing', 'Processing', 30, FALSE),
+('shipped', 'Shipped', 40, FALSE),
+('delivered', 'Delivered', 50, TRUE),
+('cancelled', 'Cancelled', 60, TRUE)
+ON DUPLICATE KEY UPDATE name = VALUES(name), sort_order = VALUES(sort_order), is_terminal = VALUES(is_terminal);
+
+INSERT INTO payment_statuses (code, name, is_terminal) VALUES
+('pending', 'Pending', FALSE),
+('paid', 'Paid', TRUE),
+('failed', 'Failed', TRUE),
+('refunded', 'Refunded', TRUE)
+ON DUPLICATE KEY UPDATE name = VALUES(name), is_terminal = VALUES(is_terminal);
+
+INSERT INTO subscription_frequencies (code, name, interval_days) VALUES
+('weekly', 'Weekly', 7),
+('biweekly', 'Biweekly', 14)
+ON DUPLICATE KEY UPDATE name = VALUES(name), interval_days = VALUES(interval_days);
 
 INSERT INTO vouchers (id, code, title, description, discount_type, discount_value, max_discount, min_order_value, usage_limit, used_count, payment_method, is_active, start_date, end_date) VALUES
 (1, 'REVOCAFE50', 'Giảm 50k cho đơn hàng đầu tiên', 'Áp dụng cho đơn hàng cà phê có giá trị từ 200k trở lên', 'fixed', 50000.00, 50000.00, 200000.00, 100, 0, 'ALL', TRUE, '2026-05-01 00:00:00', '2026-12-31 23:59:59'),
@@ -146,3 +247,15 @@ INSERT INTO carts (id, user_id) VALUES
 
 INSERT INTO cart_items (id, cart_id, product_id, quantity, grinding_option_id, flavor_notes, weight) VALUES
 (70, 1, '2', 1, 5, 'Chocolate', '250g');
+
+INSERT INTO order_item_flavor_notes (order_item_id, flavor_note)
+SELECT id, TRIM(flavor_notes)
+FROM order_items
+WHERE flavor_notes IS NOT NULL AND TRIM(flavor_notes) <> ''
+ON DUPLICATE KEY UPDATE flavor_note = VALUES(flavor_note);
+
+INSERT INTO cart_item_flavor_notes (cart_item_id, flavor_note)
+SELECT id, TRIM(flavor_notes)
+FROM cart_items
+WHERE flavor_notes IS NOT NULL AND TRIM(flavor_notes) <> ''
+ON DUPLICATE KEY UPDATE flavor_note = VALUES(flavor_note);
