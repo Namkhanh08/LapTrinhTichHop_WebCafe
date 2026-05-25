@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import useStore from '../store/useStore';
 import { Coffee, CalendarSync, CreditCard, ChevronRight, Check, ShieldCheck, HelpCircle, Loader2, Lock, Sparkles, Compass, ArrowRight } from 'lucide-react';
 import API from '../services/api';
+import confetti from 'canvas-confetti';
 
 export default function Subscription() {
   const navigate = useNavigate();
@@ -10,6 +11,7 @@ export default function Subscription() {
   const fetchProducts = useStore((state) => state.fetchProducts);
   const fetchQuizMatchedProducts = useStore((state) => state.fetchQuizMatchedProducts);
   const user = useStore((state) => state.user);
+
 
   // Quản lý màn hình ban đầu: 'welcome', 'quiz', hoặc 'main'
   const [viewMode, setViewMode] = useState('welcome');
@@ -32,10 +34,13 @@ export default function Subscription() {
   const [commitment, setCommitment] = useState('pay-as-you-go');
   const [paymentMethod, setPaymentMethod] = useState('card_auto');
 
+  const [deliveryDay, setDeliveryDay] = useState('Tuesday'); // 'Tuesday' hoặc 'Thursday'
+
   const [isBindingCard, setIsBindingCard] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [cardInfo, setCardInfo] = useState({ number: '', name: '', expiry: '', cvv: '' });
+  const [showQrModal, setShowQrModal] = useState(false);
 
   // Giả định thông tin user
   const [userInfo] = useState({
@@ -53,6 +58,16 @@ export default function Subscription() {
     process: ''
   });
 
+  const handlePaymentSubmit = () => {
+    if (paymentMethod === 'vnpay') {
+      // Nếu chọn VNPay -> Bật modal QR lên cho khách quét
+      setShowQrModal(true);
+    } else {
+      // Xử lý cho các phương thức khác (thẻ tự động, chuyển khoản...) như cũ
+      goToSuccessPage();
+    }
+  };
+
   useEffect(() => {
     fetchProducts();
   }, [fetchProducts]);
@@ -62,6 +77,36 @@ export default function Subscription() {
       handleSelectProduct(products[0]);
     }
   }, [products]);
+
+  useEffect(() => {
+    if (isSuccess) {
+      // Cấu hình phát nổ từ bên trái
+      confetti({
+        particleCount: 120,
+        spread: 80,
+        origin: { x: 0.1, y: 0.6 },
+        colors: ['#a16207', '#78350f', '#f59e0b', '#22c55e'] // Màu sắc theo gu Revo Coffee
+      });
+
+      // Cấu hình phát nổ từ bên phải đối xứng
+      confetti({
+        particleCount: 120,
+        spread: 80,
+        origin: { x: 0.9, y: 0.6 },
+        colors: ['#a16207', '#78350f', '#f59e0b', '#22c55e']
+      });
+
+      // Một cú nổ phụ ở chính giữa sau đó 200ms
+      setTimeout(() => {
+        confetti({
+          particleCount: 80,
+          scalar: 1.2,
+          spread: 100,
+          origin: { x: 0.5, y: 0.4 },
+        });
+      }, 200);
+    }
+  }, [isSuccess]);
 
   const handleSelectProduct = async (product) => {
     setSelectedProduct(product);
@@ -132,24 +177,6 @@ export default function Subscription() {
     return basePrice * (1 - discount);
   };
 
-  const handleSubscribe = () => {
-    if (paymentMethod === 'vnpay') {
-      alert(`Chuyển hướng sang cổng VNPAY để quét QR thanh toán trọn gói...`);
-    } else if (paymentMethod === 'card_auto') {
-      setIsBindingCard(true);
-    }
-  };
-
-  const handleMockBindingSubmit = (e) => {
-    e.preventDefault();
-    setIsProcessing(true);
-
-    setTimeout(() => {
-      setIsProcessing(false);
-      setIsSuccess(true);
-    }, 2500);
-  };
-
   const CategoryMap = { '1': 'Arabica', '2': 'Blend', '3': 'Robusta', '4': 'Fine Robusta' };
   const steps = [
     { id: 1, label: 'Chọn Cà phê' },
@@ -164,6 +191,57 @@ export default function Subscription() {
   const pricePerBag = getPricePerBag();
   const totalPeriodPrice = pricePerBag * quantity;
 
+  const createSubscription = useStore((state) => state.createSubscription);
+  console.log("ALL STORE KEYS:", Object.keys(useStore.getState()));
+  console.log("createSubscription:", useStore.getState().createSubscription);
+  const handleSubscribe = () => {
+    if (paymentMethod === 'vnpay') {
+      setShowQrModal(true);
+    } else if (paymentMethod === 'card_auto') {
+      setIsBindingCard(true);
+    }
+  };
+
+  const handleMockBindingSubmit = (e) => {
+    e.preventDefault();
+    submitSubscription();
+  };
+  const submitSubscription = async () => {
+    setIsProcessing(true);
+    try {
+      const token = localStorage.getItem("token");
+      const payload = {
+        productId: selectedProduct.Id,
+        quantity: quantity,
+        grindType: grindType?.Id || null,
+        flavorNotes: flavorNotes,
+        weight: weights,
+        frequency: frequency,
+        commitment: commitment,
+        paymentMethod: paymentMethod === 'card_auto' ? 'CARD' : 'VNPAY',
+        deliveryDay: deliveryDay,
+        receiverName: user.name,
+        receiverPhone: user.phone,
+        shippingAddress: "làng Thượng Phường, xã Yên Thành, huyện Yên Mô, tỉnh Ninh Bình",
+        totalPrice: totalPeriodPrice
+      };
+
+      const { default: axios } = await import('axios');
+      await axios.post("http://localhost:5096/subscriptions/create", payload, {
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+        }
+      });
+
+      setIsSuccess(true);
+    } catch (err) {
+      alert("Đăng ký thất bại: " + (err.response?.data || err.message));
+    } finally {
+      setIsProcessing(false);
+    }
+  };
+
   if (!products.length) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-white">
@@ -172,27 +250,124 @@ export default function Subscription() {
     );
   }
 
-  // MÀN HÌNH THÀNH CÔNG
   if (isSuccess) {
     return (
-      <div className="bg-white min-h-screen py-20 flex items-center justify-center">
-        <div className="container mx-auto px-6 max-w-xl text-center border border-gray-100 shadow-xl rounded-[32px] p-10 bg-white">
-          <div className="w-20 h-20 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-6">
-            <Check size={40} className="text-green-500" />
+      <div className="bg-gradient-to-b from-amber-50/20 to-white min-h-screen py-16 flex items-center justify-center p-4 font-nunito relative overflow-hidden">
+
+        {/* Khung chứa nội dung thông báo thành công */}
+        <div className="bg-white max-w-xl w-full rounded-[32px] shadow-2xl border border-gray-100 p-8 md:p-10 text-center relative overflow-hidden z-10">
+
+          <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-amber-500 via-primary to-orange-600" />
+
+          {/* Icon Checkmark chuyển động */}
+          <div className="flex justify-center mb-6 relative">
+            <div className="bg-green-50 p-4 rounded-full border border-green-100 shadow-inner">
+              <Check size={44} className="text-green-500 animate-scaleUp" strokeWidth={3} />
+            </div>
           </div>
-          <h2 className="font-montserrat font-black text-2xl text-primary mb-3">ĐĂNG KÝ THÀNH CÔNG!</h2>
-          <p className="font-nunito text-primary/70 mb-6 text-sm leading-relaxed">
-            Hệ thống đã xác thực thông tin và liên kết thẻ thành công. Gói dịch vụ cà phê định kỳ của bạn đã chính thức được kích hoạt trên hệ thống.
+
+          <h2 className="font-nunito font-bold text-2xl md:text-3xl text-primary mb-2 tracking-tight">
+            KÍCH HOẠT THÀNH CÔNG!
+          </h2>
+          <p className="text-primary/70 text-xs md:text-sm max-w-sm mx-auto mb-8 leading-relaxed">
+            Hộp cà phê theo gu của bạn đã được đưa vào lịch rang xay!
           </p>
-          <div className="bg-gray-50 p-5 rounded-xl text-left font-nunito text-xs text-primary/80 space-y-2.5 mb-8">
-            <div className="flex justify-between"><span>Mã gói Subscription:</span><span className="font-bold text-primary">#REVO-SUB-2026</span></div>
-            <div className="flex justify-between"><span>Sản phẩm định kỳ:</span><span className="font-bold text-primary">{selectedProduct?.Name}</span></div>
-            <div className="flex justify-between"><span>Hình thức:</span><span className="font-bold text-primary">Tự động trừ thẻ định kỳ (*{cardInfo.number.slice(-4) || '4321'})</span></div>
-            <div className="flex justify-between"><span>Kỳ tiếp theo:</span><span className="font-bold text-primary">Tự động gia hạn sau {frequency === '1week' ? '7 ngày' : frequency === '2weeks' ? '14 ngày' : '30 ngày'}</span></div>
+
+          {/* THÈ MEMBER SUBSCRIPTION CARD */}
+          <div className="bg-gradient-to-br from-neutral-900 via-neutral-950 to-neutral-900 text-white rounded-2xl p-6 text-left shadow-xl mb-6 relative overflow-hidden border border-neutral-800">
+            <div className="flex justify-between items-start mb-6">
+              <div>
+                <p className="text-[10px] uppercase tracking-[0.2em] text-accent-1 font-bold font-montserrat">
+                  MEMBER SUBSCRIPTION
+                </p>
+                <h3 className="text-lg font-bold font-montserrat mt-0.5 text-white tracking-wide truncate max-w-[280px]">
+                  {selectedProduct?.Name || "Revo Premium Coffee"}
+                </h3>
+              </div>
+              <span className="text-[11px] bg-white/10 px-2.5 py-1 rounded-full font-mono border border-white/10 text-white/90">
+                #REVO-SUB-2026
+              </span>
+            </div>
+
+            <div className="grid grid-cols-3 gap-3 border-t border-white/10 pt-4 text-xs text-neutral-300 font-nunito">
+              <div>
+                <p className="opacity-50 text-[10px] uppercase">Ghi chú vị</p>
+                <p className="font-bold text-white truncate mt-0.5">{flavorNotes}</p>
+              </div>
+              <div>
+                <p className="opacity-50 text-[10px] uppercase">Kiểu xay</p>
+                <p className="font-bold text-white truncate mt-0.5">{grindType?.Name || 'Nguyên hạt'}</p>
+              </div>
+              <div>
+                <p className="opacity-50 text-[10px] uppercase">Số lượng</p>
+                <p className="font-bold text-accent-1 mt-0.5">{weights} (x{quantity})</p>
+              </div>
+            </div>
           </div>
-          <button onClick={() => navigate('/')} className="bg-primary text-white font-nunito font-bold py-3.5 px-12 rounded-full hover:bg-accent-1 transition-colors shadow">
-            Quay về trang chủ
-          </button>
+
+          {/* Hộp thông tin thanh toán */}
+          <div className="bg-gray-50 rounded-xl p-4 flex items-start gap-3 text-left border border-gray-100 mb-8 text-xs text-primary/80">
+            <div className="bg-primary/10 p-1.5 rounded-lg text-primary shrink-0 mt-0.5">
+              <CalendarSync size={16} />
+            </div>
+
+            {/* CARD AUTO */}
+            {paymentMethod === 'card_auto' ? (
+              <div>
+                <p className="font-bold text-primary">
+                  Cơ chế gia hạn tự động:
+                </p>
+
+                <p className="text-primary/60 mt-0.5 leading-normal">
+                  Gói sẽ tự động trừ phí qua thẻ
+                  <span className="font-mono font-bold text-primary">
+                    {" "}(*{cardInfo.number.slice(-4) || '4321'})
+                  </span>
+                  {" "}theo chu kỳ
+                  <span className="font-bold text-primary">
+                    {" "}
+                    {frequency === '1week'
+                      ? '7 ngày'
+                      : frequency === '2weeks'
+                        ? '14 ngày'
+                        : '30 ngày'}
+                    / lần
+                  </span>.
+                </p>
+              </div>
+            ) : (
+              /* VNPAY */
+              <div>
+                <p className="font-bold text-primary">
+                  Thanh toán VNPay thành công:
+                </p>
+
+                <p className="text-primary/60 mt-0.5 leading-normal">
+                  Hệ thống đã ghi nhận thanh toán cho gói subscription của bạn.
+                  Đơn hàng sẽ được tự động đưa vào lịch rang xay và giao theo
+                  chu kỳ bạn đã chọn.
+                </p>
+              </div>
+            )}
+          </div>
+
+          {/* Nhóm nút bấm điều hướng */}
+          <div className="flex flex-col sm:flex-row gap-3">
+            <button
+              onClick={() => navigate('/')}
+              className="w-full sm:w-1/3 border border-gray-200 text-primary font-bold py-3.5 px-4 rounded-xl hover:bg-gray-50 transition-all text-sm"
+            >
+              Về trang chủ
+            </button>
+            <button
+              onClick={() => navigate('/portal')}
+              className="w-full sm:w-2/3 bg-primary text-white font-bold py-3.5 px-6 rounded-xl hover:bg-accent-1 transition-all flex items-center justify-center gap-2 group text-sm shadow-md"
+            >
+              Đi tới quản lý gói của tôi
+              <ArrowRight size={16} className="transform group-hover:translate-x-1 transition-transform" />
+            </button>
+          </div>
+
         </div>
       </div>
     );
@@ -705,6 +880,36 @@ export default function Subscription() {
                     </div>
                   </div>
 
+                  {/* THÊM KHỐI NÀY: LỰA CHỌN NGÀY GIAO HÀNG TRONG TUẦN */}
+                  <div className="mt-6">
+                    <h3 className="font-montserrat font-bold text-base text-primary mb-4 flex items-center gap-2">
+                      <CalendarSync size={20} className="text-accent-1" /> 1b. Bạn muốn nhận cà phê cố định vào ngày nào?
+                    </h3>
+                    <div className="grid grid-cols-2 gap-4">
+                      {[
+                        { id: 'Tuesday', label: 'Thứ 3 hàng tuần', desc: 'Xưởng chốt mẻ rang & đóng gói vào Thứ 2' },
+                        { id: 'Thursday', label: 'Thứ 5 hàng tuần', desc: 'Xưởng chốt mẻ rang & đóng gói vào Thứ 4' }
+                      ].map((day) => (
+                        <div
+                          key={day.id}
+                          onClick={() => setDeliveryDay(day.id)}
+                          className={`p-4 border rounded-xl cursor-pointer transition-all flex flex-col justify-between ${deliveryDay === day.id
+                            ? 'border-primary bg-primary/[0.02] ring-1 ring-primary'
+                            : 'border-gray-200 hover:border-gray-300'
+                            }`}
+                        >
+                          <div className="flex justify-between items-center mb-1">
+                            <span className="font-montserrat font-bold text-sm text-primary">{day.label}</span>
+                            <div className={`w-4 h-4 rounded-full border flex items-center justify-center ${deliveryDay === day.id ? 'border-primary' : 'border-gray-300'}`}>
+                              {deliveryDay === day.id && <div className="w-2 h-2 bg-primary rounded-full"></div>}
+                            </div>
+                          </div>
+                          <p className="font-nunito text-primary/60 text-xs leading-normal">{day.desc}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
                   {/* Cam kết thời hạn gói */}
                   <div>
                     <h3 className="font-montserrat font-bold text-base text-primary mb-4 flex items-center gap-2">
@@ -783,6 +988,10 @@ export default function Subscription() {
                       <div className="flex justify-between"><span className="text-primary/70">Vị hạt:</span><span className="font-bold text-primary">{flavorNotes}</span></div>
                       <div className="flex justify-between"><span className="text-primary/70">Thể thức:</span><span className="font-bold text-primary">{weights} - {grindType?.Name || 'Nguyên hạt'}</span></div>
                       <div className="flex justify-between"><span className="text-primary/70">Tần suất giao:</span><span className="font-bold text-primary">{frequency === '1week' ? '1 tuần / lần' : frequency === '2weeks' ? '2 tuần / lần' : '1 tháng / lần'}</span></div>
+                      <div className="flex justify-between">
+                        <span className="text-primary/70">Ngày nhận hàng:</span>
+                        <span className="font-bold text-primary">{deliveryDay === 'Tuesday' ? 'Thứ 3 hàng tuần' : 'Thứ 5 hàng tuần'}</span>
+                      </div>
                       <div className="flex justify-between"><span className="text-primary/70">Cam kết kỳ hạn:</span><span className="font-bold text-accent-1">{commitment === 'pay-as-you-go' ? 'Tự do (Từng kỳ)' : 'Gói hạn định ' + commitment}</span></div>
                     </div>
                   </div>
@@ -829,6 +1038,75 @@ export default function Subscription() {
 
         </div>
       </div>
+
+      {showQrModal && (
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl animate-in fade-in zoom-in-95 duration-200">
+
+            {/* Header của Modal */}
+            <div className="text-center pb-4 border-b border-gray-100">
+              <h3 className="font-montserrat font-bold text-lg text-primary">Thanh toán qua VNPay QR</h3>
+              <p className="font-nunito text-xs text-primary/60 mt-1">Sử dụng ứng dụng Ngân hàng hoặc Ví điện tử để quét mã</p>
+            </div>
+
+            {/* Nội dung Mã QR */}
+            <div className="flex flex-col items-center my-6">
+              <div className="bg-white p-3 border-2 border-primary/10 rounded-xl shadow-inner mb-4">
+                {/* Thay bằng ảnh QR Code mẫu của bạn hoặc dùng thư viện sinh QR */}
+                <img
+                  src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=FoodieSubscriptionPaymentMock"
+                  alt="VNPay QR Code"
+                  className="w-48 h-48 object-contain"
+                />
+              </div>
+
+              {/* Thông tin đơn hàng hiển thị trực quan */}
+              <div className="w-full bg-pinky-gray/20 rounded-xl p-3 font-nunito text-sm space-y-1.5">
+                <div className="flex justify-between"><span className="text-primary/60">Số tiền:</span><span className="font-bold text-accent-1">{totalPeriodPrice.toLocaleString()} đ</span></div>
+                <div className="flex justify-between"><span className="text-primary/60">Nội dung:</span><span className="font-bold text-primary">REVO SUB {Date.now().toString().slice(-6)}</span></div>
+              </div>
+            </div>
+
+            {/* Nút hành động Giả lập luồng */}
+            <div className="space-y-2">
+              <button
+                onClick={() => {
+                  setIsProcessing(true);
+                  // Giả lập hiệu ứng đợi hệ thống kiểm tra 1.5 giây rồi chuyển trang
+                  setTimeout(() => {
+                    setIsProcessing(false);
+                    setShowQrModal(false);
+                    // Gọi hàm xử lý khi thành công (Ví dụ: nhảy sang Step 4 hoặc lưu DB)
+                    submitSubscription();
+                  }, 1500);
+                }}
+                disabled={isProcessing}
+                className="w-full bg-primary hover:bg-primary-dark text-white font-montserrat font-bold text-sm py-3.5 rounded-xl transition-colors shadow-lg shadow-primary/20 flex items-center justify-center gap-2"
+              >
+                {isProcessing ? (
+                  <>
+                    <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                    Đang xác thực giao dịch...
+                  </>
+                ) : (
+                  'Tôi đã thanh toán thành công'
+                )}
+              </button>
+
+              <button
+                onClick={() => {
+                  if (!isProcessing) setShowQrModal(false);
+                }}
+                disabled={isProcessing}
+                className="w-full bg-transparent hover:bg-gray-50 text-primary/60 hover:text-primary font-nunito font-semibold text-sm py-2 rounded-lg transition-colors text-center"
+              >
+                Hủy giao dịch
+              </button>
+            </div>
+
+          </div>
+        </div>
+      )}
     </div>
   );
 }

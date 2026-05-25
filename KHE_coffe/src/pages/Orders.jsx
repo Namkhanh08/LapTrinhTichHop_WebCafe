@@ -176,18 +176,6 @@ export default function Orders() {
                             >
                               <BiCommentDetail size={20} />
                             </Link>
-                            <button
-                              onClick={() => handleEdit(order.Id)}
-                              className="py-4 px-4 rounded-full font-nunito font-bold text-blue-500 hover:-translate-y-1 transition-all duration-300 hover:scale-110 hover:bg-blue-600 hover:text-white"
-                            >
-                              <MdOutlineEdit size={20} />
-                            </button>
-                            <button
-                              onClick={() => handleCancel(order.Id)}
-                              className="py-4 px-4 rounded-full font-nunito font-bold text-red-500 hover:bg-red-600 hover:-translate-y-1 transition-all duration-300 hover:scale-110 hover:text-white"
-                            >
-                              <TiDelete size={20} />
-                            </button>
                           </>
                         )}
 
@@ -199,18 +187,6 @@ export default function Orders() {
                             >
                               <BiCommentDetail size={20} />
                             </Link>
-                            <button
-                              onClick={() => handleEdit(order.Id)}
-                              className="py-4 px-4 rounded-full font-nunito font-bold text-blue-500 hover:-translate-y-1 transition-all duration-300 hover:scale-110 hover:bg-blue-600 hover:text-white"
-                            >
-                              <MdOutlineEdit size={20} />
-                            </button>
-                            <button
-                              onClick={() => handleCancel(order.Id)}
-                              className="py-4 px-4 rounded-full font-nunito font-bold text-red-500 hover:bg-red-600 hover:-translate-y-1 transition-all duration-300 hover:scale-110 hover:text-white"
-                            >
-                              <TiDelete size={20} />
-                            </button>
                           </>
                         )}
 
@@ -230,18 +206,6 @@ export default function Orders() {
                             >
                               <BiCommentDetail size={20} />
                             </Link>
-                            <button
-                              onClick={() => handleEdit(order.Id)}
-                              className="py-4 px-4 rounded-full font-nunito font-bold text-blue-500 hover:-translate-y-1 transition-all duration-300 hover:scale-110 hover:bg-blue-600 hover:text-white"
-                            >
-                              <MdOutlineEdit size={20} />
-                            </button>
-                            <button
-                              onClick={() => handleCancel(order.Id)}
-                              className="py-4 px-4 rounded-full font-nunito font-bold text-red-500 hover:bg-red-600 hover:-translate-y-1 transition-all duration-300 hover:scale-110 hover:text-white"
-                            >
-                              <TiDelete size={20} />
-                            </button>
                           </>
 
                         )}

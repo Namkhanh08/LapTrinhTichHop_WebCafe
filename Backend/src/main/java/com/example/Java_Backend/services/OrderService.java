@@ -148,7 +148,7 @@ public class OrderService {
         }
 
         if(
-                !order.getStatus().equals("Chờ thanh toán") && !order.getStatus().equals("Chờ xử lý")
+                !order.getStatus().equals("Chờ thanh toán") && !order.getStatus().equals("Chờ xử lý") && !order.getStatus().equals("Đã thanh toán")
         ){
             throw new RuntimeException("Đơn hàng này không thể hủy!");
         }
@@ -184,7 +184,7 @@ public class OrderService {
 
         if(
                 !"Chờ xử lý".equals(order.getStatus()) &&
-                        !"Chờ thanh toán".equals(order.getStatus()) && !"Đã xác nhận".equals(order.getStatus())
+                        !"Chờ thanh toán".equals(order.getStatus()) && !"Đã xác nhận".equals(order.getStatus()) && !"Đã thanh toán".equals(order.getStatus())
         ){
             throw new RuntimeException("Đơn hàng này không thể chỉnh sửa!");
         }

@@ -168,7 +168,8 @@ export default function ShipperOrders() {
                     {/* 5. Tiền thu hộ */}
                     <td className="px-6 py-4 font-bold text-right whitespace-nowrap">
                       <div className="text-red-600 font-nunito text-base">
-                        {(order.FinalAmount || 0).toLocaleString('vi-VN')}₫
+                        {/* {(order.FinalAmount || 0).toLocaleString('vi-VN')}₫ */}
+                        {order.PaymentMethod === 'VNPAY' ? '0' : (order.FinalAmount).toLocaleString()}₫
                       </div>
                       <span className="inline-block text-[9px] uppercase tracking-wider font-extrabold bg-gray-100 text-gray-600 px-1.5 py-0.5 rounded-md mt-1">
                         {order.PaymentMethod || "COD"}
